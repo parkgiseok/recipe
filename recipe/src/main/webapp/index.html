@@ -30,8 +30,8 @@
       </div>
       <div class="collapse navbar-collapse" id="defaultNavbar1">
         <form class="navbar-form navbar-left" role="search">
-          <div class="form-group"><input type="text" class="form-control" placeholder="예) 김치 볶음밥"></div>
-          <a href="search.html" class="btn btn-default">검색</a>
+          <div class="form-group"><input type="text" value="" class="form-control" id="searchvalue" placeholder="예) 김치 볶음밥"></div>
+          <a onclick='javascript:fncSubmit();' class="btn btn-default">검색</a>    
         </form>
         <ul class="nav navbar-nav navbar-right">
           <li><a id="login" class="launch-modal" href="#" data-modal-id="modal-register1">로그인</a></li>
@@ -39,6 +39,16 @@
           <li><a id="logout" href="auth/logout.do">로그아웃</a></li>
           <li><a id="mypage" href="member/myPage.html">마이페이지</a></li>
         </ul>
+        
+        <script>
+        var searchValue;        
+        $('input').keyup(function() {
+          searchValue = $(this).val();
+        });        
+        function fncSubmit() {
+          location.href = 'search.html?value=' + searchValue;
+        }
+        </script>
 
         <!-- 로그인 -->
         <form action="auth/login.do" method="post">

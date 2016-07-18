@@ -10,6 +10,7 @@ import recipe.dao.RecipeDao;
 import recipe.service.RecipeService;
 import recipe.vo.Recipe;
 import recipe.vo.RecipeMember;
+import recipe.vo.SearchedRecipe;
 import recipe.vo.Tag;
 
 @Service
@@ -77,7 +78,39 @@ public class DefaultRecipeService implements RecipeService {
   public List<Tag> selectAllTag() {
     return recipeDao.selectAllTag();
   }
-
+  
+  @Override
+  public List<Tag> selectTagList(int bno) {
+    return recipeDao.selectTagList(bno);
+  }
+  
+  @Override
+  public List<SearchedRecipe> searchByTag(String tag, int si, int len) {
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("tname", tag);
+    paramMap.put("startIndex",si);
+    paramMap.put("length",len);
+    return recipeDao.searchRecipeListByTag(paramMap);
+  }
+  
+  @Override
+  public List<SearchedRecipe> searchByTitle(String title, int si, int len) {
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("title", "%" + title + "%");
+    paramMap.put("startIndex",si);
+    paramMap.put("length",len);
+    return recipeDao.searchRecipeListByTitle(paramMap);
+  }
+  
+  @Override
+  public List<SearchedRecipe> searchByNick(String nick, int si, int len) {
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("nick", nick);
+    paramMap.put("startIndex",si);
+    paramMap.put("length",len);
+    return recipeDao.searchRecipeListByNick(paramMap);
+  }
+  
 }
 
 /*

@@ -34,6 +34,7 @@ import recipe.vo.Food;
 import recipe.vo.Member;
 import recipe.vo.Recipe;
 import recipe.vo.RecipeMember;
+import recipe.vo.SearchedRecipe;
 import recipe.vo.Tag;
 
 @Controller
@@ -45,6 +46,7 @@ public class RecipeAjaxController {
   @Autowired FoodService foodService;
   @Autowired TagService tagService;
   @Autowired ServletContext servletContext;
+  
   @RequestMapping(value="add", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String add(HttpSession session,String title,String m_photo, String c_nara, int c_situ, int c_cook, int c_food, int time, int level) throws ServletException, IOException {
@@ -142,6 +144,23 @@ public class RecipeAjaxController {
     return new Gson().toJson(paramMap);
   }
   
+  @RequestMapping(value="selectTagList", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String selectTagList(int bno, HttpSession session) throws ServletException, IOException {    
+    @SuppressWarnings("unused")
+    Member member = (Member)session.getAttribute("loginUser");    
+    List<Tag> tags = recipeService.selectTagList(bno);
+    /*
+    for (int i = 0; i < 5; i++) {
+      System.out.print(tags.get(i).getTname() + ", ");
+    }
+    System.out.println();
+    */
+    Map<String, Object> paramMap = new HashMap<String, Object>();
+    paramMap.put("list", tags);    
+    return new Gson().toJson(paramMap);
+  }
+  
   @RequestMapping(value="detailMember", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String detailMember(Integer bno) throws ServletException, IOException {
@@ -183,6 +202,134 @@ public class RecipeAjaxController {
     HashMap<String, Object> paramMap = new HashMap<>();
     paramMap.put("list", recipe);
     return new Gson().toJson(paramMap);
+  }
+  
+  @RequestMapping(value="searchRecipeByNick", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String searchRecipeByNick(
+      @RequestParam(defaultValue="0") int pageNo, 
+      @RequestParam(defaultValue="4") int pageSize, HttpSession session, String nick) throws ServletException, IOException {    
+    
+    @SuppressWarnings("unused")
+    Member member = (Member)session.getAttribute("loginUser");    
+    
+    if (pageSize < 4) { // 최소 3개
+      pageSize = 4; 
+    } else if (pageSize > 50) { // 최대 50개 
+      pageSize = 50;
+    }
+    List<SearchedRecipe> recipe = recipeService.searchByNick(nick, pageNo, pageSize);
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("list", recipe);    
+    
+    String json = new Gson().toJson(paramMap);
+    String[] tags = json.split("\"tname\":\"");
+//    System.out.println(json);
+    
+    json = json.split("\"tname\":\"")[0] + "\"tname\":\"";
+    for (int i = 1; i < tags.length; i++) {
+      json = json + "#" + tags[i].split("\"")[0]+ " ";
+    }
+    json = json + "\"}]}";
+//    System.out.println("searchRecipeByNick: " + json);
+    
+    return json;
+  }
+  
+  @RequestMapping(value="searchRecipeByTitle", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String searchRecipeByTitle(
+      @RequestParam(defaultValue="0") int pageNo, 
+      @RequestParam(defaultValue="4") int pageSize, HttpSession session, String title) throws ServletException, IOException {    
+    
+    @SuppressWarnings("unused")
+    Member member = (Member)session.getAttribute("loginUser");
+    
+    if (pageSize < 4) { // 최소 3개
+      pageSize = 4; 
+    } else if (pageSize > 50) { // 최대 50개 
+      pageSize = 50;
+    }
+    List<SearchedRecipe> recipe = recipeService.searchByTitle(title, pageNo, pageSize);
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("list", recipe);
+    
+    System.out.println();
+    
+    if(new Gson().toJson(paramMap).length() > 11) {    
+      String json = (new Gson().toJson(paramMap)).split("\\[")[1].split("\\]")[0];
+      String[] jsons = json.split("\\{");
+      String[] mnos = new String[jsons.length];
+      String[] tags = new String[jsons.length];
+      String newJson = "{\"list\":[{" + jsons[1].split("\"\\},")[0];
+      
+      for (int i = 1; i < jsons.length; i++) {      
+        mnos[i] = jsons[i].split(":")[1].split(",")[0];     
+        tags[i] = jsons[i].split("\"tname\":\"")[1].split("\"")[0];
+        
+        if (i > 1 && mnos[i].equals(mnos[i-1])) {
+          newJson = newJson + " " + tags[i];
+        } else if (i != 1 && i != jsons.length - 1) {
+          newJson = newJson + "\"},{" + jsons[i].split("\"\\},")[0];
+        }
+      }
+      newJson = newJson + "\"}]}";
+      
+      return newJson;
+    } else {
+      return new Gson().toJson(paramMap);
+    }    
+  }
+  
+  @RequestMapping(value="searchRecipeByTag", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String searchRecipeByTag(
+      @RequestParam(defaultValue="0") int pageNo, 
+      @RequestParam(defaultValue="4") int pageSize, HttpSession session, String tag) throws ServletException, IOException {    
+    
+    @SuppressWarnings("unused")
+    Member member = (Member)session.getAttribute("loginUser");
+    
+    if (pageSize < 4) { // 최소 3개
+      pageSize = 4; 
+    } else if (pageSize > 50) { // 최대 50개 
+      pageSize = 50;
+    }
+    
+    List<SearchedRecipe> recipe = recipeService.searchByTag(tag, pageNo, pageSize);
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("list", recipe);
+    
+    if(new Gson().toJson(paramMap).length() > 11) {
+      String json = (new Gson().toJson(paramMap)).split("\\[")[1].split("\\]")[0];
+      String[] jsons = json.split("\\{");
+      String[] mnos = new String[jsons.length];
+      String[] tags = new String[jsons.length];
+      
+      System.out.println(new Gson().toJson(paramMap));
+      
+      String newJson = "{\"list\":[{" + jsons[1].split("\"\\},")[0];
+      
+      for (int i = 1; i < jsons.length; i++) {      
+        mnos[i] = jsons[i].split(":")[1].split(",")[0];     
+        tags[i] = jsons[i].split("\"tname\":\"")[1].split("\"")[0];
+        
+        System.out.printf("jsons[%d]: %s \n", i, jsons[i]); 
+        System.out.printf("mnos[%d]: %s // tags[%d]: %s \n", i, mnos[i], i, tags[i]);
+        
+        if (i > 1 && mnos[i].equals(mnos[i-1])) {
+          newJson = newJson + " " + tags[i];
+        } else if (i != 1 && i != jsons.length - 1) {
+          newJson = newJson + "\"},{" + jsons[i].split("\"\\},")[0];
+        }
+        
+        System.out.printf("newJson[%d] : %s\n", i, newJson);
+      }
+      newJson = newJson + "\"}]}";
+      return newJson;
+    } else {
+      return new Gson().toJson(paramMap);
+    }
   }
   
   @RequestMapping(value="countRecipeControl", produces="application/json;charset=UTF-8")

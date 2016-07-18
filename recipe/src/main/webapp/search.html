@@ -13,7 +13,7 @@
 <script src="bower_components/handlebars/handlebars.min.js"></script>
 </head>
 
-<body>
+<body>  
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -24,8 +24,8 @@
       </div>
       <div class="collapse navbar-collapse" id="defaultNavbar1">
         <form class="navbar-form navbar-left" role="search">
-          <div class="form-group"><input type="text" class="form-control" placeholder="예) 김치 볶음밥"></div>
-          <a href="search.html" class="btn btn-default">검색</a>
+          <div class="form-group"><input type="text" value="" class="form-control" id="searchvalue" placeholder="예) 김치 볶음밥"></div>
+          <a onclick='javascript:fncSubmit();' class="btn btn-default">검색</a>          
         </form>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">로그아웃</a></li>
@@ -34,32 +34,49 @@
       </div>
     </div>
   </nav>
+  
+  <script>
+  var searchValue;        
+  $('input').keyup(function() {
+    searchValue = encodeURIComponent($(this).val());
+  });        
+  function fncSubmit() {
+    console.log("encoded searchValue: " + searchValue);
+//    searchValue = decodeURI(searchValue);
+//    console.log("decoded searchValue: " + searchValue);
+    location.href = 'search.html?value=' + searchValue;
+  }
+  </script>
+        
   <div class="container">
     <section class="sec_main_recipe">
       <div>
         <div>
-          <p class="search_tag">
-            <a href="#">#감자탕</a> 
-            <a href="#">#닭꼬치</a> 
-            <a href="#">#라면</a> 
-            <a href="#">#족발</a> 
+          <p class="search_tag"> 
           </p>
         </div>
         <hr>
         <dl class="inner">
-          <dt>
-            <div class="col-xs-2">
-              <button class="category1">정확도순 ▼</button>
-            </div>
-            <div class="col-xs-2">
-              <button class="category2">최신순 ▼</button>
-            </div>
-            <div class="col-xs-6 col-xs-offset-2">
-              <p class="s_result">검색 결과 : <span class="s_result2">8</span> 건</p>
-            </div>
-          </dt><br><br>
+          <dt>닉네임으로 검색된 결과<br><br></dt>
+          <dd></dd>
           <dd>
             <ol class="lst_recipe" id="list1"></ol>
+          </dd>
+        </dl>
+        <hr>
+        <dl class="inner">
+          <dt>제목으로 검색된 결과<br><br></dt>
+          <dd></dd>
+          <dd>
+            <ol class="lst_recipe" id="list2"></ol>
+          </dd>
+        </dl>
+        <hr>
+        <dl class="inner">
+          <dt>음식태그로 검색된 결과<br><br></dt>
+          <dd></dd>
+          <dd>
+            <ol class="lst_recipe" id="list3"></ol>
           </dd>
         </dl>
       </div>
@@ -74,27 +91,47 @@
     </div>
   </footer>
   </div>
-
+  
+  <script>
+  var Request = function() {
+    this.getParameter = function(name) {
+      var rtnval = '';
+      var nowAddress = location.href;
+      var parameters = (nowAddress.slice(nowAddress.indexOf('?')+1,nowAddress.length)).split('&');
+      for(var i = 0 ; i < parameters.length ; i++) {
+        var varName = parameters[i].split('=')[0];
+        if(varName.toUpperCase() == name.toUpperCase()) {
+          rtnval = parameters[i].split('=')[1];
+          console.log('===>', rtnval);
+          break;
+        }
+      }
+      return rtnval;
+    }
+  }
+  var request = new Request();
+  </script>
+  
   <script id="card" type="text/x-handlebars-template">
   {{#each list}}
   <li class="cardlist" id="a{{@index}}">
+    <input id="bno{{@index}}" type="hidden" value="19"/>
     <div id="f1_container">
       <div id="f1_card">
         <div class="card front face" id="card{{@index}}">
-          <div class="thmb"> <img src="{{mainPhoto}}"/> </div> 
+          <div class="thmb"> <img src="{{m_photo}}"/> </div> 
           <span class="author"> 
-            <img src="{{profilePhoto}}"/>
-            <strong>{{nickname}}</strong> 
+            <img src="{{photo}}"/>
+            <strong>{{nick}}</strong> 
           </span>
-          <div class="title"><p>{{title}}</p></div>
-          
+          <div class="title"><p>{{title}}</p></div>          
         </div>
         <div class="back face center">
           <div class="back_card">
-            <div class="m_cate_border">한식 / 술안주
+            <div class="m_cate_border">{{category}}
               <p class="m_cate">주카테고리</p>
             </div>
-            <div class="m_cate_border2">내 맘대로 다 할거다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
+            <div class="m_cate_border2">{{desct}}
               <p class="intro">자기소개</p>
             </div><hr>
             <div class="last_recipe">
@@ -105,7 +142,7 @@
                 <img src="img/2.jpg" class="last_img2" style="width:50px;"/>
               </div>
               <div class="last_recipe_text col-xs-9 col-xs-9">
-                <span> 1초 전에 작성한 글ㅏㅏㅏㅏ...</span>
+                <span>  </span>
               </div>
             </div>
             <div class="most_recipe">
@@ -130,10 +167,21 @@
     </div>
 
     <div class="desc">
-      <div class="level">난이도 : <img src="img/4star.png" style="width:40%; margin-top:-2px;"></div>
-      <div class="intro2">한 줄 소개소개소개소개소개소개소개소개소개소개소개소개소개소개...</div>
-      <div class="ingre"> #재료, #재료, #재료, #재료, #재료, #재료, #재료, #재료, #재료,...</div>
-      <div class="date">2016-6-29</div>
+      <script>
+        var level = {{level}};
+        var levelStar;
+        if(level <= 2) levelStar = "img/1star.png";
+        else if(level <= 4) levelStar = "img/2star.png";
+        else if(level <= 6) levelStar = "img/3star.png";
+        else if(level <= 8) levelStar = "img/4star.png";
+        else if(level <= 10) levelStar = "img/5star.png";
+        $("#star{{@index}}").attr("src", levelStar);
+      <{{!}}/script>
+      
+      <div class="level">난이도 : <img id="star{{@index}}" src="" style="width:40%; margin-top:-2px;"> </div>
+      <div class="intro2"> {{cont}} </div>
+      <div class="ingre" id="ingre{{@index}}">{{tname}}</div>
+      <div class="date">{{w_dt}}</div>
       <div class="option2">
         <div class="site"><a href="urlPage.html">간단히 보기</a></div>
         <div class="blog"><a href="urlPage.html">자세히 보기</a></div>
@@ -142,53 +190,61 @@
   </li>
   {{/each}}
   </script>
-
+  
   <script>
-    $(function() {
-      $.ajax({
-        method : "GET",
-        url : "search1.jsp",
-        dataType : "json",
-        success : function(data) {
-          var template = Handlebars.compile($('#card').html());
-          $("#list1").append(template(data));
-        }
-      });
-    });
-    
-    $(function() {
-      $.ajax({
-        method : "GET",
-        url : "search2.jsp",
-        dataType : "json",
-        success : function(data) {
-          var template = Handlebars.compile($('#card').html());
-          $("#list2").append(template(data));
-        }
-      });
-    });
+  var value = request.getParameter('value');
+  console.log("received(encoded) value: " + value);
+  value = decodeURIComponent(value);
+  console.log("decoded value: " + value);
+  
+  $(document).ready(function() {
+    $.post("./ajax/recipe/searchRecipeByNick.do", {
+      nick : value
+    }, function(result) {
+      var template = Handlebars.compile($('#card').html());
+      $("#list1").append(template(result));
+    }, "json");
+  });
+  
+  $(document).ready(function() {    
+    $.post("./ajax/recipe/searchRecipeByTitle.do", {
+      title : value
+    }, function(result) {
+      var template = Handlebars.compile($('#card').html());
+      $("#list2").append(template(result));
+    }, "json");
+  });
+  
+  $(document).ready(function() {    
+    $.post("./ajax/recipe/searchRecipeByTag.do", {
+      tag : value
+    }, function(result) {
+      var template = Handlebars.compile($('#card').html());
+      $("#list3").append(template(result));
+    }, "json");
+  });
   </script>
   
   <script>
   var c = false;
   
-  $(function () {
-     $(".category1").css("color", "black").css("font-weight", "600");
+  $(function() {
+    $(".category1").css("color", "black").css("font-weight", "600");
   });
   
-  $(".category1").click( function() {
-     if (c == true){
+  $(".category1").click(function() {
+    if (c == true) {
       $(".category1").css("color","black").css("font-weight", "600");
       $(".category2").css("color","gray").css("font-weight", "normal");
       c = false;
     };
   });
- 
-  $(".category2").click( function() {
-     if (c == false){
-        $(".category2").css("color","black").css("font-weight", "600");
-        $(".category1").css("color","gray").css("font-weight", "normal");
-        c = true;
+  
+  $(".category2").click(function() {
+    if (c == false) {
+      $(".category2").css("color","black").css("font-weight", "600");
+      $(".category1").css("color","gray").css("font-weight", "normal");
+      c = true;
     };
   });
   </script>
