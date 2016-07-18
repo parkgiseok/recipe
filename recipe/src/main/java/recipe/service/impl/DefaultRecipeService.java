@@ -105,7 +105,7 @@ public class DefaultRecipeService implements RecipeService {
   @Override
   public List<SearchedRecipe> searchByNick(String nick, int si, int len) {
     HashMap<String,Object> paramMap = new HashMap<>();
-    paramMap.put("nick", nick);
+    paramMap.put("nick", "%" + nick + "%");
     paramMap.put("startIndex",si);
     paramMap.put("length",len);
     return recipeDao.searchRecipeListByNick(paramMap);
