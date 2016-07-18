@@ -454,7 +454,7 @@
         if (result.status == "success") {
           /* location.href = "index.html"; */
         } else {
-          window.alert("등록 실패입니다1231213!");
+          window.alert("등록 실패입니다!레시피");
         }
       }, "json"
     ); 
@@ -471,7 +471,7 @@
           console.log(inputTags[i] + "!=" + tags[j])
           if(j == tags.length-1) {
             bnos.push(k);
-            k++;              
+            k++;
           }
         }
       }
@@ -482,21 +482,23 @@
             }, function(result) {
               if (result.status == "success") {
                 /* location.href = "index.html"; */
+                window.alert("태그 등록 성공");
               } else {
-                window.alert("등록 실패입니다1231213!");
+                window.alert("등록 실패입니다!태그");
               }
             }, "json"
           );
       }
     }
-    for (var fi = 0; i<bnos.length; fi++){
+    for (var fi = 0; fi<bnos.length; fi++){
       $.post("ajax/recipe/addFood.do", {
               tno : bnos[fi]
             }, function(result) {
               if (result.status == "success") {
+                window.alert("음식 등록 성공");
                 /* location.href = "index.html"; */
               } else {
-                window.alert("등록 실패입니다1231213!");
+                window.alert("등록 실패입니다!음식");
               }
             }, "json"
           );
@@ -512,7 +514,7 @@
               if (result.status == "success") {
                  location.href = "index.html"; 
               } else {
-                window.alert("등록 실패입니다000000!");
+                window.alert("등록 실패입니다!content");
               }
             }, "json"
           );
