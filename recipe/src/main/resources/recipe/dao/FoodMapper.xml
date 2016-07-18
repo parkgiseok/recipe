@@ -5,17 +5,17 @@
 
 <mapper namespace="recipe.dao.FoodDao">
 
-  <insert id="insert" parameterType="Likes">
+  <insert id="insert" parameterType="Food">
     insert into FOOD(BNO,TNO) values((SELECT BNO FROM recipe
               ORDER BY BNO DESC
               LIMIT 1),#{tno})
   </insert>
 
-  <delete id="delete" parameterType="map">
+  <delete id="delete" parameterType="int">
     delete from FOOD where BNO=#{bno} 
   </delete>
   
-  <update id="update" parameterType="Recipe">
+  <update id="update" parameterType="Food">
     update FOOD set
       TNO=#{tno}
     where BNO=#{bno}
