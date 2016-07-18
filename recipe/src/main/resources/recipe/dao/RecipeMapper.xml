@@ -99,7 +99,7 @@
     left outer join r_photo rp on r.bno = rp.bno
     right outer join food f on r.bno = f.bno
     right outer join tag t on f.tno = t.tno
-    where r.mno in (select mno from member where member.nick=#{nick})
+    where r.mno in (select mno from member where member.nick like #{nick})
     order by r.bno desc
   </select>
   
