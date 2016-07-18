@@ -253,8 +253,9 @@ public class RecipeAjaxController {
     List<SearchedRecipe> recipe = recipeService.searchByTitle(title, pageNo, pageSize);
     HashMap<String, Object> paramMap = new HashMap<>();
     paramMap.put("list", recipe);
-    
-    System.out.println();
+    System.out.println("=========");
+    System.out.println(new Gson().toJson(paramMap));
+    System.out.println("=========");
     
     if(new Gson().toJson(paramMap).length() > 11) {    
       String json = (new Gson().toJson(paramMap)).split("\\[")[1].split("\\]")[0];
@@ -370,7 +371,7 @@ public class RecipeAjaxController {
     try {
       tagService.add(tag);
       result.put("status", "success");
-      System.out.println(" 성공ㅋㅋ");
+      System.out.println(" 태그성공");
     } catch(Exception e) {
       result.put("status", "failure");
       System.out.println("실패ㅋㅋ");
@@ -390,7 +391,7 @@ public class RecipeAjaxController {
     try {
       foodService.add(food);
       result.put("status", "success");
-      System.out.println(" 성공ㅋㅋ");
+      System.out.println(" 음식성공ㅋㅋ");
     } catch(Exception e) {
       result.put("status", "failure");
       System.out.println("실패ㅋㅋ");
