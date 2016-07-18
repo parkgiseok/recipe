@@ -149,8 +149,8 @@
   margin-top: 17px;
 }
 
-.radio {
-  
+.radio>label {
+  margin-right: 30px;
 }
 
 .level {
