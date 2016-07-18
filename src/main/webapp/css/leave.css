@@ -1,0 +1,12 @@
+*{
+  font-family: '옛날목욕탕';
+  color: black;
+}
+hr {
+	border: 1px solid lightgray;
+}
+
+.data-div {
+  position: relative;
+  padding: 10px;
+}

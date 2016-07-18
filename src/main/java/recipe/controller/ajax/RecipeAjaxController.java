@@ -1,0 +1,319 @@
+package recipe.controller.ajax;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.codec.binary.Base64;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
+
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Positions;
+import recipe.service.ContentService;
+import recipe.service.FoodService;
+import recipe.service.MemberService;
+import recipe.service.RecipeService;
+import recipe.service.TagService;
+import recipe.vo.Content;
+import recipe.vo.Food;
+import recipe.vo.Member;
+import recipe.vo.Recipe;
+import recipe.vo.RecipeMember;
+import recipe.vo.Tag;
+
+@Controller
+@RequestMapping("/ajax/recipe/")
+public class RecipeAjaxController {
+  @Autowired RecipeService recipeService;
+  @Autowired MemberService memeberService;
+  @Autowired ContentService contentService;
+  @Autowired FoodService foodService;
+  @Autowired TagService tagService;
+  @Autowired ServletContext servletContext;
+  @RequestMapping(value="add", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String add(HttpSession session,String title,String m_photo, String c_nara, int c_situ, int c_cook, int c_food, int time, int level) throws ServletException, IOException {
+    Member member = (Member)session.getAttribute("loginUser");
+    
+    Recipe recipe = new Recipe();
+    
+    String extension = "." + m_photo.split(";")[0].split("/")[1];
+    
+    String photoData = m_photo.split(",")[1];
+    
+    byte[] data = Base64.decodeBase64(photoData);
+    String filename = "";
+    filename = System.currentTimeMillis() + extension;
+    
+    String realPath = servletContext.getRealPath("files/");
+    try (OutputStream stream = new FileOutputStream(realPath + filename)) {
+      stream.write(data);
+      Thumbnails.of(realPath + filename).crop(Positions.TOP_CENTER).size(700, 500).toFile(new File(realPath+"/thumb/"+filename));
+      stream.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    
+    recipe.setMno(member.getNo());
+    recipe.setTitle(title);
+    recipe.setM_photo("../files/thumb/"+filename);
+    recipe.setC_nara(c_nara);
+    recipe.setC_situ(c_situ);
+    recipe.setC_cook(c_cook);
+    recipe.setC_food(c_food);
+    recipe.setTime(time);
+    recipe.setLevel(level);
+    
+    HashMap<String,Object> result = new HashMap<>();
+    try {
+      recipeService.add(recipe);
+      result.put("status", "success");
+      System.out.println(" 성공ㅋㅋ");
+    } catch(Exception e) {
+      result.put("status", "failure");
+      System.out.println("실패ㅋㅋ");
+    }
+    
+    return new Gson().toJson(result);
+  }
+
+  @RequestMapping(value="delete", 
+      method=RequestMethod.POST, produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String delete(int bno) 
+      throws ServletException, IOException {
+    HashMap<String,Object> result = new HashMap<>();
+    try{
+      recipeService.delete(bno);
+      result.put("status", "success");
+    } catch(Exception e) {
+      e.printStackTrace();
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
+  
+  @RequestMapping(value="detailContent", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String detailContent(int bno) throws ServletException, IOException {
+    Recipe recipe = recipeService.retrieve(bno);
+    recipeService.county(bno);
+    List<Content> content = contentService.list(recipe.getBno());
+    
+    Map<String, Object> paramMap = new HashMap<String, Object>();
+    paramMap.put("list", content);
+    
+    return new Gson().toJson(paramMap);
+  }
+  
+  @RequestMapping(value="detail", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String detail(int bno) throws ServletException, IOException {
+    /*
+    int totalPage = recipeService.countPage(pageSize);
+    if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
+    }
+    
+    if (pageSize < 4) { // 최소 3개
+      pageSize = 4; 
+    } else if (pageSize > 50) { // 최대 50개 
+      pageSize = 50;
+    }*/
+    Recipe recipe = recipeService.retrieve(bno);
+    List<Recipe> recipe1 = recipeService.retrieveListByMno(recipe.getMno());
+    Map<String, Object> paramMap = new HashMap<String, Object>();
+    paramMap.put("list", recipe1);
+    
+    return new Gson().toJson(paramMap);
+  }
+  
+  @RequestMapping(value="detailMember", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String detailMember(Integer bno) throws ServletException, IOException {
+    Recipe recipe = recipeService.retrieve(bno);
+    Member member = memeberService.retrieveByNo(recipe.getMno());
+    
+    return new Gson().toJson(member);
+  }
+  
+  @RequestMapping(value="detailRecent", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String detailRecent(HttpSession session) throws ServletException, IOException {
+    Member member = (Member)session.getAttribute("loginUser");    
+    List<RecipeMember> recipe = recipeService.retrieveRecent(member.getNo());
+    Map<String, Object> paramMap = new HashMap<String, Object>();
+    paramMap.put("list", recipe);
+    return new Gson().toJson(paramMap);
+  }
+  
+  @RequestMapping(value="detailRecipeControl", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String detailRecipeControl(
+      @RequestParam(defaultValue="0") int pageNo, 
+      @RequestParam(defaultValue="4") int pageSize, HttpSession session) throws ServletException, IOException {
+    Member member = (Member)session.getAttribute("loginUser");        
+    
+    // 페이지 번호와 페이지 당 출력 개수의 유효성 검사
+    
+    int totalPage = recipeService.countPage(pageSize);
+    if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
+    }
+    
+    if (pageSize < 4) { // 최소 3개
+      pageSize = 4; 
+    } else if (pageSize > 50) { // 최대 50개 
+      pageSize = 50;
+    }
+    List<RecipeMember> recipe = recipeService.retrieveRecipeControl(member.getNo(),pageNo,pageSize);
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("list", recipe);
+    return new Gson().toJson(paramMap);
+  }
+  
+  @RequestMapping(value="countRecipeControl", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String countRecipeControl(HttpSession session) throws ServletException, IOException {
+    Member member = (Member)session.getAttribute("loginUser");        
+    
+    //List<RecipeMember> countOfRecipe = countOfRecipe.set(index, element);
+    int countOfRecipe = recipeService.countyRecipeControl(member.getNo());
+    
+    HashMap<String, Object> paramMap = new HashMap<>();
+    
+    paramMap.put("count", countOfRecipe);
+    return new Gson().toJson(paramMap);
+  }
+  
+  @RequestMapping(value="list", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String list(int bno) throws ServletException, IOException {
+    Recipe recipe = recipeService.list(bno);
+    return new Gson().toJson(recipe);
+  }
+  
+  @RequestMapping(value="selectAllTag", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String selectAllTag() throws ServletException, IOException {
+    List<Tag> tag = recipeService.selectAllTag();
+    System.out.println(new Gson().toJson(tag));
+    return new Gson().toJson(tag);
+  }
+  @RequestMapping(value="addTag", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String addTag(String tname) throws ServletException, IOException {
+    Tag tag = new Tag();
+    tag.setTname(tname);
+    
+    HashMap<String,Object> result = new HashMap<>();
+    try {
+      tagService.add(tag);
+      result.put("status", "success");
+      System.out.println(" 성공ㅋㅋ");
+    } catch(Exception e) {
+      result.put("status", "failure");
+      System.out.println("실패ㅋㅋ");
+    }
+    
+    return new Gson().toJson(result);
+  }
+  
+  @RequestMapping(value="addFood", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String addFood(int tno) throws ServletException, IOException {
+    Food food = new Food();
+    food.setTno(tno);
+    
+    HashMap<String,Object> result = new HashMap<>();
+    
+    try {
+      foodService.add(food);
+      result.put("status", "success");
+      System.out.println(" 성공ㅋㅋ");
+    } catch(Exception e) {
+      result.put("status", "failure");
+      System.out.println("실패ㅋㅋ");
+    }
+    
+    return new Gson().toJson(result);
+  }
+  
+  
+  @RequestMapping(value="update",
+      method=RequestMethod.POST,
+      produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String update(int bno,String m_photo, String title, String c_nara, int c_situ, int c_cook, int c_food, int time, int level) throws ServletException, IOException {
+    
+    Recipe recipe = new Recipe();
+    if (m_photo.startsWith("data:image")) {
+      String extension = "." + m_photo.split(";")[0].split("/")[1];
+
+      String photoData = m_photo.split(",")[1];
+
+      byte[] data = Base64.decodeBase64(photoData);
+
+      String filename = "";
+      filename = System.currentTimeMillis() + extension;
+
+      String realPath = servletContext.getRealPath("files/");
+      try (OutputStream stream = new FileOutputStream(realPath + filename)) {
+        stream.write(data);
+        Thumbnails.of(realPath + filename).crop(Positions.TOP_CENTER).size(700, 500).toFile(new File(realPath+"/thumb/"+filename));
+        stream.close();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      recipe.setM_photo("../files/thumb/" + filename);
+
+    } else {
+      recipe.setM_photo(m_photo);
+    }
+    recipe.setBno(bno);
+    recipe.setTitle(title);
+    recipe.setC_nara(c_nara);
+    recipe.setC_situ(c_situ);
+    recipe.setC_cook(c_cook);
+    recipe.setC_food(c_food);
+    recipe.setTime(time);
+    recipe.setLevel(level);
+    /*
+     
+         recipe.setMno(member.getNo());
+    recipe.setTitle(title);
+    recipe.setM_photo("../files/"+filename);
+    recipe.setC_nara(c_nara);
+    recipe.setC_situ(c_situ);
+    recipe.setC_cook(c_cook);
+    recipe.setC_food(c_food);
+    recipe.setTime(time);
+    recipe.setLevel(level);
+     */
+    HashMap<String,Object> result = new HashMap<>();
+    try {
+      recipeService.change(recipe);
+      result.put("status", "success");
+    } catch (Exception e) {
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
+}
+
+
+
+

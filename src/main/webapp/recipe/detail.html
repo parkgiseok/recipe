@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>게시판</title>
+<link rel="stylesheet"
+	href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+<style>
+.container {
+	width: 800px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h1>게시판-상세정보</h1>
+		<form class="form-horizontal">
+			<input id="fno" type='hidden' name='no'>
+			<div class="form-group">
+				<label for="fTitle" class="col-sm-2 control-label">제목</label>
+				<div class="col-sm-10">
+					<input id="fTitle" type='text' name='title' class="form-control">
+				</div>
+			</div>
+			<input id="fNo" type='hidden' name='no'> 
+
+      <div class="form-group">
+        <label for="fCate1" class="col-sm-2 control-label">카테1</label>
+        <div class="col-sm-10">
+          <input id="fCate1" type='text' name='cate1' class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="fCate2" class="col-sm-2 control-label">카테2</label>
+        <div class="col-sm-10">
+          <input id="fCate2" type='text' name='cate2' class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="fCate3" class="col-sm-2 control-label">카테3</label>
+        <div class="col-sm-10">
+          <input id="fCate3" type='text' name='cate3' class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="fCate4" class="col-sm-2 control-label">카테4</label>
+        <div class="col-sm-10">
+          <input id="fCate4" type='text' name='cate4' class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="fMakeTime" class="col-sm-2 control-label">조리시간</label>
+        <div class="col-sm-10">
+          <input id="fMakeTime" type='text' name='makeTime' class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="fLevel" class="col-sm-2 control-label">난이도</label>
+        <div class="col-sm-10">
+          <input id="fLevel" type='text' name='level' class="form-control">
+        </div>
+      </div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button id='addBtn' type='button'
+						class='add-form btn btn-default btn-sm'>추가</button>
+					<button id='changeBtn' type='button'
+						class='change-form btn btn-default btn-sm'>변경</button>
+					<button id='deleteBtn' type='button'
+						class='change-form btn btn-default btn-sm'>삭제</button>
+					<button type='reset' class='btn btn-default btn-sm'>초기화</button>
+				</div>
+			</div>
+		</form>
+		<p>이 예제는 비트캠프 "자바80"기의 훈련내용입니다.</p>
+	</div>
+	<script src="../js/common.js"></script>
+	<script src="../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script>
+		var no = location.href.split("=")[1];
+
+		if (no) {
+			$('.change-form').css("display", "");
+			$('.add-form').css("display", "none");
+
+			  $.getJSON("../ajax/recipe/detail.do?no=" + no, function(result) {
+				$("#fNo").val(result.no);
+		    $("#CreatedDate").val(result.createdDate);
+		    $("#fView").val(result.view);
+		    $("#fPhoto").val(result.cate1);
+		    $("#fCate1").val(result.cate2);
+		    $("#fCate2").val(result.cate2);
+		    $("#fCate3").val(result.cate3);
+		    $("#fCate4").val(result.cate4);
+		    $("#fMakeTime").val(result.makeTime);
+		    $("#fLevel").val(result.level);
+				$("#fTitle").val(result.title);
+			});
+
+		} else { // no가 없다. 즉 새 글 등록일 경우,
+			$('.change-form').css("display", "none");
+			$('.add-form').css("display", "");
+		}
+
+		$("#changeBtn").click(function(event) {
+			$.ajax("../ajax/recipe/update.do", {
+				method : "POST",
+				dataType : "json",
+				data : {
+					no : $("#fNo").val(),
+					title : $("#fTitle").val(),
+		      cate1 : $("#fCate1").val(),
+		      cate2 : $("#fCate2").val(),
+		      cate3 : $("#fCate3").val(),
+		      cate4 : $("#fCate4").val(),
+		      makeTime : $("#fMakeTime").val(),
+		      level : $("#fLevel").val()
+				},
+				success : function(result) {
+					if (result.status == "success") {
+						location.href = "recipe.html";
+					} else {
+						window.alert("변경 실패입니다!");
+					}
+				},
+				error : function() {
+					window.alert("서버 요청 실패입니다!");
+				}
+			});
+		});
+
+		$("#deleteBtn").click(function(event) {
+			  $.getJSON("../ajax/recipe/delete.do?no=" + no, function(result) {
+				if (result.status == "success") {
+					location.href = "recipe.html";
+				} else {
+					window.alert("삭제 실패입니다!");
+				}
+			});
+		});
+
+		  
+		  $("#addBtn").click(function(event) {
+			  $.post("../ajax/recipe/add.do", {
+		        title : $("#fTitle").val(),
+             cate1 : $("#fCate1").val(),
+             cate2 : $("#fCate2").val(),
+             cate3 : $("#fCate3").val(),
+             cate4 : $("#fCate4").val(),
+             makeTime : $("#fMakeTime").val(),
+             level : $("#fLevel").val()
+			    }, function(result) {
+			      if (result.status == "success") {
+			        location.href = "recipe.html";
+			      } else {
+			        window.alert("등록 실패입니다!");
+			      }
+			    }, "json"
+			  );
+			});
+	</script>
+
+</body>
+</html>

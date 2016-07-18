@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>냉장고를 가져와</title>
+<link href="bower_components/bootstrap/dist/css/bootstrap.css"
+  rel="stylesheet">
+<link href="css/font.css" rel="stylesheet">
+<link href="css/urlPage.css" rel="stylesheet">
+<link href="css/sweetalert.css" rel="stylesheet">
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="js/moment.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/handlebars/handlebars.min.js"></script>
+<script src="js/loginCheck.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="js/reply.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed"
+          data-toggle="collapse" data-target="#defaultNavbar1">
+          <span class="sr-only">Toggle navigation</span> <span
+            class="icon-bar"></span> <span class="icon-bar"></span> <span
+            class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"><img id="titleimg"
+          src="img/title.PNG" /></a>
+      </div>
+      <div class="collapse navbar-collapse" id="defaultNavbar1">
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="예) 김치 볶음밥">
+          </div>
+          <a href="search.html" class="btn btn-default">검색</a>
+        </form>
+        <!-- <ul class="nav navbar-nav navbar-right">
+          <li><a id="logout" href="auth/logout.do">로그아웃</a></li>
+          <li><a id="mypage" href="member/myPage.html">마이페이지</a></li>
+        </ul> -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="page-scroll not_login" href="#" id='login'>로그인/회원가입</a>
+                </li>
+                <li class="login">
+                    <a href="auth/logout.do" id="logout">로그아웃</a>
+                </li>
+                <li class="login">
+                    <a href="member/myPage.html" id="mypage">마이페이지</a>
+                </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="my_ row">
+
+      <div class="col-xs-3 col-xs-3">
+      <input id="bno" type='hidden' name='no' value=''>
+        <div id="side"></div>
+      </div>
+
+      <div class="col-xs-9 col-xs-9">
+        <div class="my_list row" id="myList"></div>
+        <div class="list_btn">
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+        </div>
+        
+        <div class="my_title row" id="myTitle"></div>
+        <div class="my_con row" id="contt"></div>
+        <div>
+          <div id="review">
+            <p class="detailtext">소중한 댓글</p><hr />
+            <div id="reviewtext"></div>
+            <hr />
+            <span id="writeReview"></span>
+            <div>
+              <textarea class="form-control" id="reply" cols="100" rows="4"></textarea>
+              <div class="reply_btn"><button type="button" class="btn btn-default" id="sendReview">댓글 등록</button></div>
+            </div>
+            <!-- <div id='moveBtn'  style="text-align: center;">
+              <button class='moveBtn' class="btn btn-info" type="button">〈〈</button>
+              <button class='moveBtn' class="btn btn-info" type="button">1</button>
+              <button class='moveBtn' class="btn btn-info" type="button">2</button>
+              <button class='moveBtn' class="btn btn-info" type="button">〉〉</button>
+            </div> -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <hr style="margin-top: 70px;">
+  <footer>
+    <div class="text-center col-xs-6 col-xs-offset-3">
+      <p>
+        Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a
+          href="http://127.0.0.1:8080/index.html">냉장고를 가져와</a>
+      </p>
+    </div>
+  </footer>
+<script id="reviewrepeat" type="text/x-handlebars-template">
+  {{#each list}}
+    <div class="reply_mem">
+      <img class ="review img-rounded" src='webapp/{{photo}}'>＜{{nick}}＞ 
+    </div>
+    <div >
+      <textarea id="review_text_{{mno}}" class="form-control review_text" cols="100" rows="2" readonly="readonly">{{r_cont}}</textarea>
+    <div>
+    <div id="review_{{mno}}" class="review_margin review_update_delete" data-no="{{mno}}">
+      <span class="cdt review_margin" style="font-size:10px; color:gray; font-style: italic;">작성일 : {{r_w_dt}}</span>
+      <button type="button" id="review_update_{{mno}}" class="reply_update btn-link" data-no="{{mno}}">
+      <img src="img/write.png"></button>
+      <button type="button" id="review_delete_{{mno}}" class="reply_delete btn-link" data-no="{{mno}}">
+      <img src="img/trash-can.png"></button>
+    </div>
+  {{/each}}
+</script>
+  
+<script id="mem" type="text/x-handlebars-template">   
+  <div class="row">
+    <img src="webapp/{{photo}}" class="my_img img-rounded" />
+  </div>
+  <div class="side"></div>
+  <div class="row">
+    <p style="color: red; margin-top: 10px; margin-bottom: -10px; font-size: 17px;">{{nick}}</p>
+    <hr>
+    <p class="my_intro">{{description}}</p>
+  </div>
+  <div class="row">
+    <div class="my_intro2">
+      <p style="margin: 10px 0px 0px 13px;">
+      <p>성별 : <span>{{gender}}</span></p>
+      <p>주카테고리 : <span>{{category}}</span></p>
+      <p>E-mail : <span>{{email}}</span></p>
+    </div>
+    <hr>
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" style="width: 160px;">
+      </div>
+      <a href="search.html" class="btn btn-default">검색</a>
+    </form>
+  </div> 
+</script>
+
+  <script id="list" type="text/x-handlebars-template">
+  {{#each list}}
+  <div class="col-xs-10 col-xs-10">
+    <a id="list_title" href="urlPage.html?bno={{bno}}">{{title}}</a>
+  </div>
+  <div class="my_list_date col-xs-2">
+    <p>{{w_dt}}</p>
+  </div>
+  {{/each}}
+</script>
+
+<script id="titlee" type="text/x-handlebars-template">
+<div class="row">
+  <div class="my_title_con col-xs-7">{{title}}</div>
+  <div class="my_title_cate col-xs-1">
+    {{c_situ}}디저트 요리
+  </div>
+  <div class="delete_update col-xs-2">
+    <a id="update" href="insert/update.html?bno={{bno}}">수정</a> |
+    <a id="delete" href="#" onclick="deleter()">삭제</a>
+    <a id='addbm' onclick='addfavorite()' style="display: none;">즐겨찾기</a>
+    <a id='delbm' onclick='delfavorite()' style="display: none;">싫어찾기</a>
+  </div>
+  <div class="date col-xs-2">
+    <p>{{w_dt}}</p>
+  </div>
+</div>
+</script>
+
+<script id="con" type="text/x-handlebars-template">
+{{#each list}}
+  <img src="webapp/{{p_url}}" class="my_con_img" alt="제발 제발 제발 제발 제발">
+  <p>{{{cont}}}</p>
+{{/each}}
+</script>
+
+  <script>
+    var bno = location.href.split("=")[1];
+    $("#bno").val(bno);
+    
+    loadMember();
+    function loadMember() {
+      $.getJSON(
+          "./ajax/recipe/detailMember.do?bno=" + bno,
+          function(result) {
+            var template = Handlebars.compile($('#mem').html());
+            $("#side").append(template(result));
+          });
+    }
+
+    loadList();
+    function loadList() {
+      $.getJSON("./ajax/recipe/detail.do?bno=" + bno,
+          function(result) {
+    	  for(var i=0; i <= (result.list).length-1; i++) {
+              result.list[i].w_dt = moment(result.list[i].w_dt, 'MM/DD/YYYY').format().substr(0, 10)
+            }
+            var template = Handlebars.compile($('#list').html());
+            $("#myList").append(template(result));
+          });
+    }
+
+    loadTitle();
+    function loadTitle() {
+      $.getJSON("./ajax/recipe/list.do?bno=" + bno,
+          function(result) {
+    	  result.w_dt = moment(result.w_dt, 'MM/DD/YYYY').format().substr(0, 10);
+            template = Handlebars.compile($('#titlee').html());
+            $("#myTitle").append(template(result));
+          });
+    }
+
+    loadCon();
+    function loadCon() {
+      $.getJSON("./ajax/recipe/detailContent.do?bno=" + bno, 
+        function(result) {
+          var template = Handlebars.compile($('#con').html());
+          $("#contt").append(template(result));
+        });
+    }
+    
+    function deleter() {
+        swal({
+           title : "정말 삭제하시겠습니까?",
+           text : "삭제하면 작성한 내용을 복구할 수 없습니다.",
+           type : "warning",
+           showCancelButton : true,
+           confirmButtonColor : "#DD6B55",
+           confirmButtonText : "삭제하기",
+           closeOnConfirm : false
+        }, function() {
+           swal("삭제완료", "내용이 완전히 삭제되었습니다.", "success");
+           console.log("삭삭");            
+           
+           $.post("ajax/recipe/delete.do", {
+                bno : $("#bno").val()
+              }, function(result) {
+                if (result.status == "success") {
+                  /* location.href = "../index.html"; */
+                } else {
+                   
+                  window.alert("등록 실패입니다 타이틀!");
+                }
+              }, "json"
+            );
+           
+              $(".confirm").click(function() {
+                 location.href = "index.html"
+              })
+        });
+
+        /* location.href = "index.html"; */
+     }
+  </script>
+  <script>
+  isFavorite();
+  function isFavorite() {
+	  $.getJSON("ajax/favorite/isFavorite.do?bno="+bno, function(data){
+	        if(data) {
+	          $("#delbm").css("display","");
+	        } else {
+	          $("#addbm").css("display","");  
+	        }
+	      })  
+	}
+  function addfavorite() {
+	  $.getJSON("ajax/favorite/add.do?bno="+bno, function(data){
+	      if(data.status == "success") {
+	    	  swal("즐겨찾기 완료", "즐겨찾기 리스트에 추가되었습니다.", "success")
+	    	  $(".confirm").click(function() {
+	    		  location.href = location.href; 
+          })
+	      
+	     } else {
+	       alert("오류발생..다시 시도해주세요.");
+	     }
+	    })  
+	}
+  function delfavorite() {
+	  $.getJSON("ajax/favorite/delete.do?bno="+bno, function(data){
+	      if(data.status == "success") {
+	    	  
+	    	  swal("즐겨찾기 취소", "즐겨찾기 리스트에서 제거되었습니다.", "warning")
+	    	   $(".confirm").click(function() {
+	    		   location.href = location.href; 
+          })
+	      
+	     } else {
+	       alert("오류발생..다시 시도해주세요.");
+	     }
+	    })  
+	}
+  </script>
+  
+</body>
+</html>

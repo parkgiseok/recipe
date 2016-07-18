@@ -1,0 +1,235 @@
+#delob {
+	margin-bottom: 10px;
+}
+
+.delbtn {
+	position: absolute;
+	float: right;
+	height: 40px;
+	margin-top: -110px;
+	margin-left: 59px;
+	background: inherit;
+	background-color: rgba( 255, 255, 255, 0.5 );
+	outline: aqua;
+}
+
+.delbtn_png {
+  margin-top: -5px;	
+}
+
+.addbtn {
+	width: 154px; 
+	height: 154px;
+	border-radius: 10px;
+	opacity: 0.2;
+	outline: none;
+}
+
+.addbtn:hover {
+	opacity: 0.5;
+}
+
+.plusbtn {
+	width: 30px;
+	height: 30px;
+}
+
+.option {
+	opacity: 0.5;
+	filter: alpha(opacity = 50); /* For IE8 and earlier */
+	text-align: right;
+}
+
+.option:hover {
+	opacity: 1.0;
+	filter: alpha(opacity = 100); For IE8 and earlier
+}
+
+#mytitle {
+	margin-bottom: 20px;
+}
+
+.frypan {
+	float: right;
+	position: absolute;
+	margin-left: 660px;
+	margin-top: -100px;
+	width: 110px;
+	height: 100px;
+}
+
+.summernote {
+	margin-left: 0;
+}
+
+.note-editor.note-frame {
+	border: 1px solid lightgray;
+	margin-left: 15px;
+}
+
+.img_con {
+	border: 1px solid lightgray;
+	border-radius:10px; 
+	width: 630px;
+	height:520px;  
+	margin-right: -17px;
+}
+
+.file-upload {
+	width: 630px;
+  height: 520px;
+  margin-left: -16px;
+}
+
+.file-upload-image {
+  height: 100%;
+  width: 100%;
+  max-height: 480px;
+  padding: 40px;
+  margin-top: 20px;
+}
+
+.image-upload-wrap {
+	height: 520px;
+  position: relative;
+}
+
+.file-upload-content {
+	display: none;
+	text-align: center;
+}
+
+.file-upload-input {
+ border: 1px solid red;
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ outline: none;
+ opacity: 0;
+ cursor: pointer;
+}
+
+.image-dropping, .image-upload-wrap:hover {
+	opacity: 0.5;
+}
+
+.image-title-wrap {
+	padding: 0 15px 15px 15px;
+	color: #222;
+}
+
+.drag-text {
+	text-align: center;
+	height: 520px;
+	margin-top: -20px;
+}
+
+.camera {
+	width: 400px;
+  height: 400px;
+  margin-top: 70px;
+}
+
+.panel-group {
+	margin-left: -30px;
+}
+
+.mar {
+  border: 1px solid gray;
+  border-radius: 10px;
+  width: 69px;
+  font-size: 21px;
+}
+
+.time {
+	border: 1px solid gray;
+  border-radius: 10px;
+  width: 104px;
+  font-size: 21px;
+  margin-top: 15px;
+}
+
+.level {
+  border: 1px solid gray;
+  border-radius: 10px;
+  width: 87px;
+  font-size: 21px;
+  margin-top: 15px;
+}
+
+.stars {
+	width: 160px;
+  margin-top: 16px;
+}
+
+.update_btn {
+	margin-top: 12px;
+  margin-left: -15px;
+  border: 3px solid gray;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.update_btn:hover {
+	color: black;
+}
+
+.cancel_btn {
+	margin-top: 12px;
+  margin-left: -15px;
+  border: 3px solid gray;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.cancel_btn:hover {
+  color: red;
+}
+
+.radio {
+	margin-top: 20px;
+}
+
+.star1 {
+	position: absolute;
+  float: left;
+  width: 32px;
+  height: 32px;
+  margin-top: -24px;
+}
+
+.star2 {
+  position: absolute;
+  float: left;
+  width: 32px;
+  height: 32px;
+  margin-top: -24px;
+  margin-left: 32px;
+}
+
+.star3 {
+  position: absolute;
+  float: left;
+  width: 32px;
+  height: 32px;
+  margin-top: -24px;
+  margin-left: 64px;
+}
+
+.star4 {
+  position: absolute;
+  float: left;
+  width: 32px;
+  height: 32px;
+  margin-top: -24px;
+  margin-left: 96px;
+}
+
+.star5 {
+  position: absolute;
+  float: left;
+  width: 34px;
+  height: 32px;
+  margin-top: -24px;
+  margin-left: 126px;
+}

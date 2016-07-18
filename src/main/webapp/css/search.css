@@ -1,0 +1,453 @@
+*{
+  font-family: '옛날목욕탕';
+}
+.container {
+  width: 1170px;
+  max-width: none !important;
+}
+html, body, div, applet, object, iframe, del, em, img, ins, q, s, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, article, aside, embed, figure, footer, header, hgroup, menu, nav, output, section, summary {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+}
+ol, ul {
+	list-style: none;
+}
+strong, a {
+	outline: none;
+	text-decoration: none;
+	color: #444;
+}
+em, address {
+	font-style: normal
+}
+input, button, img {
+	vertical-align: middle
+	outline: none;
+}
+
+.sec_main_recipe {
+	position: relative;
+}
+.sec_main_recipe #admit-button {
+	position: relative;
+	z-index: 1;
+	float:right;
+	margin-right: 58px;
+	margin-top: 20px
+}
+.sec_main_recipe .inner {
+	position: relative;
+	width: 1024px;
+	margin: auto
+}
+
+.lst_recipe {
+	overflow: hidden;
+	margin-bottom: 20px;
+	width: 1040px;
+	position: relative;
+	left: -16px
+}
+.lst_recipe>li {
+	width: 504px;
+	height: 369px;
+	margin: 0 0 16px 16px;
+	box-sizing: border-box;
+	position: relative;
+	float: left;
+	background-color: #fff
+}
+.lst_recipe li .card {
+	width: 244px;
+	height: 369px;
+	position: absolute;
+	border: 1px solid #808080;
+	box-sizing: border-box;
+	float: left;
+	background-color: #fff
+}
+.lst_recipe li .card .thmb {
+	margin: 4px;
+	position: relative
+	
+}
+.lst_recipe li .card .thmb img {
+	width: 234px;
+	height: 234px;
+}
+.lst_recipe li .card .thmb:after {
+	position: absolute;
+	content: '';
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: url(../img/recipe_background.png) center center no-repeat;
+	background-size: 234px 330px;
+	z-index: 1
+}
+.lst_recipe li .card .author {
+	text-align: center;
+	width: 100%;
+	z-index: 1;
+	display: block;
+	margin-top: -40px;
+	position: relative
+}
+.lst_recipe li .card .author a {
+	width: 61px;
+}
+.lst_recipe li .card .author img {
+	width: 61px;
+	height: 61px;
+	border-radius: 50%;
+	overflow: hidden;
+	display: block;
+	margin: 0 auto 5px
+}
+.lst_recipe li .card .author strong {
+	color: #444;
+	font-size: 14px;
+	font-weight: normal
+}
+.lst_recipe li .card .title p {
+	text-align: center;
+	font-size: 15px;
+	line-height: 19px;
+	letter-spacing: -0.025em;
+	padding: 2px 20px 0
+}
+.option {
+	width: 244px;
+	position: absolute;
+	bottom: 0;
+	height: 27px;
+	text-align: right
+}
+.option>div {
+	width: 80px;
+	height: 100%;
+	float: left;
+	font-size: 12px;
+}
+.option>div:first-child {
+	border: none
+}
+.option div a {
+	box-sizing: border-box;
+	float: left;
+	white-space: nowrap;
+	padding: 5px 10px
+}
+.option .time {
+	position: relative;
+	background: url(../img/icon_clock.png) 7px center no-repeat;
+}
+.option .time button {
+	display: block;
+	overflow: hidden;
+	height: 27px;
+	width: 81px;
+	text-align: right;
+	background-color: transparent;
+	color: #999;
+	padding-right: 10px;
+	border: 1px solid #808080;
+	outline: none;
+}
+.option .like {
+	position: relative;
+	background: url(../img/icon_heart_empty.png) 7px center no-repeat;
+}
+.option .like button {
+	display: block;
+	width: 81px;
+	height: 27px;
+	text-align: right;
+	background-color: transparent;
+	border: none;
+	color: #999;
+	box-sizing: border-box;
+	padding-right: 10px;
+	border: 1px solid #808080;
+	outline: none;
+}
+.option .like.on, .option .like:hover {
+	background: url(../img/icon_heart_full.png) 7px center no-repeat
+}
+.option .share {
+	position: relative;
+	background: url(../img/icon_share.png) 7px center no-repeat;
+}
+.option .share button {
+	display: block;
+	width: 83px;
+	height: 27px;
+	text-align: right;
+	background-color: transparent;
+	border: none;
+	color: #999;
+	box-sizing: border-box;
+	padding-right: 8px;
+	border: 1px solid #808080;
+	outline: none;
+}
+
+.lst_recipe li .desc {
+	width: 261px;
+	height: 369px;
+	left: -1px;
+	position: relative;
+	border: 1px solid #808080;
+	box-sizing: border-box;
+	float: right;
+	background-image: url("../img/result_back.jpg");
+  background-size: 259px 368px;
+  background-repeat: no-repeat;
+}
+.lst_recipe li .desc .option2 {
+	width: 260px;
+	position: absolute;
+	bottom: 0;
+	height: 80px;
+	border-top: 1px solid #808080;
+	text-align: right
+}
+.lst_recipe li .desc .option2>div {
+	width: 130px;
+	height: 100%;
+	float: left;
+	border-left: 1px solid #808080
+}
+.lst_recipe li .desc .option2>div:first-child {
+	border: none
+}
+.lst_recipe li .desc .option2 div a {
+	box-sizing: border-box;
+	float: left;
+	white-space: nowrap;
+	padding: 5px 10px
+}
+.lst_recipe li .desc .option2 .site {
+	position: relative;
+}
+.lst_recipe li .desc .option2 .site a {
+	display: block;
+	padding-top: 25px;
+	height: 80px;
+	width: 130px;
+	text-align: center;
+	background-color: transparent;
+	border: none;
+	box-sizing: border-box;
+	font-size: 18px;
+}
+.lst_recipe li .desc .option2 .blog {
+	position: relative;
+}
+.lst_recipe li .desc .option2 .blog a {
+	display: block;
+	padding-top: 25px;
+	height: 80px;
+	width: 100%;
+	text-align: center;
+	background-color: transparent;
+	border: none;
+	box-sizing: border-box;
+	font-size: 18px;
+}
+
+#f1_container {
+  position: absolute;
+	width: 244px;
+	height: 369px;
+}
+#f1_card {
+  transform-style: preserve-3d;
+  transition: all 0.3s linear;
+  height: 341px;
+}
+#f1_container:hover #f1_card {
+  transform: rotateY(180deg);
+}
+
+.face {
+  width: 100%;
+  height: 100%;
+}
+.back {
+  transform: rotateY(180deg);
+  color: black;
+  text-align: center;
+	
+	width: 244px;
+	height: 341px;
+	position: absolute;
+	border: 1px solid #808080;
+	box-sizing: border-box;
+	float: left;
+	font-size: medium;
+	z-index: 1;
+	background-image: url("../img/card_back2.jpg");
+	background-size: 242px 340px;
+	background-position: center;
+}
+
+hr {
+	border: 1px solid lightgray;
+}
+
+.category1, .category2 {
+	border: none;
+	background: inherit;
+	font-size: medium;
+	outline: none;
+	color: gray;
+	font-weight: normal;
+}
+
+.category1 {
+	border-right: 2px solid gray;
+  padding-right: 22px;
+}
+
+.category2 {
+	margin-left: -45px;
+}
+
+.s_result {
+	text-align: right;
+	font-size: medium;
+	font-weight: normal;
+}
+
+.s_result2 {
+  font-size: medium;
+  font-weight: normal;
+  color: orange;
+  border-bottom: 1px solid orange;
+}
+
+.m_cate_border {
+  margin-top: 25px;
+  border: 2px solid gray;
+  border-radius: 15px; 
+  height: 50px;
+  width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 13px;
+  text-align: center;
+}
+
+.m_cate_border2 {
+	margin-top: 10px;
+	margin-bottom: -15px;
+  border: 2px solid gray;
+  border-radius: 15px; 
+  height: 100px;
+  width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 13px;
+  text-align: center;
+}
+
+.m_cate{
+  margin-top: -50px;
+  margin-left: auto;
+  margin-right: auto;
+  color: orange;
+  border: 2px solid orange;
+  border-radius: 20px;
+  width: 90px;
+  background-color: #eaeaea;
+}
+
+.intro{
+	margin-top: -69px;
+	margin-left: auto;
+	margin-right: auto;
+	color: orange;
+	border: 2px solid orange;
+	border-radius: 20px;
+	width: 90px;
+	background-color: #eaeaea;
+}
+
+.last_img, .most_img {
+	margin-left: -90px;
+	margin-top: -32px;
+}
+
+.last_img2, .most_img2 {
+	margin-top: -10px;
+  margin-left: 12px;
+  border-radius: 15px;
+}
+
+.last_recipe_text, .most_recipe_text{
+	text-align: center;
+	height: 40px;
+	width: 170px;
+	margin-top: -10px;
+	margin-left: 10px;
+}
+
+.most_img {
+	margin-top: -7px;
+}
+
+.most_img2, .most_recipe_text {
+	margin-top: 2px;
+}
+
+.back_card {
+	margin-top: -13px;
+}
+
+.level {
+	padding: 20px;
+}
+
+.intro2 {
+  padding: 5px 20px 15px 20px;
+  height: 90px;
+}
+
+.ingre{
+  padding: 5px 20px 5px 20px;
+  height: 80px;
+}
+
+.date {
+  padding: 20px;
+  color: gray;
+  text-align: right;
+  font-style: italic;
+}
+
+#titleimg {
+	position: relative;
+	top: -10px;
+}
+footer {
+	position: relative;
+	padding-top: 10px;
+	height: 50px;
+}
+.search_tag {
+	font-family: '옛날목욕탕';
+	font-size: 17px;
+	margin-left: 58px;
+}
+
+.search_tag>a {
+  color: gray;
+}

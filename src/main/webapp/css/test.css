@@ -1,0 +1,210 @@
+*{
+  font-family: '옛날목욕탕';
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, a, del, em, img, ins, q, s, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, article, aside, embed, figure, footer, header, hgroup, menu, nav, output, section, summary {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+}
+ol, ul {
+	list-style: none;
+}
+body, table, th, td, pre, input, select, textarea, button {
+	font-size: 12px;
+	color: #2a2a2a
+}
+button, a {
+	outline: none;
+	text-decoration: none;
+	color: #444;
+	padding: 0;
+	margin: 0;
+	cursor: pointer
+}
+em, address {
+	font-style: normal
+}
+input, button, img {
+	vertical-align: middle
+}
+#container {
+	float: none;
+	right: -200px;
+	clear: both
+}
+#content {
+	padding: 0 0 150px
+}
+.main #content {
+	padding: 0
+}
+.inner {
+	position: absolute;
+	width: 1024px;
+	margin: auto
+}
+.lst_recipe {
+	overflow: hidden;
+	margin-bottom: 20px;
+	width: 1040px;
+	position: relative;
+	left: -16px
+}
+.lst_recipe>li {
+	width: 802px;
+	height: 371px;
+	margin: 0 0 16px 16px;
+	position: relative;
+	box-sizing: border-box;
+	float: left;
+	background-color: #fff
+}
+.lst_recipe li .card {
+	width: 244px;
+	height: 369px;
+	position: relative;
+	border: 1px solid #808080;
+	box-sizing: border-box;
+	float: left;
+	background-color: #fff
+}
+.lst_recipe li .card .thmb {
+	display: block;
+	margin: 4px;
+	position: relative
+}
+.lst_recipe li .card .thmb img {
+	width: 234px;
+	height: 234px;
+	display: block
+}
+.lst_recipe li .card .thmb:after {
+	position: absolute;
+	display: block;
+	content: '';
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: url(../img/recipe_background.png) center center no-repeat;
+	background-size: 234px 234px;
+	z-index: 1
+}
+.lst_recipe li .card .author {
+	text-align: center;
+	width: 100%;
+	z-index: 5;
+	display: block;
+	margin-top: -40px;
+	position: relative
+}
+.lst_recipe li .card .author img {
+	width: 61px;
+	height: 61px;
+	border-radius: 50%;
+	overflow: hidden;
+	display: block;
+	margin: 0 auto 5px
+}
+.lst_recipe li .card .author strong {
+	color: #808080;
+	font-size: 14px;
+	font-weight: normal
+}
+.lst_recipe li .card p {
+	text-align: center;
+	font-size: 15px;
+	font-family: 'NSB';
+	line-height: 19px;
+	letter-spacing: -0.025em;
+	padding: 2px 20px 0
+}
+.lst_recipe li .card p a {
+	color: #3b3b3b
+}
+.lst_recipe .card .option {
+	width: 244px;
+	position: absolute;
+	bottom: 0;
+	height: 27px;
+	border-top: 1px solid #808080;
+	text-align: right
+}
+.lst_recipe .card .option>div {
+	width: 80px;
+	height: 100%;
+	float: left;
+	border-left: 1px solid #808080
+}
+.lst_recipe .card .option>div:first-child {
+	border: none
+}
+.lst_recipe .card .option div a {
+	box-sizing: border-box;
+	float: left;
+	white-space: nowrap;
+	padding: 5px 10px
+}
+
+.lst_recipe .card .option .time {
+	position: relative;
+	background: url(../img/icon_clock.png) 7px center no-repeat;
+}
+.lst_recipe .card .option .time button {
+	display: block;
+	overflow: hidden;
+	height: 27px;
+	width: 81px;
+	text-align: right;
+	border: none;
+	color: #999;
+	padding-right: 10px;
+}
+.lst_recipe .card .option .like {
+	position: relative;
+	background: url(../img/icon_heart_empty.png) 7px center no-repeat;
+}
+.lst_recipe .card .option .like button {
+	display: block;
+	width: 100%;
+	height: 27px;
+	text-align: right;
+	background-color: transparent;
+	border: none;
+	color: #999;
+	box-sizing: border-box;
+	padding-right: 10px;
+}
+.lst_recipe .card .option .like.on, .lst_recipe .option .like:hover {
+	background: url(../img/icon_heart_full.png) 7px center no-repeat
+}
+.lst_recipe .card .option .share {
+	position: relative;
+	background: url(../img/icon_share.png) 7px center no-repeat;
+}
+.lst_recipe .card .option .share button {
+	display: block;
+	width: 100%;
+	height: 27px;
+	text-align: right;
+	background-color: transparent;
+	border: none;
+	color: #999;
+	box-sizing: border-box;
+	padding-right: 8px;
+}
+
+.lis {
+	left:500px;
+}
+
+.lst_recipe li .desc {
+	width: 556px;
+	height: 369px;
+	position: relative;
+	border: 1px solid #808080;
+	box-sizing: border-box;
+	float: right;
+	background-color: #fff
+}

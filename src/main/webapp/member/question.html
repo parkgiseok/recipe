@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>냉장고를 가져와</title>
+<link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+<link href="../css/jquery-ui.css" rel="stylesheet">
+<link href="../css/question.css" rel="stylesheet">
+<link href="../css/myPageInnerForm.css" rel="stylesheet">
+<link href="../css/font.css" rel="stylesheet">
+
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../bower_components/handlebars/handlebars.min.js"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+      data-target="#defaultNavbar1"> <span class="sr-only">Toggle navigation</span> 
+      <span class="icon-bar"></span> <span class="icon-bar"></span> 
+      <span class="icon-bar"></span> </button>
+      <a class="navbar-brand" href="../index.html"><img id="titleimg" src="../img/title.PNG"/></a></div>
+    <div class="collapse navbar-collapse" id="defaultNavbar1">
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="예) 김치 볶음밥">
+        </div>
+        <a href="../search.html" class="btn btn-default">검색</a>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a id="logout" href="../auth/logout.do">로그아웃</a></li>
+        <li><a id="mypage" href="myPage.html">마이페이지</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container">
+    <div class="row">
+      <!-- side bar -->
+      <div class="col-xs-2 col-xs-2">
+        <div id="side">
+          <div class="row">
+            <a href="myPage.html"><img src="../img/mypage.png" style="width:100%; cursor: pointer;" /></a>
+          </div>
+        <div class="side"></div>
+          <div class="two row">
+            <p class="pt" id="nick_view"></p>
+            <div class="s_b">
+              <button class="mp_b1 mp_b1--aylen" onclick="location.href='recipeControl.html'">레시피 관리</button>
+              <button class="mp_b1 mp_b1--aylen" onclick="location.href='recipeRanking.html'">레시피 순위</button>
+            </div>
+          </div>
+          <div class="two row">
+            <p class="pt1" id="info">회원정보 관리</p>
+            <div class="s_b">
+              <button class="mp_b1 mp_b1--aylen" onclick="location.href='infoChange.html'">회원정보 변경</button>
+              <button class="mp_b1 mp_b1--aylen" onclick="location.href='leave.html'">회원 탈퇴</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-xs-10 col-xs-10">
+        <div class="row">
+          <img src="../img/question.png" class="title" style="width:210px; height:66px;">
+          <hr id="topline">
+        </div>
+        
+        <div class="row">
+          <div class="col-xs-2 col-xs-2">
+            <div id="dropdown-1" class="btn-group">
+            <button  class="btn btn-default dropdown-toggle" type="button"  data-toggle="dropdown">
+              선택사항 <span class="caret"></span>
+            </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">문의사항</a></li>
+                <li><a href="#">건의사항</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="col-xs-8 col-xs-8">
+            <div class="m_title">
+              <input type="text" class="form-control" placeholder="제목을 입력해주세요.">
+            </div>
+          </div>
+        </div> <br>
+        
+        <div class="row">
+          <div class="col-xs-9 col-xs-9">
+            <textarea class="form form-control" rows="10"></textarea>
+          </div>
+        </div><br>
+          
+        <div class="row">
+          <h5 id="intro">보내주신 소중한 <span class="bold">문의 / 건의사항</span> 감사합니다. <span class="bold">(운영진 메일로 전송됩니다.)</span></h5>
+        </div><br>
+        
+        
+        <div class="col-xs-3 col-xs-3"></div>
+        <div class="col-xs-2 col-xs-2">
+          <button type="button" class="bt1 btn btn-primary btn-lg btn-block" onclick="change();">보내기</button>
+        </div>
+        <div class="col-sm-2 col-lg-2">
+          <button type="button" class="bt2 btn btn-default btn-lg btn-block" onclick="change2();">취소</button>
+        </div>
+        <div class="col-xs-3 col-xs-3"></div>
+      
+    </div>
+  </div><hr>
+    <footer>
+    <div class="text-center col-xs-6 col-xs-offset-3">
+      <p>
+        Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a
+          href="http://127.0.0.1:8080/index.html">냉장고를 가져와</a>
+      </p>
+    </div>
+  </footer>
+</div>
+
+<script id="nick" type="text/x-handlebars-template">
+  <span id="name">{{nick}}</span>'s 레시피
+</script>
+
+<script>  
+loadMember();
+function loadMember() {
+  $.getJSON("../ajax/member/detail.do", function(result) {
+    var template = Handlebars.compile($('#nick').html());
+    $("#nick_view").append(template(result));
+  });
+}
+</script>
+
+<script>
+function change(){
+  alert("전송 되었습니다.");
+  document.location.href = "myPage.html";
+}
+
+function change2(){
+    document.location.href = "myPage.html";
+  }
+</script>
+  <script src="../js/dropdown.js"></script>
+
+</body>
+</html>

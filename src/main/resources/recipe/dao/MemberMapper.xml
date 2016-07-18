@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipe.dao.MemberDao">
+
+  <resultMap type="Member" id="MemberMap">
+    <id     column="MNO"    property="no"/>
+    <result column="PWD"    property="password"/>
+    <result column="S_DT"    property="startDate"/>
+    <result column="L_DT"    property="lastDate"/>
+    <result column="DESCT"  property="description"/>
+  </resultMap>
+  
+  <select id="selectList" resultMap="MemberMap" parameterType="map">
+    select MNO, ID, EMAIL, PWD, NICK
+    from MEMBER
+    order by MNO DESC
+  </select>
+  
+  <select id="selectOne" parameterType="int" resultMap="MemberMap">
+    select * from MEMBER
+    where MNO=#{no}
+  </select>
+  
+  <select id="SelectOne" parameterType="map" resultMap="MemberMap">
+    select * from MEMBER
+    where 
+    <if test="no != null">
+      MNO=#{no}
+    </if>
+    <if test="id != null">
+      ID=#{id}
+    </if>
+  </select>
+  
+  <select id="isMember" parameterType="map" resultType="int">
+    select count(*) 
+    from MEMBER
+    where ID=#{id} and PWD=#{password}
+  </select>
+  
+  
+  <insert id="insert" parameterType="Member">
+    insert into 
+      MEMBER(ID,EMAIL,PWD,PHOTO,S_DT,L_DT) 
+      values(#{id},#{email},#{password},"../files/default.png", now(), now());
+  </insert>
+  
+  <update id="update" parameterType="Member">
+    update MEMBER set
+      NICK=#{nick},
+      PWD=#{password},
+      CATEGORY=#{category},
+      DESCT=#{description},
+      PHOTO=#{photo},
+      GENDER=#{gender}
+    where MNO=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from MEMBER
+    where MNO=#{no}
+  </delete>
+  
+  <select id="countAll" resultType="int">
+    select count(*)
+    from MEMBER
+  </select>
+  
+</mapper>

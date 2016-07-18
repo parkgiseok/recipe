@@ -1,0 +1,92 @@
+*{
+  font-family: '옛날목욕탕';
+  color: black;
+}
+hr {
+	border: 1px solid lightgray;
+}
+
+.form-horizontal {
+  padding: 30px;
+}
+
+.data-profile {
+  font-size: 20px;
+}
+
+.data-div {
+  position: relative;
+  padding: 10px;
+}
+
+.file-upload-image {
+    position: absolute;  
+    display: block;
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    overflow: hidden;
+    right: 15px;
+    z-index: 15;
+}
+.file-upload-wrapper {
+    position: absolute;
+    z-index: 5;
+    display: block;
+    top: 255px;
+    right: 90px;
+    width: 55px;
+    height: 30px;
+    margin: 50px auto;
+    border: 1px solid black;
+}
+
+.file-upload-native,
+.file-upload-text {
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.file-upload-native:focus,
+.file-upload-text:focus {
+    outline: none;
+}
+
+.file-upload-text {
+    z-index: 10;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 1.4;
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 1px;
+    text-overflow: ellipsis;
+    color: rgb(144, 162, 148);
+    border: 0;
+    background-color: transparent;
+}
+
+.file-upload-native {
+    z-index: 13;
+    opacity: 0;
+}
+.file-upload-input {
+    position: absolute;
+    width: 105px;
+    top: 310px;
+    right: 60px;
+    z-index: 13;
+} 
+.image-title-wrap {
+    width: 105px;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    cursor: pointer;
+}
+.ff {	
+	border: 1px solid gray;
+}

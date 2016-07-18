@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipe.dao.ReplyDao">
+
+  <insert id="insert" parameterType="Reply">
+    insert into REPLY(bno,mno,r_cont,r_w_dt)
+    values(#{bno},#{mno},#{r_cont},now())
+  </insert>
+  
+   <select id="selectOne" parameterType="map" resultType="Reply">
+     select * from REPLY
+     where bno=#{bno} and mno=#{mno}
+  </select>
+  
+  <update id="update" parameterType="Reply">
+    update REPLY set
+    r_cont = #{r_cont}
+    where mno=#{mno} and bno=#{bno}
+  </update>
+  
+  <delete id="delete" parameterType="map">
+    delete from REPLY
+    where mno=#{mno} and bno=#{bno}
+  </delete>
+  
+  <select id="selectList" resultType="ReplyData" parameterType="map">
+    select REPLY.r_cont, REPLY.r_w_dt, MEMBER.nick , MEMBER.photo, MEMBER.mno
+    from REPLY left outer join MEMBER on REPLY.mno = MEMBER.mno
+    where bno=#{bno}
+    order by r_w_dt DESC
+    limit #{start}, #{end}
+  </select>
+  
+  <select id="selectRecentList" resultType="ReplyRecipeMember" parameterType="map">
+    select m.mno, r.m_photo, r.title, r.w_dt, re.r_cont, re.r_w_dt, r.bno, re.rno from 
+    member m right outer join reply re on m.mno = re.mno 
+    left outer join recipe r on r.bno=re.bno
+    where re.mno=#{mno} group by r.title order by re.rno desc
+    limit #{startIndex}, #{length}
+  </select>
+  
+  <select id="countAll" resultType="int">
+    select count(*)
+    from reply
+  </select>
+  
+  <select id="county" resultType="int" parameterType="int" >
+    select count(rno)
+    from reply where mno=#{mno}
+  </select>
+  
+</mapper>

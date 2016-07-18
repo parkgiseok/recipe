@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>냉장고를 가져와</title>
+<link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+<link href="css/jquery-ui.css" rel="stylesheet">
+<link href="css/recipeRanking.css" rel="stylesheet">
+<link href="css/myPageInnerForm.css" rel="stylesheet">
+<link rel="stylesheet" href="css/tabmenu.css" />
+<link href="css/font.css" rel="stylesheet">
+
+<script src="js/canvasjs.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="js/tabmenu.js"></script>
+<script src="bower_components/handlebars/handlebars.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed"
+          data-toggle="collapse" data-target="#defaultNavbar1">
+          <span class="sr-only">Toggle navigation</span> <span
+            class="icon-bar"></span> <span class="icon-bar"></span> <span
+            class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"><img id="titleimg"
+          src="img/title.PNG" /></a>
+      </div>
+      <div class="collapse navbar-collapse" id="defaultNavbar1">
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="예) 김치 볶음밥">
+          </div>
+          <a href="search.html" class="btn btn-default">검색</a>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">로그아웃</a></li>
+          <li><a href="myPage.html">마이페이지</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container">
+  <div class="row">
+    <!-- side bar -->
+    <div class="col-xs-2 col-xs-2">
+      <div id="side">
+        <div class="row">
+          <a href="myPage.html"><img src="img/mypage.png" style="width:100%; cursor: pointer;" /></a>
+        </div>
+      <div class="side"></div>
+        <div class="two row">
+          <p class="pt" id="nick_view"></p>
+          <div class="s_b">
+            <button class="mp_b1 mp_b1--aylen" onclick="location.href='recipeControl.html'">레시피 관리</button>
+            <button class="mp_b1 mp_b1--aylen" onclick="location.href='recipeRanking.html'">레시피 순위</button>
+          </div>
+        </div>
+        <div class="two row">
+          <p class="pt1" id="info">회원정보 관리</p>
+          <div class="s_b">
+            <button class="mp_b1 mp_b1--aylen" onclick="location.href='infoChange.html'">회원정보 변경</button>
+            <button class="mp_b1 mp_b1--aylen" onclick="location.href='leave.html'">회원 탈퇴</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-xs-10 col-xs-10">
+      <div class="row">
+        <img src="img/ranking1.png" class="title" style="width:210px; height:66px;">
+        <hr id="topline">
+      </div>
+    </div>
+    
+
+    <div class="col-xs-10 col-xs-10">
+      <div class="row"  style="text-align: center; padding-bottom:30px;">
+        <div class="photo col-xs-4 col-xs-4">
+          <div class="row">
+              <img src="img/ranking.png" class="img-rounded" width="200">
+          </div>
+        </div>
+        <div class="photo col-xs-4 col-xs-4">
+          <div class="row">
+              <img src="img/ranking.png" class="img-rounded" width="200">
+          </div>
+        </div>
+        <div class="photo col-xs-4 col-xs-4">
+          <div class="row">
+              <img src="img/ranking.png" class="img-rounded" width="200">
+          </div>
+        </div>
+      </div>
+    </div>
+        
+   <!-- 탭바 -->
+   <div class="col-xs-10 col-xs-10" style="float:right">
+     <div class="row" style="margin-left:15px">
+       <div class="tab_list m1">
+         <ul>
+           <li class="m1"><a href="#"><span>카테고리점유율/검색어유입률</span></a>
+              <ul>
+                 <li>
+                    <div id="chartContainer1" style="height: 300px; width: 470px; float: left;"></div>
+                    <div id="chartContainer2" style="height: 300px; width: 470px; float: right;"></div>
+                 </li>
+             </ul>
+           </li>
+           <li class="m2"><a href="#"><span>순위 변동 그래프</span></a>
+             <ul>
+                <li><div id="chartContainer3" style="height: 300px; width: 948px;"></div></li>
+             </ul>
+           </li>
+         </ul>
+       </div>
+     </div>
+   </div>  
+ </div><hr>
+   <footer>
+    <div class="text-center col-xs-6 col-xs-offset-3">
+      <p>
+        Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a
+          href="http://127.0.0.1:8080/index.html">냉장고를 가져와</a>
+      </p>
+    </div>
+  </footer>
+ </div>
+  
+ 
+
+
+<!-- Chart Script -->
+<script>
+ window.onload = function () {
+   var chart1 = new CanvasJS.Chart("chartContainer1",
+   {
+    width:474,//in pixels
+    height:290,//in pixels
+     title:{
+       text: "분야별 랭킹"
+     },
+     animationEnabled: true,
+     theme: "theme2",
+     data: [
+     {        
+       type: "pie",
+       indexLabelFontFamily: "Garamond",       
+       indexLabelFontSize: 15,
+       startAngle:90,
+       indexLabelFontColor: "dimgrey",       
+       indexLabelLineColor: "darkgrey", 
+       toolTipContent: "{y} %",          
+
+       dataPoints: [
+       {  y: 27.34, indexLabel: "한식" },
+       {  y: 20.6, indexLabel: "일식" },
+       {  y: 9.78, indexLabel: "중식" },
+       {  y: 10.84,  indexLabel: "분식"},
+       {  y: 20.74, indexLabel: "디저트류" },
+       {  y: 12.06,  indexLabel: "양식"}
+
+       ]
+     }
+     ]
+   });
+   chart1.render();
+
+   var chart2 = new CanvasJS.Chart("chartContainer2",
+    {
+     width:474,//in pixels
+     height:290,//in pixels
+     title:{
+       text: "재료별 랭킹"
+     },
+     animationEnabled: true,
+     theme: "theme2",
+     data: [
+       {        
+         type: "pie",
+         indexLabelFontFamily: "Garamond",       
+         indexLabelFontSize: 15,
+         startAngle:90,
+         indexLabelFontColor: "dimgrey",       
+         indexLabelLineColor: "darkgrey", 
+         toolTipContent: "{y} %",          
+
+         dataPoints: [
+         {  y: 17.34, indexLabel: "감자" },
+         {  y: 18.6, indexLabel: "밀가루" },
+         {  y: 1.78, indexLabel: "버섯" },
+         {  y: 10.84,  indexLabel: "닭"},
+         {  y: 20.74, indexLabel: "소고기" },
+         {  y: 12.06,  indexLabel: "돼지고기"}
+
+       ]
+     }
+     ]
+   });
+   chart2.render();
+
+   
+   
+  var chart3 = new CanvasJS.Chart("chartContainer3",
+  {
+     animationEnabled: true,
+     width: 948,
+     height: 300,
+     title:{
+       text: "순위 / 인기도"
+     },
+     data: [
+     {
+      type: "spline", //change type to bar, line, area, pie, etc
+      showInLegend: true,
+      name: "순위",
+      dataPoints: [
+        { x: 10, y: 51 },
+        { x: 20, y: 45 },
+        { x: 30, y: 50 },
+        { x: 40, y: 62 },
+        { x: 50, y: 95 },
+        { x: 60, y: 66 },
+        { x: 70, y: 24 },
+        { x: 80, y: 32 },
+        { x: 90, y: 16 }
+      ]
+      },
+      {
+      type: "spline",
+      name: "인기도",
+      showInLegend: true,        
+      dataPoints: [
+        { x: 10, y: 21 },
+        { x: 20, y: 44 },
+        { x: 30, y: 35 },
+        { x: 40, y: 45 },
+        { x: 50, y: 75 },
+        { x: 60, y: 58 },
+        { x: 70, y: 18 },
+        { x: 80, y: 30 },
+        { x: 90, y: 11 }
+      ]
+      }
+    ],
+    legend: {
+      cursor: "pointer",
+      itemclick: function (e) {
+        if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+          e.dataSeries.visible = false;
+        } else {
+          e.dataSeries.visible = true;
+      }
+      chart3.render();
+      }
+    }
+  });
+
+  chart3.render();
+ }
+</script>
+
+<!-- Handlebars -->
+<script id="nick" type="text/x-handlebars-template">
+  {{#each list}}
+    <span id="name">{{nickname}}</span>'s 레시피
+  {{/each}}
+</script>
+
+<script>
+  $.ajax({
+    method : "GET",
+    url : "infoChange.jsp",
+    dataType : "json",
+    success : function(data) {
+      template = Handlebars.compile($('#nick').html());
+      $("#nick_view").append(template(data));
+    }
+  });
+</script>
+
+
+</body>
+</html>

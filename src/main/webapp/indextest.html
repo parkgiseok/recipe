@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>냉장고를 가져와 - index</title>
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" media="all" href="css/main.css" />
+<link rel="stylesheet" type="text/css" href="css/slide.css" />
+<link href="css/font.css" rel="stylesheet">
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="js/jquery.lazyload.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/handlebars/handlebars.min.js"></script>
+
+<style>
+
+
+
+	.panel1 {
+		border: 2px solid gray;
+		background: white;
+		padding: 10px;
+		width: 1170px;
+	}
+	.panel1 .row {
+		padding-bottom: 10px;
+	}
+	.panel2 {
+		border: 2px solid gray;
+		background: white;
+		padding: 10px;
+	}
+	.panel2 .row {
+		padding-bottom: 10px;
+	}
+	h2 {
+	  font-size: 25px;
+	}
+	#container1 {
+	  position:fixed;
+	  bottom:0;
+	  z-index:200;
+	}
+	label {
+	  font-size:15px;
+	}
+	.sbutton:hover {
+		background-color:#fe435f;
+	}
+</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html"><img id="titleimg" src="img/title.PNG" /></a>
+			</div>
+			<div class="collapse navbar-collapse" id="defaultNavbar1">
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group"><input type="text" class="form-control" placeholder="예) 김치 볶음밥"></div>
+					<a href="search.html" class="btn btn-default">검색</a>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">로그아웃</a></li>
+					<li><a href="myPage.html">마이페이지</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div id="vid_container">
+		<section class="slide-list">
+			<h2 class="hide">메인 롤링 슬라이드</h2>
+			<div class="slide-con">
+				<div class="slider" style="display: none">
+					
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src=""></iframe></a></div>
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src=""></iframe></a></div>
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src=""></iframe></a></div>
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src=""></iframe></a></div>
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src=""></iframe></a></div>
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src=""></iframe></a></div>
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src=""></iframe></a></div>
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src=""></iframe></a></div>
+					<!--
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src="https://www.youtube.com/embed/h1OgYqFd0PQ"></iframe></a></div>
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src="https://www.youtube.com/embed/0HDivRXEqNg"></iframe></a></div>
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src="https://www.youtube.com/embed/4V2oRGyC9Lg"></iframe></a></div>
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src="https://www.youtube.com/embed/RYmIVeZGeis"></iframe></a></div>
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src="https://www.youtube.com/embed/u4MH0I6Z1BM"></iframe></a></div>
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src="https://www.youtube.com/embed/X060QqlbiG0"></iframe></a></div>
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src="https://www.youtube.com/embed/07WZSrqV4Dg"></iframe></a></div>
+					<div class="as"><a href="#"> <iframe width="560" height="335"	src="https://www.youtube.com/embed/aknLlhMhoVw" frameborder="0" allowfullscreen></iframe></a></div>
+					 -->
+				</div>
+			</div>
+		</section>
+	</div>
+	<hr>
+	<div class="container">
+		<section class="sec_main_recipe">
+			<a class="btn btn-info add-button" id="admit-button" href="insert.html">나만의 레시피 등록하기</a>
+			<dl class="inner">
+				<dt>
+					<h3>나도 밥친구가 있다면<br> <em>저녁 같이 드실래요?</em></h3>
+				</dt>
+				<dd>
+					<ol class="lst_recipe" id="list0"></ol>
+				</dd>
+			</dl>
+			<hr>
+			<!-- 
+			<dl class="inner">
+				<dt>
+					<h3>얼얼한 매운맛에 중독되다<br> <em>하드코어 매운맛 열전</em></h3>
+				</dt>
+				<dd>
+					<ol class="lst_recipe" id="list1"></ol>
+				</dd>
+			</dl>
+			<hr>
+			<dl class="inner">
+				<dt>
+					<h3>나도 밥친구가 있다면<br> <em>저녁 같이 드실래요?</em></h3>
+				</dt>
+				<dd>
+					<ol class="lst_recipe" id="list2"></ol>
+				</dd>
+			</dl>
+			<hr>
+			 -->			
+		</section>
+	</div>
+
+
+	<div class="container col-md-8 col-md-offset-2" id="container1">
+		<div class="row" id="row1">
+			<div class="panel1" style="display:block; border-radius: 20px 20px 20px 20px;">
+				<div class="row">
+					<h2 style="text-align:center;">카테고리별 검색</h2>
+				</div>
+				<div class="row" style="padding:5px;">
+					<div class="col-xs-6 col-sm-2" style="padding:5px;"><label>상황별 요리</label><br>
+						<div class="form-control" style="overflow-x:hidden; overflow-y:auto; height:110px;">
+							<input type="checkbox" name="situation" value="situation1"/>간식<br>
+							<input type="checkbox" name="situation" value="situation2"/>아침<br>
+							<input type="checkbox" name="situation" value="situation3"/>점심<br>
+							<input type="checkbox" name="situation" value="situation4"/>저녁<br>
+							<input type="checkbox" name="situation" value="situation5"/>야식<br>
+							<input type="checkbox" name="situation" value="situation6"/>술안주<br>
+						</div>
+					</div>
+					<div class="col-xs-6 col-sm-2" style="padding:5px;"><label>국가별 요리</label><br>
+						<div class="form-control" style="overflow-x:hidden; overflow-y:auto; height:110px;">
+							<input type="checkbox" name="state" value="state1"/>한국<br>
+							<input type="checkbox" name="state" value="state2"/>중국<br>
+							<input type="checkbox" name="state" value="state3"/>일본<br>
+							<input type="checkbox" name="state" value="state4"/>태국<br>
+							<input type="checkbox" name="state" value="state5"/>미국<br>
+							<input type="checkbox" name="state" value="state6"/>멕시코<br>
+						</div>
+					</div> 
+					<div class="col-xs-6 col-sm-2" style="padding:5px;"><label>재료별 요리</label><br>
+						<div class="form-control" style="overflow-x:hidden; overflow-y:auto; height:110px;">
+							<input type="checkbox" name="material" value="material1"/>채소<br>
+							<input type="checkbox" name="material" value="material2"/>육류<br>
+							<input type="checkbox" name="material" value="material3"/>밀<br>
+							<input type="checkbox" name="material" value="material4"/>쌀<br>
+							<input type="checkbox" name="material" value="material5"/>면<br>
+							<input type="checkbox" name="material" value="material6"/>어류<br>
+						</div>
+					</div> 
+					<div class="col-xs-6 col-sm-2" style="padding:5px;"><label>조리별 요리</label><br>
+						<div class="form-control" style="overflow-x:hidden; overflow-y:auto; height:110px;">
+							<input type="checkbox" name="recipe" value="recipe1"/>찌개<br>
+							<input type="checkbox" name="recipe" value="recipe2"/>찜<br>
+							<input type="checkbox" name="recipe" value="recipe3"/>구이<br>
+							<input type="checkbox" name="recipe" value="recipe4"/>볶음<br>
+							<input type="checkbox" name="recipe" value="recipe5"/>무침<br>
+							<input type="checkbox" name="recipe" value="recipe6"/>조림<br>
+						</div>
+					</div> 
+					<div class="col-xs-6 col-sm-2" style="padding:5px;"><label>시간별 요리</label><br>
+						<div class="form-control" style="overflow-x:hidden; overflow-y:auto; height:110px;">
+							<input type="checkbox" name="time" value="time1"/>~30분<br>
+							<input type="checkbox" name="time" value="time2"/>~1시간<br>
+							<input type="checkbox" name="time" value="time3"/>~2시간<br>
+							<input type="checkbox" name="time" value="time4"/>~3시간<br>
+							<input type="checkbox" name="time" value="time5"/>~4시간<br>
+						</div>
+					</div>
+					<div class="col-xs-6 col-sm-2" style="padding:5px;"><label>난이도별 요리</label><br>
+						<div class="form-control" style="overflow-x:hidden; overflow-y:auto; height:110px;">
+							<input type="checkbox" name="level" value="level1"/>★☆☆☆☆<br>
+							<input type="checkbox" name="level" value="level2"/>★★☆☆☆<br>
+							<input type="checkbox" name="level" value="level3"/>★★★☆☆<br>
+							<input type="checkbox" name="level" value="level4"/>★★★★☆<br>
+							<input type="checkbox" name="level" value="level5"/>★★★★★<br>
+						</div>
+					</div>
+				</div>
+				<div class="row">					
+					<button class="sbutton btn btn-default" style="float:right; margin-right:15px; background:#ff4da6; color:white;">검색</button>
+				</div>
+			</div>
+			
+			<div class="panel2" style="display: block; border-radius: 20px 20px 20px 20px;">
+				<div class="row"><div class="col-md-12"><h2 style="text-align:center;">재료로 레시피 추천</h2></div></div>
+				<div class="row">					
+					<div class="col-md-6">
+						<div class="col-md-9" style="padding:0;"><input type="text" class="form-control" placeholder="재료를 입력해 주세요."></div>
+						<div class="col-md-3" style="padding:0;"><a href="#" class="sbutton btn btn-default" style="float:right; background:#ff4da6; color:white;">검색</a></div>
+					</div>
+					<div class="col-md-6">
+						<span style="font-size:22px;">내가 선택한 재료</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<select id="sel1" multiple class="form-control" onChange="javascript:selectEvent1(this)" style="height:112px; float:left;">
+							<option value="corn">곡류</option>
+							<option value="noodle">면류</option>
+							<option value="bread">빵류</option>       
+							<option value="ricecake">떡류</option>
+							<option value="vegetable">채소류</option>       
+							<option value="meet">육류</option>       
+						</select>
+					</div>
+					<div class="col-md-3">
+						<select id="sel2" onChange="javascript:selectEvent2(this)" multiple class="form-control" style="height:112px; float:left;">
+						</select>
+					</div>
+					<div class="col-md-6">
+						<div class="col-md-6 form-control" id="sel3" style="overflow-x:hidden; overflow-y:auto; height:112px;"></div>
+					</div>
+				</div>
+				<div class="row">					
+					<button class="sbutton btn btn-default" style="float:right; margin-right:15px; background:#ff4da6; color:white;">검색</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row" id="row2" style="background:#fe435f; padding:10px; border-radius: 20px 20px 0 0">
+			<button id="b1" style="border:0; outline:0; float:left; background:#fe435f; font-size:20px; color:white;">
+				<span style="color:yellow; font-size:28px;">▲ </span> 카테고리</button>
+			<button id="b2" style="border:0; outline:0; float:right; background:#fe435f; font-size:20px; color:white;">재료선택 
+				<span style="color:yellow; font-size:28px;">▲ </span></button>
+		</div>
+	</div>
+	
+	<footer>
+		<div class="text-center col-md-6 col-md-offset-3">
+			<p>Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a href="http://127.0.0.1:8080/index.html">냉장고를 가져와</a></p>
+		</div>
+	</footer>
+
+	<script>
+		var sliderCampaignCount = 0;
+		if (sliderCampaignCount > 5) {
+			sliderCampaignCount = 5;
+		} else {
+			sliderCampaignCount = 1;
+		}
+
+		$('.slider').slick({
+			variableWidth : true,
+			centerMode : true,
+			infinite : true,
+			adaptiveHeight : true,
+			slidesToShow : sliderCampaignCount,
+			slidesToScroll : 5,
+			autoplay : true,
+			autoplaySpeed : 2000,
+			dots : true
+		});
+
+		$("img.img-banner").lazyload({
+			effect : "fadeIn"
+		});
+
+		(function() {
+			var currentPage = 0;
+			var $header = $(".slide-category-header");
+			var $content = $(".slide-category-list .campaign-slide-content");
+			var pageSize = Math.ceil($content.find("ul").size());
+			$content.find('ul').width(1216);
+			$content.width($content.find('ul').width() * 4);
+			var pageWidth = $content.find('ul').width();
+			$header.find(".total-page").text(pageSize);
+			showPageInfo(currentPage);
+
+			function showPageAt(page) {
+				var left = -(page * pageWidth);
+				$content.stop().animate({
+					left : left
+				}, 300, function() {
+					showPageInfo(page);
+				});
+			}
+
+			function showPageInfo(page) {
+				$header.find(".current-page").html((page + 1));
+				$(document).trigger('scroll');
+			}
+		})();
+
+		$(function() {
+			$('.slider').fadeIn(1500);
+		});
+	</script>
+
+	<script id="card" type="text/x-handlebars-template">
+	{{#each list}}
+	<li class="lis" id="a{{@index}}">
+		<div class="card"  id="card{{@index}}">
+			<div class="thmb"> <img src="{{mainPhoto}}"/> </div> 
+			<span class="author">
+				<a href="#"><img src="{{profilePhoto}}"/></a>
+				<strong><a href="#">{{nickname}}</a></strong>
+			</span>
+			<div class="title"><p>{{title}}</p></div>
+			<div class="option">
+				<div class="time"><button>{{time}}분</button></div>
+				<div class="like"><button type="submit">{{like}}명</button></div>
+				<div class="share"><button>공유하기</button></div>
+			</div>
+		</div>
+		<div class="desc">
+			<p>
+				이런설명<br>
+				저런설명<br>
+				그런설명<br>
+				수근수근이수근<br>
+			</p>
+			<div class="option">
+				<div class="site"><a href="urlPage.html">사이트에서 보기</a></div>
+				<div class="blog"><a href="urlPage.html">블로그에서 보기</a></div>
+			</div>
+		</div>
+	</li>
+	{{/each}}
+	</script>
+	
+	<script type="text/javascript">
+	var effectSli = $.effects.effect.sli = function( o, done ) {
+		// Create element
+		var el = $( this ),
+			props = [ "position", "top", "bottom", "left", "right", "width", "height" ],
+			mode = $.effects.setMode( el, o.mode || "show" ),
+			show = mode === "show",
+			direction = o.direction || "down",
+			ref = (direction === "up" || direction === "down") ? "top" : "left",
+			positiveMotion = (direction === "up" || direction === "left"),
+			distance,
+			animation = {};
+
+		// Adjust
+		$.effects.save( el, props );
+		el.show();
+		distance = o.distance || el[ ref === "top" ? "outerHeight" : "outerWidth" ]( true );
+
+		$.effects.createWrapper( el ).css({
+			overflow: "hidden"
+		});
+
+		if ( show ) {
+			el.css( ref, positiveMotion ? (isNaN(distance) ? "-" + distance : -distance) : distance );
+		}
+
+		// Animation
+		animation[ ref ] = ( show ?
+			( positiveMotion ? "+=" : "-=") :
+			( positiveMotion ? "-=" : "+=")) +
+			distance;
+
+		// Animate
+		el.animate( animation, {
+			queue: false,
+			duration: o.duration,
+			easing: o.easing,
+			complete: function() {
+				if ( mode === "hide" ) {
+					el.hide();
+				}
+				$.effects.restore( el, props );
+				$.effects.removeWrapper( el );
+				done();
+			}
+		});
+	};
+	</script>
+
+	<script>
+		var cardLeft;
+		$(function() {
+			$.ajax({
+				method : "GET",
+				url : "index1.jsp",
+				dataType : "json",
+				success : function(data) {
+					var template = Handlebars.compile($('#card').html());
+					$("#list0").append(template(data));
+					$('#a1').css('left', "260px");
+					$('#a2').css('left', "520px");
+					$('#a3').css('left', "780px");
+					$('.desc').hide();
+				}
+			});
+		});		
+		/*
+		$(function() {
+			$.ajax({
+				method : "GET",
+				url : "index2.jsp",
+				dataType : "json",
+				success : function(data) {
+					var template = Handlebars.compile($('#card').html());
+					$("#list1").append(template(data));
+					$('#a1').css('left', "260px");
+					$('#a2').css('left', "520px");
+					$('#a3').css('left', "780px");
+					$('.desc').hide();
+					cardLeft = $('#a1').css('left');
+				}
+			});
+		});
+		
+		$(function() {
+			$.ajax({
+				method : "GET",
+				url : "index3.jsp",
+				dataType : "json",
+				success : function(data) {
+					var template = Handlebars.compile($('#card').html());
+					$("#list2").append(template(data));
+					$('#a1').css('left', "260px");
+					$('#a2').css('left', "520px");
+					$('#a3').css('left', "780px");
+					$('.desc').hide();
+					cardLeft = $('#a1').css('left');
+				}
+			});
+		});
+		*/		
+		$(document).ready(function() {
+			$(document).on('click', '.card', function() {
+				var clickid = '#' + $(this).parent(".lis").attr('id');
+				if ($(clickid).css('left') != '1px') {
+					cardleft = $(clickid).css('left');
+				}
+				
+				if ($(this).parent(".lis").css('left') == '1px') {
+		  		$(clickid + ' .desc').toggle("slide", {}, 500);
+		  		window.setTimeout(function() {
+		  			for (i = 0; i < 4; i++) {
+		  				var id = '#a' + i;
+		  				if (id != clickid) {
+		  					$(id).show(500);
+		  				}
+		  			}
+		  			$(clickid).animate({'left': cardleft}, 500);
+		  		}, 500);
+		  	}	else {
+					for (i = 0; i < 4; i++) {
+		  			var id = '#a' + i;
+		  			if (id != clickid) {
+		  				$(id).hide(500);
+		  			}
+		  		}
+		  		$(this).parent(".lis").animate({'left':1}, 500);
+		  		window.setTimeout(function() {
+		  			$(clickid + ' .desc').toggle("slide", {}, 500);
+		  		}, 500);
+		  	}
+			});
+		});
+	</script>
+
+	<script>
+	  $(document).ready(function(){
+	    <!-- 처음에 안보여주는거 -->
+	    $(".panel1").hide();    
+	    $(".panel2").hide();
+	    
+	    <!-- b1 누르면 나오고 또 누르면 사라짐 -->
+	    $("#b1").click(function(){
+	    	$(".panel2").hide();
+	    	$(".panel1").toggle("sli", {
+
+	    	}, 50);	    
+	    });
+	    
+	    <!-- b2 누르면 나오고 또 누르면 사라짐 -->
+	    $("#b2").click(function(){
+		    $(".panel1").hide();
+	    	$(".panel2").toggle("sli", {}, 50);
+	    });	    
+	  });
+	</script>
+
+	<script type="text/javascript">
+	  function selectEvent1(selectObj) {
+		  var x = selectObj.value; 
+		  if (x == "corn") {
+			  $("#sel2").html("<option value='c1'>현미</option>" +
+					              "<option value='c2'>백미</option>" +
+					              "<option value='c3'>모래</option>");
+		  } else if (x == "noodle") {
+			  $("#sel2").html("<option value='n1'>라면</option>" +
+	                      "<option value='n2'>국수</option>" +
+	                      "<option value='n3'>파스타</option>");
+		  } else if (x == "bread") {
+			  $("#sel2").html("<option value='b1'>모닝빵</option>" +
+	                      "<option value='b2'>바게트</option>" +
+	                      "<option value='b3'>참깨빵</option>");		  
+		  } else if (x == "ricecake") {
+			  $("#sel2").html("<option value='r1'>인절미</option>" +
+	                      "<option value='r2'>쑥떡</option>" +
+	                      "<option value='r3'>무지개떡</option>");		  
+		  } else if (x == "vegetable") {
+			  $("#sel2").html("<option value='v1'>샐러리</option>" +
+	                      "<option value='v2'>봄동</option>" +
+	                      "<option value='v3'>무나물</option>");		  
+		  } else if (x == "meet") {
+			  $("#sel2").html("<option value='m1'>소고기</option>" +
+	                      "<option value='m2'>돼지고기</option>" +
+	                      "<option value='m3'>닭고기</option>");		  
+		  } else {
+			  $("#sel2").html("");		  		  
+		  }
+	  }      
+	</script>
+
+	<script type="text/javascript">
+	var list = [];
+  function selectEvent2(selectObj) {	  
+	  var x = selectObj.value;
+	  for (var i in list) {
+		  if (list[i] == x) {
+			  return;
+		  }
+	  }
+	  list.push(x);
+		$("#sel3").append("<input type='checkbox' name='choice' value='"+ x + "'/>"+ $('#sel2 option:selected').text() +"<br>");
+  }
+	</script>
+
+</body>
+</html>

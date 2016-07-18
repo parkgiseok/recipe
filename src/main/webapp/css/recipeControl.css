@@ -1,0 +1,91 @@
+#titleimg {
+  position: relative;
+  top: -10px;
+}
+*{
+  font-family: '옛날목욕탕';
+}
+.form-control {
+	width: 100px;
+}
+
+#my_count {
+	margin-left: 15px;
+	padding-bottom: 10px;
+}
+#count {
+	color: #ff8040;
+}
+
+.mySlides {
+	margin-top: 70px;
+	margin-bottom: 40px;
+	
+}
+
+.slide {
+	margin-top: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 880px;
+	height: 450px;
+	list-style:none;
+  padding-left:0px;
+}
+
+.img-rounded {
+	width:120px; 
+	height:120px;
+}
+
+.list_title {
+	margin-top: 10px;
+}
+
+.tit {
+	font-size: 17px;
+  display: inline-block;
+  width: 450px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list_cont {
+	display: inline-block;
+  width: 540px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  white-space: normal;
+  line-height: 1.3;
+  height: 53px;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.list_date {
+  margin-top: 60px;
+}
+
+.date {
+  margin-top: 37px;
+  position: relative;
+  color: gray;
+  font-style: italic;
+}
+
+.rr {
+	margin-left: -68px;
+	margin-bottom: 20px;
+}
+
+.bottom {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}

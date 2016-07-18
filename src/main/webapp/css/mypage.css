@@ -1,0 +1,222 @@
+/* Common button styles */
+.r_bt {
+  background: none;
+  position: relative;
+  z-index: 1;
+  -webkit-backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  float: right;
+  width: 350px;
+  height: 80px;
+  margin: 30px 130px 10px 0px;
+  border: 2px solid gray;
+  box-shadow: 10px 10px lightgray;
+  border-radius: 50px;
+  text-align: center;
+  font-size: x-large;
+  color: #ff8040;
+  outline: none;
+}
+
+/* Rayen */
+.r_bt--rayen {
+  overflow: hidden;
+  padding: 0;
+  width: 230px;
+}
+.r_bt--rayen::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffe6d9;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+.r_bt--rayen > span {
+  display: block;
+}
+.r_bt--rayen::before,
+.r_bt--rayen > span {
+  padding: 22px;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.r_bt--rayen:hover::before {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.r_bt--rayen:hover > span {
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+
+
+#titleimg {
+  position: relative;
+  top: -10px;
+}
+*{
+  font-family: '옛날목욕탕';
+}
+hr {
+	border: 1px solid lightgray;
+}
+
+#con {
+  padding: 20px 20px 10px 0px;
+}
+
+.welcome {
+	color: red;
+	width: 200px;
+	-webkit-transform: rotate(-25deg); 
+	font-weight: 600;
+	font-size: x-large;
+	text-shadow: 5px 5px pink;
+	margin-bottom: 10px;
+}
+#wel {
+	float: right;
+	position: absolute;
+	width: 85px;
+	margin-left: 120px;
+	margin-top: -65px;
+	-webkit-transform: rotate(-20deg); 
+}
+
+#flower {
+	width: 90px;
+	float: right;
+	margin-top: 15px;
+}
+
+#w_nick {
+	margin-left: 90px;
+	font-weight: 500;
+  font-size: x-large;
+  color: #ff8040;
+}
+.my_t {
+	float: left;
+	margin-top: -20px;
+	margin-left: 75px;
+	font-size: x-large;
+}
+
+.my_tt {
+  margin-left: 60px;
+  font-size: large;
+}
+
+.my_ttt {
+	margin-left: 5px;
+	color: #808000;
+  font-size: x-large;
+  border-bottom: 1px solid #808040;
+  font-weight: 500;
+}
+
+.my_i {
+	float: right;
+	position: absolute;
+	width: 60px;
+	-webkit-transform: rotate(50deg); 
+	margin-top: -20px;
+	margin-left: -19px;
+}
+
+.my_ii {
+  float: left;
+  position: absolute;
+  width: 280px;
+  margin-top: 460px;
+  margin-left: -100px;
+}
+
+.wel2 {
+  font-size: 19px;
+}
+
+.wel3 {
+	color: gray;
+  font-size: 19px;
+  font-style: italic;
+}
+
+.cc {
+	margin-left: 50px;
+}
+
+.option {
+  list-style: none;
+}
+
+.op {
+	float: right;
+	position: absolute;
+	margin-left: 220px;
+	margin-top: -17px;
+	width: 160px;
+	height: 200px;
+}
+
+#m_line {
+	border: 1px solid lightgray;
+}
+
+#new {
+	border: 0px solid red;
+	padding: 10px 20px 10px 0px;
+}
+
+.recent {
+	margin-bottom: 20px;
+}
+
+.recent_tit {
+  font-size: 17px;
+  display: inline-block;
+  width: 450px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recent_cont {
+	display: inline-block;
+  width: 470px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  white-space: normal;
+  line-height: 1.2;
+  max-height: 50px;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.img-rounded {
+	width: 120px;
+	height: 120px;
+}
+
+.date {
+  margin-top: 70px;
+  position: relative;
+  color: gray;
+  font-style: italic;
+}
+
+
+.last {
+	padding-bottom: 50px;
+}

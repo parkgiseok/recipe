@@ -1,0 +1,96 @@
+/* Basic sample */
+.flipbook-viewport{
+	overflow:hidden;
+	width:100%;
+	height:100%;
+}
+
+.flipbook-viewport .container{
+	margin-left: -31px;
+	margin-top: -37px;
+	padding-left: 62px;
+	padding-top: 44px;
+	width:1024px;
+	height: 560px;
+	position:absolute;
+	background-image: url("../img/back_book.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 992px 590px;
+}
+
+.flipbook-viewport .flipbook{
+	width:922px;
+	height:550px;
+}
+
+.flipbook-viewport .page{
+	width:461px;
+	height:550px;
+	background-color:white;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+}
+
+.flipbook .page{
+	-webkit-box-shadow:0 0 20px rgba(0,0,0,0.2);
+	-moz-box-shadow:0 0 20px rgba(0,0,0,0.2);
+	-ms-box-shadow:0 0 20px rgba(0,0,0,0.2);
+	-o-box-shadow:0 0 20px rgba(0,0,0,0.2);
+	box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+.flipbook-viewport .page img{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	margin:0;
+}
+
+.flipbook-viewport .shadow{
+	-webkit-transition: -webkit-box-shadow 0.5s;
+	-moz-transition: -moz-box-shadow 0.5s;
+	-o-transition: -webkit-box-shadow 0.5s;
+	-ms-transition: -ms-box-shadow 0.5s;
+
+	-webkit-box-shadow:0 0 20px #ccc;
+	-moz-box-shadow:0 0 20px #ccc;
+	-o-box-shadow:0 0 20px #ccc;
+	-ms-box-shadow:0 0 20px #ccc;
+	box-shadow:0 0 20px #ccc;
+}
+
+.pop_flip_img {
+	text-align: center;
+	border-right: 1px solid gray;
+}
+
+.pop_flip_img1 {
+  padding: 20px 22px 20px 20px;
+  width: 450px;
+  height: 450px;
+  margin-top: auto;
+  -moz-box-shadow:    inset -25px 0 25px -15px gray;
+  -webkit-box-shadow: inset -25px 0 25px -15px gray;
+  box-shadow: inset -25px 0 25px -15px gray;
+}
+
+.pop_flip_text {
+	text-align: left;
+	font-size: 20px;
+	text-indent: 20px;
+	display: table;
+	border-left: 1px solid gray;
+}
+
+.pop_flip_text1 {
+	padding: 20px;
+	display: table-cell;
+	vertical-align: middle;
+	-moz-box-shadow:    inset 25px 0 25px -15px gray;
+  -webkit-box-shadow: inset 25px 0 25px -15px gray;
+  box-shadow: inset 25px 0 25px -15px gray;
+}

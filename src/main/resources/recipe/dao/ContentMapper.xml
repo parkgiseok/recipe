@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Typeper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipe.dao.ContentDao">
+
+  <select id="selectList" parameterType="int" resultType="Content">
+    select * from R_PHOTO
+    where bno=#{bno}
+  </select>
+
+  <select id="selectOne" parameterType="int" resultType="Content">
+    select * from R_PHOTO
+    where PNO=#{pno}
+  </select>
+  
+  <insert id="insert" parameterType="Content">
+<!--   insert into 
+      R_PHOTO(BNO,SEQ,CONT,P_URL,TYPE) 
+       values(45,1,#{cont},#{photo},1); -->
+       insert into 
+       R_PHOTO(BNO,CONT,P_URL) 
+       values((SELECT BNO FROM recipe
+              ORDER BY BNO DESC
+              LIMIT 1),#{cont},#{p_url});
+  </insert>
+  
+  <insert id="updateinsert" parameterType="Content">
+<!--   insert into 
+      R_PHOTO(BNO,SEQ,CONT,P_URL,TYPE) 
+       values(45,1,#{cont},#{photo},1); -->
+       insert into 
+       R_PHOTO(BNO,CONT,P_URL) 
+       values(#{bno},#{cont},#{p_url});
+  </insert>
+  
+  <update id="update" parameterType="Content">
+    update R_PHOTO set
+      CONT=#{cont},
+      P_URL=#{p_url}
+    where PNO=#{pno}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from r_photo 
+    where bno=#{bno} 
+    order by pno 
+    desc limit 1;
+  </delete>
+</mapper>

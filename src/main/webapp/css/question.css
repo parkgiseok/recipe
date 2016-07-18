@@ -1,0 +1,41 @@
+#titleimg {
+  position: relative;
+  top: -10px;
+}
+*{
+  font-family: '옛날목욕탕';
+}
+
+#intro {
+	margin-left: 185px; 
+}
+
+.bold {
+	font-weight: bold;
+}
+
+#dropdown-1 {
+	margin-left: 49px;
+}
+
+.m_title {
+	width: 600px;
+	float: left;
+}
+
+.form {
+	width: 713px;
+	margin-left: 49px;
+}
+
+.bt1 {
+	margin-left: 50px;
+	width: 100px;
+}
+
+.bt2 {
+  width: 100px;
+}
+hr {
+  border: 1px solid lightgray;
+}

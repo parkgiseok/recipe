@@ -1,0 +1,689 @@
+* {
+  font-family: '옛날목욕탕';
+}
+
+html, body, div, span, del, em, img, ins, strong, sub, sup, tt, var, b,
+  u, i, center, dl, dt, dd, ol, ul, li, label, article, aside, embed,
+  figure, footer, header, hgroup, menu, nav, output, section, summary {
+  padding: 0;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+body, table, th, td, pre, input, select, textarea, button {
+  font-size: 14px;
+  color: #2a2a2a
+}
+
+button, a {
+  outline: none;
+  text-decoration: none;
+  color: #444;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+em, address {
+  font-style: normal
+}
+
+input, button, img {
+  vertical-align: middle
+}
+
+#vid_container {
+  float: none;
+  position: relative;
+}
+
+.sec_main_recipe {
+  position: relative;
+}
+
+.sec_main_recipe h3 {
+  font-family: '옛날목욕탕';
+  font-size: 17px;
+  color: #888;
+  margin-bottom: 7px;
+  line-height: 26px;
+}
+
+.sec_main_recipe h3 strong {
+  font-size: 34px;
+  color: #474747;
+  font-family: 'NST'
+}
+
+.sec_main_recipe h3 em {
+  font-size: 34px;
+  font-family: 'NST'
+}
+
+.sec_main_recipe .inner {
+  position: relative;
+  width: 1024px;
+  margin: auto
+}
+
+.lst_recipe {
+  overflow: hidden;
+  height: 400px;
+  margin-bottom: 20px;
+  width: 1040px;
+  position: relative;
+  left: -16px
+}
+
+.lst_recipe>li {
+  width: 1023px;
+  height: 340px;
+  margin: 0 0 16px 16px;
+  box-sizing: border-box;
+  position: absolute;
+  background-color: #fff
+}
+
+.lst_recipe li .card {
+  width: 244px;
+  height: 340px;
+  position: absolute;
+  border: 1px solid #808080;
+  box-sizing: border-box;
+  float: left;
+  background-color: #fff
+}
+
+.lst_recipe li .card .thmb {
+  display: block;
+  margin: 4px;
+  position: relative
+}
+
+.lst_recipe li .card .thmb img {
+  width: 234px;
+  height: 234px;
+  display: block
+}
+
+.lst_recipe li .card .thmb:after {
+  position: absolute;
+  display: block;
+  content: '';
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url(../img/recipe_background.png) center center no-repeat;
+  background-size: 234px 330px;
+  z-index: 0;
+}
+
+.lst_recipe li .card .author {
+  text-align: center;
+  width: 100%;
+  z-index: 0;
+  display: block;
+  margin-top: -40px;
+  position: relative
+}
+
+.lst_recipe li .card .author a {
+  width: 61px;
+}
+
+.lst_recipe li .card .author img {
+  width: 61px;
+  height: 61px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: block;
+  margin: 0 auto 5px
+}
+
+.lst_recipe li .card .author strong {
+  color: #808080;
+  font-size: 14px;
+  font-weight: normal
+}
+
+.lst_recipe li .card .title p {
+  text-align: center;
+  font-size: 16px;
+  padding: 5px 10px 0px 10px; 
+  
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 45px;
+  
+  display: inline-block;
+  width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  line-height: 1;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.lst_recipe li .card .option {
+  position: absolute;
+  float: left;
+  width: 243px;
+  height: 27px;
+  /* border: 1px solid #808080; */
+  border: 10000px solid red;
+  z-index: 1000;
+}
+
+.lst_recipe li .card .option>div {
+	position: absolute;
+  float: left;
+  width: 80px;
+  height: 100%;
+  float: left;
+  border: 50px solid red;
+}
+
+.lst_recipe li .card .option>div:first-child {
+  border: none
+}
+
+.lst_recipe li .card .option div a {
+  box-sizing: border-box;
+  float: left;
+  white-space: nowrap;
+  padding: 5px 10px
+}
+
+.time {
+  position: absolute;
+  float: left;
+  margin-top: 341px;
+  border: 1px solid #808080;
+  background: url(../img/icon_clock.png) 7px center no-repeat;
+}
+
+.time button {
+  display: block;
+  overflow: hidden;
+  height: 27px;
+  width: 78px;
+  text-align: right;
+  background-color: transparent;
+  border: none;
+  color: #999;
+  padding-right: 10px;
+}
+
+.like {
+  position: absolute;
+  float: left;
+  margin-top: 341px;
+  margin-left: 81px;
+  border: 1px solid #808080;
+  background: url(../img/icon_heart_empty.png) 7px center no-repeat;
+}
+
+.like button {
+  display: block;
+  height: 27px;
+  width: 79px;
+  text-align: right;
+  background-color: transparent;
+  border: none;
+  color: #999;
+  box-sizing: border-box;
+  padding-right: 10px;
+}
+
+
+.share {
+  position: absolute;
+  float: left;
+  margin-top: 341px;
+  margin-left: 163px;
+  border: 1px solid #808080;
+  background: url(../img/icon_share.png) 7px center no-repeat;
+}
+
+.share button {
+  display: block;
+  height: 27px;
+  width: 79px;
+  text-align: right;
+  background-color: transparent;
+  border: none;
+  color: #999;
+  box-sizing: border-box;
+  padding-right: 8px;
+}
+
+.lst_recipe li .desc {
+  width: 779px;
+  height: 370px;
+  position: relative;
+  border-top: 1px solid #808080;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  box-sizing: border-box;
+  float: right;
+  background-color: #fafff0;
+}
+
+.lst_recipe li .desc .option {
+  width: 778px;
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  border-top: 1px solid #808080;
+  text-align: right
+}
+
+.lst_recipe li .desc .option>div {
+  width: 389px;
+  height: 100%;
+  float: left;
+  border-left: 1px solid #808080
+}
+
+.lst_recipe li .desc .option>div:first-child {
+  border: none
+}
+
+.lst_recipe li .desc .option div a {
+  box-sizing: border-box;
+  float: left;
+  white-space: nowrap;
+  padding: 5px 10px
+}
+
+.lst_recipe li .desc .option .site {
+  position: relative;
+  height: 50px;
+}
+
+.lst_recipe li .desc .option .site a {
+  display: block;
+  padding-top: 10px;
+  width: 388px;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  color: #999;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+.lst_recipe li .desc .option .blog {
+  position: relative;
+  height: 50px;
+}
+
+.lst_recipe li .desc .option .blog a {
+  display: block;
+  padding-top: 10px;
+  width: 100%;
+  text-align: center;
+  background-color: transparent;
+  color: #999;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+.layer {
+  display: none;
+  position: fixed;
+  _position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+.layer .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .5;
+  filter: alpha(opacity = 50);
+}
+
+.layer .pop-layer {
+	border: 5px solid #ffdab5;
+	border-radius: 20px;
+	height: 600px;
+  display: block;
+}
+
+.pop-layer {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1024px;
+  height: 820;
+  background-color: #fff;
+  z-index: 5;
+}
+
+.pop-layer .pop-container {
+	height: 525px;
+  padding: 25px;
+}
+
+.pop-title1 {
+	font-size: 25px;
+}
+
+.pop-layer p.ctxt {
+  color: #666;
+  line-height: 25px;
+}
+
+.pop-layer .btn-r {
+  width: 100%;
+  margin: 10px 0 20px;
+  padding-top: 10px;
+  border-top: 1px solid #DDD;
+  text-align: right;
+}
+
+a.cbtn {
+  display: inline-block;
+  height: 25px;
+  padding: 0 14px 0;
+  border: 1px solid #304a8a;
+  background-color: #3f5a9d;
+  font-size: 13px;
+  color: #fff;
+  line-height: 25px;
+}
+
+a.cbtn:hover {
+  border: 1px solid #091940;
+  background-color: #1f326a;
+  color: #fff;
+}
+
+/* Wapasha 팝업 슬라이드 버튼 */
+.s_bt {
+	margin-top: 15px;
+	margin-left: 5px;
+	margin-right: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  color: inherit;
+  position: relative;
+  outline: none;
+}
+
+.pop_photo {
+	border:1px solid gray; 
+	height:384px;
+}
+
+.pop_content {
+	text-indent: 20px;
+	border:1px solid gray; 
+	height:384px;
+	font-size: 20px;
+	vertical-align:middle;
+	display:table-cell;
+}
+
+.s_bt.s_bt--wapasha {
+  background: #ff8040;
+  color: #ffffff;
+  -webkit-transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.s_bt--wapasha::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ff8040;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  -webkit-transform: scale3d(0.6, 0.6, 1);
+  transform: scale3d(0.6, 0.6, 1);
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+
+.s_bt--wapasha:hover {
+  background-color: #fff;
+  color: #ff8040;
+}
+
+.s_bt--wapasha:hover::before {
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+  opacity: 1;
+}
+
+/* 카드 슬라이드 , 간략히 보기 Start */
+#card_slide {
+  order: 1px solid red;
+  height: 288px;
+}
+
+.topcon {
+  margin-left: 0px;
+}
+
+.topcon1 {
+  border-bottom: 1px solid #808080;
+  border-right: 1px solid #808080;
+  border-radius: 0px 0px 20px 0px;
+  height: 50px;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px;
+  color: #6c6c00;
+}
+
+.topcon2 {
+  height: 70px;
+  text-align: center;
+  padding: 2px;
+  font-size: 33px;
+  color: #800000;
+  background-image: url("../img/desc_back2.png");
+  background-repeat: no-repeat;
+  background-position: 70px;
+}
+
+.topcon3 {
+  border-bottom: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-radius: 0px 0px 0px 20px;
+  padding: 10px 7px 10px 7px;
+  height: 50px;
+}
+
+.topcon3_img {
+  height: 28px;
+}
+
+.midcon {
+  order: 1px solid red;
+  margin-left: 0px;
+  margin-top: 5px;
+  height: 200px;
+  padding: 10px;
+}
+
+#slidebox {
+  overflow: hidden;
+  height: 160px;
+}
+
+#card_slider {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#card_slider li {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 180px;
+}
+
+#card_slider li img {
+  width: 179px; 
+  height: 179px;
+  border-radius: 15px;
+  border: 1px solid #808080;
+  padding: 3px;
+}
+
+.indent {
+  line-height: 140%;
+  font-size: 17px;
+  text-indent: 20px;
+  text-align: left;
+  
+  width: 530px;
+  height: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+.indent_date {
+  font-size: 15px;
+  font-style: italic;
+  text-align: right;
+  color: #999;
+  padding-right: 10px;
+}
+
+.botcon {
+  margin-top: 0px;
+}
+
+.card_tag_left {
+  border: 1px solid #808080;
+  margin-left: 10px;
+  margin-top: -2px;
+  padding: 2px 5px 2px 0px;
+  border-radius: 15px;
+  font-size: 20px;
+  text-align: center;
+  color: #000040;
+}
+
+.card_tag {
+  order: 1px solid red;
+  margin-left: 0px;
+  height: 37px;
+  font-size: 15px;
+  text-align: left;
+  padding: 5px 30px 5px 0px;
+  color: #000040;
+}
+
+/* 카드 슬라이드 / 간략히 보기 End */
+#titleimg {
+  position: relative;
+  top: -10px;
+}
+
+footer {
+  position: relative;
+  padding-top: 10px;
+  height: 50px;
+}
+
+/* Saqui button styles */
+.recipe_btn {
+	position: relative;
+  z-index: 3;
+  float: right;
+  margin-right: 57px;
+  width: 245px;
+  display: block;
+  padding: 10px;
+  border: none;
+  background: none;
+  color: inherit;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+  -webkit-backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  outline: none;
+  font-size: 15px;
+}
+.recipe_btn.recipe_btn--saqui {
+  overflow: hidden;
+  color: #fff;
+  -webkit-transition: background-color 0.3s ease-in, color 0.3s ease-in;
+  transition: background-color 0.3s ease-in, color 0.3s ease-in;
+}
+.recipe_btn--saqui.recipe_btn--inverted {
+  background: #ffecec;
+  color: #ff8040;
+}
+.recipe_btn--saqui::after {
+	margin-top: -5px;
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1em 2em;
+  color: #37474f;
+  -webkit-transform-origin: -25% 50%;
+  transform-origin: -25% 50%;
+  -webkit-transform: rotate3d(0, 0, 1, 45deg);
+  transform: rotate3d(0, 0, 1, 45deg);
+  -webkit-transition: -webkit-transform 0.3s ease-in;
+  transition: transform 0.3s ease-in;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.recipe_btn--saqui.recipe_btn--inverted::after {
+  color: white;
+}
+.recipe_btn--saqui:hover::after,
+.recipe_btn--saqui:hover {
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.recipe_btn--saqui:hover {
+  background-color: #7986cb;
+  color: #7986cb;
+}
+.recipe_btn--saqui.recipe_btn--inverted:hover {
+  background-color: #ff8040;
+  color: #ff8040;
+}
+.recipe_btn--saqui:hover::after {
+  -webkit-transform: rotate3d(0, 0, 1, 0deg);
+  transform: rotate3d(0, 0, 1, 0deg);
+}

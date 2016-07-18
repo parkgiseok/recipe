@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipe.dao.FavoriteDao">
+
+  <insert id="insert" parameterType="Favorite">
+    insert into Favorite(MNO,BNO,ADD_DT) values(#{mno},#{bno},now())
+  </insert>
+
+  <delete id="delete" parameterType="map">
+    delete from Favorite where MNO=#{mno} and BNO=#{bno}
+  </delete>
+
+  <select id="selectOne" parameterType="map" resultType="Favorite">
+     select MNO, BNO, ADD_DT from Favorite where MNO=#{mno} and BNO=#{bno}
+  </select>
+  
+  <select id="countAll" resultType="int" parameterType="int" >
+    select count(*) from Favorite where BNO=#{bno}
+  </select>
+  
+  <select id="isFavorite" resultType="int" parameterType="Map" >
+    select count(*) from Favorite where BNO=#{bno} and Mno=#{mno}
+  </select>
+  
+  <select id="favoriteRecipe" parameterType="Integer" resultType="RecipeMember">
+		select favorite.mno, recipe.bno, recipe.title, recipe.m_photo, recipe.w_dt, r_photo.cont
+		from favorite 
+		inner join recipe 
+		on favorite.mno=#{mno} and favorite.bno=recipe.bno
+		left join r_photo 
+		on recipe.bno=r_photo.bno
+		group by r_photo.bno order by recipe.bno desc
+		limit 0, 4
+   </select>
+</mapper>
+<!-- 
+   select f.mno, r.bno, r.title, r.m_photo, r.w_dt, rp.cont from 
+   favorite f right outer join recipe r on f.mno = r.mno 
+   left outer join r_photo rp on r.bno=rp.bno
+   where f.mno=1 group by r.title order by r.bno desc
+ -->

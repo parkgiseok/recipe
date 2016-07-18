@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>냉장고를 가져와</title>
+<link href="bower_components/bootstrap/dist/css/bootstrap.css"
+  rel="stylesheet">
+<link href="css/jquery-ui.css" rel="stylesheet">
+<link href="css/mypage.css" rel="stylesheet">
+<link href="css/font.css" rel="stylesheet">
+<link href="css/w3.css" rel="stylesheet">
+<link href="css/summernote.css" rel="stylesheet">
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/summernote.js"></script>
+
+</head>
+
+<style>
+.container {
+  width: 1170px;
+  max-width: none !important;
+}
+
+* {
+  /*  border: 2px solid black; */
+  
+}
+
+.option {
+  opacity: 0.5;
+  filter: alpha(opacity = 50); /* For IE8 and earlier */
+}
+
+.option:hover {
+  opacity: 1.0;
+  filter: alpha(opacity = 100); /* For IE8 and earlier */
+}
+
+#mytitle {
+  margin-bottom: 20px;
+}
+
+.summernote {
+  margin-left: 0;
+}
+
+.file-upload {
+  background-color: #ffffff;
+  width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.file-upload-content {
+  display: none;
+  text-align: center;
+}
+
+.file-upload-input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.image-upload-wrap {
+  margin-top: 20px;
+  border: 2px solid #6699ff;
+  position: relative;
+}
+
+.image-dropping, .image-upload-wrap:hover {
+  background-color: #66ccff;
+  opacity: 0.5;
+  border: 2px solid #6699ff;
+}
+
+.image-title-wrap {
+  padding: 0 15px 15px 15px;
+  color: #222;
+}
+
+.drag-text {
+  text-align: center;
+}
+
+.drag-text h3 {
+  font-weight: 100;
+  text-transform: uppercase;
+  color: #6699ff;
+  padding: 60px 0;
+}
+
+.file-upload-image {
+  height: 30%;
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+}
+
+.remove-image {
+  width: 80px;
+  height: 40px;
+  color: #fff;
+  background: #66ccff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 2px solid #6699ff;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.remove-image:hover {
+  background: #6699ff;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.remove-image:active {
+  border: 0;
+  transition: all .2s ease;
+}
+
+.button--round-s {
+  float: right;
+  margin: 2%;
+}
+
+.savebutton {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.savebutton:hover {
+  background-color: #3e8e41
+}
+
+.savebutton:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed"
+          data-toggle="collapse" data-target="#defaultNavbar1">
+          <span class="sr-only">Toggle navigation</span> <span
+            class="icon-bar"></span> <span class="icon-bar"></span> <span
+            class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"><img id="titleimg"
+          src="img/title.PNG" /></a>
+      </div>
+      <div class="collapse navbar-collapse" id="defaultNavbar1">
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="예) 김치 볶음밥">
+          </div>
+          <a href="search.html" class="btn btn-default">검색</a>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">로그아웃</a></li>
+          <li><a href="myPage.html">마이페이지</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <!-- 큰틀 -->
+    <div class="row">
+
+      <div class="col-xs-2 col-xs-2"
+        style="overflow: scroll; height: 844px; overflow-x: hidden;">
+        <div class="option" style="display: block;">
+          <a href="#" onclick="currentDiv(1)"> <img
+            class="file-upload-image cur" src="#" alt="your image"
+            style="width: 154px; height: 154px; margin: 0px;" id="c1d" /></a>
+          <!-- src에 출력되는 사진을 제거하라 밑소스에서 리무브 1번에 있음! -->
+        </div>
+        <div class="option" style="display: none;">
+          <a href="#" onclick="currentDiv(2)"><img
+            class="file-upload-image cur" src="#" alt="your image"
+            style="width: 154px; height: 154px; margin: 0px;" id="c2d" /></a>
+        </div>
+        <div class="option" style="display: none;">
+          <a href="#" onclick="currentDiv(3)"><img
+            class="file-upload-image cur" src="#" alt="your image"
+            style="width: 154px; height: 154px; margin: 0px;" id="c3d" /></a>
+        </div>
+        <div class="option" style="display: none;">
+          <a href="#" onclick="currentDiv(4)"> <img
+            class="file-upload-image cur" src="#" alt="your image"
+            style="width: 154px; height: 154px; margin: 0px;" id="c4d" /></a>
+          <!-- src에 출력되는 사진을 제거하라 밑소스에서 리무브 1번에 있음! -->
+        </div>
+        <div class="option" style="display: none;">
+          <a href="#" onclick="currentDiv(5)"><img
+            class="file-upload-image cur" src="#" alt="your image"
+            style="width: 154px; height: 154px; margin: 0px;" id="c5d" /></a>
+        </div>
+        <div class="option" style="display: none;">
+          <a href="#" onclick="currentDiv(6)"><img
+            class="file-upload-image cur" src="#" alt="your image"
+            style="width: 154px; height: 154px; margin: 0px;" id="c6d" /></a>
+        </div>
+        <div class="option" style="display: none;">
+          <a href="#" onclick="currentDiv(7)"> <img
+            class="file-upload-image cur" src="#" alt="your image"
+            style="width: 154px; height: 154px; margin: 0px;" id="c7d" /></a>
+          <!-- src에 출력되는 사진을 제거하라 밑소스에서 리무브 1번에 있음! -->
+        </div>
+        <div class="option" style="display: none;">
+          <a href="#" onclick="currentDiv(8)"><img
+            class="file-upload-image cur" src="#" alt="your image"
+            style="width: 154px; height: 154px; margin: 0px;" id="c8d" /></a>
+        </div>
+        <div class="option" style="display: none;">
+          <a href="#" onclick="currentDiv(9)"><img
+            class="file-upload-image cur" src="#" alt="your image"
+            style="width: 154px; height: 154px; margin: 0px;" id="c9d" /></a>
+        </div>
+        <div class="option" style="display: none;">
+          <a href="#" onclick="currentDiv(10)"><img
+            class="file-upload-image cur" src="#" alt="your image"
+            style="width: 154px; height: 154px; margin: 0px;" id="c10d" /></a>
+        </div>
+        <button type="button" onclick="plusCurs()">추가</button>
+        <button type="button" onclick="minusCurs()">제거</button>
+        <!-- 사이드 -->
+        <!--  
+        <div id="pre_set">
+          <a href="#" > <img
+                class="file-upload-image" src="#" alt="your image"
+                style="width: 154px; height: 154px; margin: 0px;"/></a>
+                 <input type="button" value="삭제" onclick="remove_item(this)">
+        </div>
+
+        <div id="field"></div>
+        <input type="button" value=" 추가 " onclick="add_item()"><br>
+        -->
+
+      </div>
+
+
+      <script>
+        function add_item() {
+          // pre_set 에 있는 내용을 읽어와서 처리..
+          var div = document.createElement('div');
+          div.innerHTML = document.getElementById('pre_set').innerHTML;
+          document.getElementById('field').appendChild(div);
+        }
+
+        function remove_item(obj) {
+          // obj.parentNode 를 이용하여 삭제
+          document.getElementById('field')
+              .removeChild(obj.parentNode);
+        }
+
+        var cursIndex = 1;
+        //showplusCurs(cursIndex);
+
+        function minusCurs() {
+
+          showminusCurs(cursIndex += 1);
+          cursIndex -= 2;
+        }
+        function plusCurs() {
+          showplusCurs(cursIndex += 1);
+        }
+
+        function showminusCurs(n) {
+          var x = $(".option");
+          if (n < 3) {
+            window.alert("최소치");
+            cursIndex = 1;
+          }
+
+          x[cursIndex - 2].style.display = "none";
+          $('#c'+n+'e').attr("src", "");
+          removeUpload(n-1);
+
+        }
+
+        function showplusCurs(n) {
+          var x = document.getElementsByClassName("option");
+          if (n > x.length) {
+            window.alert("최대치");
+            cursIndex = 10;
+          }
+
+          x[cursIndex - 1].style.display = "block";
+
+          /* x[i].style.display = "none"; */
+        }
+      </script>
+      <div class="col-xs-10 col-xs-10" style="border-left: 2px solid black">
+        <!-- 우측메인 -->
+        <div class="col-xs-12 col-xs-12">
+          <!-- 제목 -->
+          <input type="text" class="form-control" id="mytitle"
+            style="margin-left: -15px;" placeholder="제목을 입력하세요">
+        </div>
+        <div class="col-xs-8 col-xs-8"
+          style="border: 1px solid black; height: 520px; margin-right: -17px">
+          <!-- 사진 -->
+          <form>
+            <div class="file-upload mySlides">
+              <div class="image-upload-wrap" id="b1">
+                <input class="file-upload-input" type='file'
+                  onchange="readURL(this,1);" accept="image/*" />
+                <div class="drag-text">
+                  <h3>이미지를 선택하거나 드래그해주세요.</h3>
+                </div>
+              </div>
+              <div class="file-upload-content" id="a1">
+                <img class="file-upload-image c1" src="#" alt="your image"
+                  id="c1e" />
+
+
+                <div class="image-title-wrap">
+                  <span class="image-title" id="d1">Uploaded Image</span><br>
+                  <button type="button" onclick="removeUpload(1)"
+                    class="remove-image">취소</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <form>
+            <div class="file-upload mySlides">
+              <div class="image-upload-wrap" id="b2">
+                <input class="file-upload-input" type='file'
+                  onchange="readURL(this,2);" accept="image/*" />
+                <div class="drag-text">
+                  <h3>이미지를 선택하거나 드래그해주세요.</h3>
+                </div>
+              </div>
+              <div class="file-upload-content" id="a2">
+                <img class="file-upload-image c2" src="#" alt="your image"
+                  id="c2e" />
+
+
+                <div class="image-title-wrap">
+                  <span class="image-title" id="d2">Uploaded Image</span><br>
+                  <button type="button" onclick="removeUpload(2)"
+                    class="remove-image">취소</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+          <form>
+            <div class="file-upload mySlides">
+              <div class="image-upload-wrap" id="b3">
+                <input class="file-upload-input" type='file'
+                  onchange="readURL(this,3);" accept="image/*" />
+                <div class="drag-text">
+                  <h3>이미지를 선택하거나 드래그해주세요.</h3>
+                </div>
+              </div>
+              <div class="file-upload-content" id="a3">
+                <img class="file-upload-image c3" src="#" alt="your image"
+                  id="c3e" />
+
+
+                <div class="image-title-wrap">
+                  <span class="image-title" id="d3">Uploaded Image</span><br>
+                  <button type="button" onclick="removeUpload(3)"
+                    class="remove-image">취소</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+          <form>
+            <div class="file-upload mySlides">
+              <div class="image-upload-wrap" id="b4">
+                <input class="file-upload-input" type='file'
+                  onchange="readURL(this,4);" accept="image/*" />
+                <div class="drag-text">
+                  <h3>이미지를 선택하거나 드래그해주세요.</h3>
+                </div>
+              </div>
+              <div class="file-upload-content" id="a4">
+                <img class="file-upload-image c4" src="#" alt="your image"
+                  id="c4e" />
+
+
+                <div class="image-title-wrap">
+                  <span class="image-title" id="d4">Uploaded Image</span><br>
+                  <button type="button" onclick="removeUpload(4)"
+                    class="remove-image">취소</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+          <form>
+            <div class="file-upload mySlides">
+              <div class="image-upload-wrap" id="b5">
+                <input class="file-upload-input" type='file'
+                  onchange="readURL(this,5);" accept="image/*" />
+                <div class="drag-text">
+                  <h3>이미지를 선택하거나 드래그해주세요.</h3>
+                </div>
+              </div>
+              <div class="file-upload-content" id="a5">
+                <img class="file-upload-image c5" src="#" alt="your image"
+                  id="c5e" />
+
+
+                <div class="image-title-wrap">
+                  <span class="image-title" id="d5">Uploaded Image</span><br>
+                  <button type="button" onclick="removeUpload(5)"
+                    class="remove-image">취소</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+          <form>
+            <div class="file-upload mySlides">
+              <div class="image-upload-wrap" id="b6">
+                <input class="file-upload-input" type='file'
+                  onchange="readURL(this,6);" accept="image/*" />
+                <div class="drag-text">
+                  <h3>이미지를 선택하거나 드래그해주세요.</h3>
+                </div>
+              </div>
+              <div class="file-upload-content" id="a6">
+                <img class="file-upload-image c6" src="#" alt="your image"
+                  id="c6e" />
+
+
+                <div class="image-title-wrap">
+                  <span class="image-title" id="d6">Uploaded Image</span><br>
+                  <button type="button" onclick="removeUpload(6)"
+                    class="remove-image">취소</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+          <form>
+            <div class="file-upload mySlides">
+              <div class="image-upload-wrap" id="b7">
+                <input class="file-upload-input" type='file'
+                  onchange="readURL(this,7);" accept="image/*" />
+                <div class="drag-text">
+                  <h3>이미지를 선택하거나 드래그해주세요.</h3>
+                </div>
+              </div>
+              <div class="file-upload-content" id="a7">
+                <img class="file-upload-image c7" src="#" alt="your image"
+                  id="c7e" />
+
+
+                <div class="image-title-wrap">
+                  <span class="image-title" id="d7">Uploaded Image</span><br>
+                  <button type="button" onclick="removeUpload(7)"
+                    class="remove-image">취소</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+          <form>
+            <div class="file-upload mySlides">
+              <div class="image-upload-wrap" id="b8">
+                <input class="file-upload-input" type='file'
+                  onchange="readURL(this,8);" accept="image/*" />
+                <div class="drag-text">
+                  <h3>이미지를 선택하거나 드래그해주세요.</h3>
+                </div>
+              </div>
+              <div class="file-upload-content" id="a8">
+                <img class="file-upload-image c8" src="#" alt="your image"
+                  id="c8e" />
+
+
+                <div class="image-title-wrap">
+                  <span class="image-title" id="d8">Uploaded Image</span><br>
+                  <button type="button" onclick="removeUpload(8)"
+                    class="remove-image">취소</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+          <form>
+            <div class="file-upload mySlides">
+              <div class="image-upload-wrap" id="b9">
+                <input class="file-upload-input" type='file'
+                  onchange="readURL(this,9);" accept="image/*" />
+                <div class="drag-text">
+                  <h3>이미지를 선택하거나 드래그해주세요.</h3>
+                </div>
+              </div>
+              <div class="file-upload-content" id="a9">
+                <img class="file-upload-image c9" src="#" alt="your image"
+                  id="c9e" />
+
+
+                <div class="image-title-wrap">
+                  <span class="image-title" id="d9">Uploaded Image</span><br>
+                  <button type="button" onclick="removeUpload(9)"
+                    class="remove-image">취소</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+          <form>
+            <div class="file-upload mySlides">
+              <div class="image-upload-wrap" id="b10">
+                <input class="file-upload-input" type='file'
+                  onchange="readURL(this,10);" accept="image/*" />
+                <div class="drag-text">
+                  <h3>이미지를 선택하거나 드래그해주세요.</h3>
+                </div>
+              </div>
+              <div class="file-upload-content" id="a10">
+                <img class="file-upload-image c10" src="#" alt="your image"
+                  id="c10e" />
+
+
+                <div class="image-title-wrap">
+                  <span class="image-title" id="d10">Uploaded Image</span><br>
+                  <button type="button" onclick="removeUpload(10)"
+                    class="remove-image">취소</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+        </div>
+        <div class="col-xs-4 col-xs-4">
+          <!-- 내용 -->
+
+          <div class=myText>
+            <div class="summernote"></div>
+          </div>
+          <div class=myText>
+            <div class="summernote"></div>
+          </div>
+          <div class=myText>
+            <div class="summernote"></div>
+          </div>
+          <div class=myText>
+            <div class="summernote"></div>
+          </div>
+          <div class=myText>
+            <div class="summernote"></div>
+          </div>
+          <div class=myText>
+            <div class="summernote"></div>
+          </div>
+          <div class=myText>
+            <div class="summernote"></div>
+          </div>
+          <div class=myText>
+            <div class="summernote"></div>
+          </div>
+          <div class=myText>
+            <div class="summernote"></div>
+          </div>
+          <div class=myText>
+            <div class="summernote"></div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-xs-12">
+          <!-- 하단부 -->
+          <div class="col-xs-6 col-xs-6">
+            <!-- 아코디언 -->
+            <div class="panel-group" id="accordion" role="tab"
+              aria-multiselectable="true" style="margin-left: -30px;">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion"
+                      href="#collapseOne" aria-expanded="false"
+                      aria-controls="collapseOne"> 상황별 요리 </a>
+                  </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse"
+                  role="tabpanel" aria-labelledby="headingOne">
+                  <div class="panel-body">
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios"
+                        id="optionsRadios1on1" value="option1" checked>
+                        간식/야식
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios"
+                        id="optionsRadios1on2" value="option2"> 술안주
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios"
+                        id="optionsRadios1on3" value="option3"> 나들이 요리
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios"
+                        id="optionsRadios1on4" value="option4"> 브런치 요리
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse"
+                      data-parent="#accordion" href="#collapseTwo"
+                      aria-expanded="false" aria-controls="collapseTwo"> 나라별 요리
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse"
+                  role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios2"
+                        id="optionsRadios2on1" value="option1" checked> 한식
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios2"
+                        id="optionsRadios2on2" value="option2"> 중식
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios2"
+                        id="optionsRadios2on3" value="option3"> 일식
+
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios2"
+                        id="optionsRadios2on4" value="option4"> 양식
+
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                  <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse"
+                      data-parent="#accordion" href="#collapseThree"
+                      aria-expanded="false" aria-controls="collapseThree"> 재료별
+                      요리 </a>
+                  </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse"
+                  role="tabpanel" aria-labelledby="headingThree">
+                  <div class="panel-body">
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios3"
+                        id="optionsRadios3on1" value="option1" checked> 육류
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios3"
+                        id="optionsRadios3on2" value="option2"> 해산물
+
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios3"
+                        id="optionsRadios3on3" value="option3"> 채소
+
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios3"
+                        id="optionsRadios3on4" value="option4"> 과일
+
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFour">
+                  <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse"
+                      data-parent="#accordion" href="#collapseFour"
+                      aria-expanded="false" aria-controls="collapseFour"> 조리법별
+                      요리 </a>
+                  </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse"
+                  role="tabpanel" aria-labelledby="headingThree">
+                  <div class="panel-body">
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios4"
+                        id="optionsRadios4on1" value="option1" checked> 밥요리
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios4"
+                        id="optionsRadios4on2" value="option2"> 밀가루요리
+
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios4"
+                        id="optionsRadios4on3" value="option3"> 국물요리
+
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label> <input type="radio" name="optionsRadios4"
+                        id="optionsRadios4on4" value="option4"> 찜/조림/구이
+
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-xs-6 col-xs-6">
+            <!-- 태크와 저장취소 -->
+            <div class="col-xs-12 col-xs-12">
+              <!-- 태그 -->
+              <div class="col-xs-3 col-xs-3">
+                <img id="foot1" src="img/material.png">
+              </div>
+              <div class="col-xs-9 col-xs-9">
+                <input type="text" id="foot1" class="form-control"
+                  placeholder="#닭, #당근, #양파, #감자 ...">
+              </div>
+            </div>
+            <div class="col-xs-12 col-xs-12">
+              <!-- 저장/취소 -->
+              <div class="col-xs-6 col-xs-6">
+                <a class="btn btn-default">등록하기</a>
+              </div>
+              <div class="col-xs-6 col-xs-6">
+                <a href="index.html" class="btn btn-default">취소</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="text-center col-xs-6 col-xs-offset-3">
+      <p>
+        Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a
+          href="http://127.0.0.1:8080/index.html">냉장고를 가져와</a>
+      </p>
+    </div>
+  </footer>
+  <script>
+    $('#c1d').attr('src', 'img/noimages.png');
+    $('#c2d').attr('src', 'img/noimages.png');
+    $('#c3d').attr('src', 'img/noimages.png');
+    $('#c4d').attr('src', 'img/noimages.png');
+    $('#c5d').attr('src', 'img/noimages.png');
+    $('#c6d').attr('src', 'img/noimages.png');
+    $('#c7d').attr('src', 'img/noimages.png');
+    $('#c8d').attr('src', 'img/noimages.png');
+    $('#c9d').attr('src', 'img/noimages.png');
+    $('#c10d').attr('src', 'img/noimages.png');
+    function readURL(input, n) {
+      if (input.files && input.files[0]) {
+
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          console.log(e);
+          $('#b'+n).hide();
+          $('#c'+n+'d').attr('src', e.target.result);
+          $('#c'+n+'e').attr('src', e.target.result);
+          $('#a'+n).show();
+          $('#d'+n).html(input.files[0].name);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+
+      } else {
+        removeUpload(n);
+      }
+    }
+
+    function removeUpload(n) {
+      $('#a'+n).hide();
+      $('#c'+n+'d').attr('src', 'img/noimages.png');
+      $('#c'+n+'e').attr('src', 'img/noimages.png');
+      $('#b'+n).show();
+    }
+
+
+    $(document).ready(function() {
+      $('.summernote').summernote({
+        height : 400
+      });
+    });
+
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function currentDiv(n) {
+      showDivs(slideIndex = n);
+    }
+
+    function showDivs(n) {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      console.log(x);
+      var y = document.getElementsByClassName("myText");
+
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+        y[i].style.display = "none";
+
+      }
+      x[slideIndex - 1].style.display = "block";
+      y[slideIndex - 1].style.display = "block";
+
+    }
+  </script>
+</body>
+</html>

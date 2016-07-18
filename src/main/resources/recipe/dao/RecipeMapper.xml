@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Typeper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipe.dao.RecipeDao">
+  
+  <select id="selectList" resultType="Recipe" parameterType="int">
+    select *
+    from RECIPE
+    where bno=#{bno}
+  </select>
+  
+  <select id="selectOne" parameterType="Integer" resultType="Recipe">
+    select * from RECIPE
+    where BNO=#{bno}
+  </select>
+  
+  <update id="count" parameterType="int">
+    update recipe set `count`=`count`+1
+    where BNO=#{bno}
+  </update>
+  
+  <select id="selectAllTag" resultType="Tag">
+    select tname from tag
+  </select>
+  
+  <insert id="addtag">
+  </insert>
+  
+  <insert id="addfood">
+  </insert>
+  
+  <select id="selectRecentList" parameterType="Integer" resultType="RecipeMember">
+     select m.mno, r.title, r.m_photo, r.w_dt, rp.cont, r.bno from 
+     member m right outer join recipe r on m.mno = r.mno 
+     left outer join r_photo rp on r.bno=rp.bno
+     where r.mno=#{mno} group by r.title order by r.bno desc
+     limit 0, 2
+  </select>
+  
+  <select id="selectRecipeControl" parameterType="map" resultType="RecipeMember">
+     select m.mno, r.m_photo, r.title, r.w_dt, rp.cont, r.bno from 
+     member m right outer join recipe r on m.mno = r.mno 
+     left outer join r_photo rp on r.bno=rp.bno
+     where r.mno=#{mno} group by r.title order by r.bno desc
+     limit #{startIndex}, #{length}
+  </select>
+  
+  <select id="selectRecipeByMno" parameterType="int" resultType="Recipe">
+     select r.title, r.w_dt, r.bno from 
+     member m right outer join recipe r on m.mno = r.mno 
+     where r.mno=#{mno} group by r.title order by r.bno desc
+     limit 0, 4
+  </select>
+  
+  <insert id="insert" parameterType="Recipe">
+  insert into 
+      RECIPE(MNO,TITLE,W_DT,COUNT,M_PHOTO,C_NARA,C_SITU,C_COOK,C_FOOD,TIME,LEVEL) 
+      values(#{mno},#{title},now(),0,#{m_photo},#{c_nara},#{c_situ},#{c_cook},#{c_food},#{time},#{level});
+  </insert>
+  
+  <update id="update" parameterType="Recipe">
+    update RECIPE set
+      TITLE=#{title},
+      M_PHOTO=#{m_photo},
+      C_NARA=#{c_nara},
+      C_SITU=#{c_situ},
+      C_COOK=#{c_cook},
+      C_FOOD=#{c_food},
+      TIME=#{time},
+      LEVEL=#{level}
+    where BNO=#{bno}
+  </update>
+  
+  <delete id="deletePhoto" parameterType="int">
+	  delete from r_photo
+	  where bno = #{bno}
+  </delete>
+  
+  <delete id="deleteRecipe" parameterType="int">
+    delete from RECIPE
+    where BNO=#{bno}
+  </delete>
+  
+  <select id="countAll" resultType="int">
+    select count(*)
+    from RECIPE
+  </select>
+  
+  <select id="countRecipeControl" resultType="int" parameterType="int" >
+    select count(bno)
+    from RECIPE where mno=#{mno}
+  </select>
+  
+</mapper>

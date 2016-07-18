@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Video Test Page</title>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="css/font.css" >
+	
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	
+	<style>	
+	.rhombusBox {
+		width: 200px;
+		height: 200px;
+		padding: 10px;
+		background-color: white;
+		position: absolute;
+		border: 1px solid black;
+		transform: rotate(-45deg);
+	}
+	
+	.rhombusBox_big {
+		width: 410px;
+		height: 410px;
+		background-color: white;
+		position: absolute;
+		transform: rotate(45deg);
+	}
+	
+	.textBox {
+		width: 400px;
+		height: 300px;
+		padding: 10px;
+		background-color: white;
+		position: absolute;
+		border: 1px solid black;
+	}
+	
+	.rhombusBox img {
+		width: 180px;
+		height: 180px;
+	}
+	
+	.rhombusImg {
+		left: -200px;
+	}
+	
+	.rhombusImg_nxt {
+		left: -200px;
+		position: absolute;
+		top: 10px;
+		left: 10px;
+	}
+	
+	#first_first_box {
+		top: 257px;
+		left: -400px;
+	}
+	
+	#first_big_box {
+		top: 300px;
+		left: -400px;
+	}
+	
+	#first_third_box {
+		top: 552px;
+		left: -400px;
+	}
+	
+	#first_forth_box {
+		top: 405px;
+		left: 2000px;
+	}
+	
+	#textBox_first {
+		top: 350px;
+		left: 2500px;
+	}
+	
+	#textBox_second {
+		top: 350px;
+		left: -400px;
+	}
+	
+	</style>
+</head>
+
+<body>
+	<div class="rhombusBox" id="first_first_box" style="z-index: 1;"> 
+		<img class="rhombusImg" id="img1" alt="" src="img/1.jpg"><img class="rhombusImg_nxt" id="img1_2" alt="" src="img/2.jpg">		 
+	</div>	
+	<div class="rhombusBox_big" id="first_big_box">
+		<div class="rhombusBox" id="first_second_box" style="transform: rotate(0deg); position: relative; float: right;">
+			<img class="rhombusImg" id="img2" alt="" src="img/2.jpg">
+		</div>
+	</div>	
+	<div class="rhombusBox" id="first_third_box" style="z-index: 1;">
+		<img class="rhombusImg" id="img3" alt="" src="img/3.jpg"><img class="rhombusImg_nxt" id="img3_2" alt="" src="img/1.jpg">
+	</div>
+	<div class="rhombusBox" id="first_forth_box" style="z-index: 1;">
+		<img class="rhombusImg" id="img4" alt="" src="img/3.jpg">
+	</div>
+	<div class="textBox" id="textBox_first">
+		<h1>첫번째 텍스트 제목</h1>
+		<h4>첫번째 텍스트 설명</h4>
+	</div>
+	<div class="textBox" id="textBox_second">
+		<h1>두번째 텍스트 제목</h1>
+		<h4>두번째 텍스트 설명</h4>
+	</div>
+	
+	<script>
+	  $(document).ready(function() {
+		  // 최초 이동
+		  $(".rhombusImg_nxt").hide();
+		  window.setTimeout(function() {
+      	$("#first_first_box").animate({'left': "255px"}, 1500, "easeOutQuart");
+	  	}, 150);
+      $("#first_big_box").animate({'left': "150px"}, 1500, "easeOutQuart");
+      window.setTimeout(function() {
+       	$("#first_third_box").animate({'left': "255px"}, 1500, "easeOutQuart");
+      }, 300);
+      window.setTimeout(function() {
+       	$("#textBox_first").animate({'left': "1100px"}, 1500, "easeOutQuart");
+      }, 300);
+      
+      // 박스 내 이미지 이동 
+      window.setTimeout(function() {
+    	  $("#img1_2").effect("slide", {}, 400);
+      }, 1000);      
+      window.setTimeout(function() {
+    	  $("#img3_2").effect("slide", {}, 400);
+      }, 1500);
+      
+      // 전체 오른쪽으로
+      window.setTimeout(function() {
+    	  $("#first_first_box").animate({'left': "1305px"}, 2000, "easeInOutQuart");
+    	  $("#first_big_box").animate({'left': "1200px"}, 2000, "easeInOutQuart");
+        $("#first_third_box").animate({'left': "1305px"}, 2000, "easeInOutQuart");
+        window.setTimeout(function() {
+    	  	rotateYDIV();
+        }, 700);
+        $("#textBox_first").animate({'left': "2000px"}, 1500, "easeInOutQuart");
+        window.setTimeout(function() {
+        	$("#textBox_second").animate({'left': "250px"}, 1500, "easeInOutQuart");
+        }, 800);
+      }, 2000);
+      
+      window.setTimeout(function() {
+      	$("#textBox_second").animate({'left': "-400px"}, 1500, "easeInOutQuart");
+      	$("#first_first_box").animate({'left': "805px"}, 1500, "easeInOutQuart");
+  	  	$("#first_big_box").animate({'left': "700px"}, 1500, "easeInOutQuart");
+      	$("#first_third_box").animate({'left': "805px"}, 1500, "easeInOutQuart");
+      	$("#first_forth_box").animate({'left': "953px"}, 1500, "easeInOutQuart");
+      	$("#textBox_first").remove();
+      }, 5200);
+      
+      window.setTimeout(function() {
+    	  $("#first_first_box").animate({'top': "-650px"}, 1500, "easeInOutQuart");
+    	  $("#first_big_box").animate({'top': "1500px"}, 1500, "easeInOutQuart");
+        $("#first_third_box").animate({'top': "1752px"}, 1500, "easeInOutQuart");
+        $("#first_forth_box").animate({'top': "-500px"}, 1500, "easeInOutQuart");        
+        $("#first_big_box").fadeOut(500);
+      	$("#first_third_box").fadeOut(500);
+      }, 7500);      
+    });
+	  
+		var x,y,n=0,ny=0,rotINT,rotYINT
+		function rotateYDIV() {
+			y = document.getElementById("first_big_box")
+			clearInterval(rotYINT)
+			rotYINT = setInterval("startYRotate()", 5)
+		}
+		function startYRotate() {
+			ny = ny+1
+			y.style.transform="rotateY(" + ny + "deg) rotate(45deg)"
+			if (ny==180 || ny>=360) {
+				clearInterval(rotYINT)
+				if (ny>=360){ny=0}
+			}
+		}
+	  
+	  /*
+	  var effectSli = $.effects.effect.sli = function( o, done ) {
+			// Create element
+			var el = $( this ),
+				props = [ "position", "top", "bottom", "left", "right", "width", "height" ],
+				mode = $.effects.setMode( el, o.mode || "show" ),
+				show = mode === "show",
+				direction = o.direction || "up",
+				ref = (direction === "up" || direction === "down") ? "top" : "left",
+				positiveMotion = (direction === "up" || direction === "left"),
+				distance,
+				animation = {};
+
+			// Adjust
+			$.effects.save( el, props );
+			el.show();
+			distance = o.distance || el[ ref === "top" ? "outerHeight" : "outerWidth" ]( true );
+
+			$.effects.createWrapper( el ).css({
+				overflow: "hidden"
+			});
+
+			if ( show ) {
+				el.css( ref, positiveMotion ? (isNaN(distance) ? "-" + distance : -distance) : distance );
+			}
+
+			// Animation
+			animation[ ref ] = ( show ?
+				( positiveMotion ? "+=" : "-=") :
+				( positiveMotion ? "-=" : "+=")) +
+				distance;
+
+			// Animate
+			el.animate( animation, {
+				queue: false,
+				duration: o.duration,
+				easing: o.easing,
+				complete: function() {
+					if ( mode === "hide" ) {
+						el.hide();
+					}
+					$.effects.restore( el, props );
+					$.effects.removeWrapper( el );
+					done();
+				}
+			});
+		};
+		*/		
+  </script>  
+</body>
+</html>
