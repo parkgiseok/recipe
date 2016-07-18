@@ -109,7 +109,7 @@
     left outer join r_photo rp on r.bno = rp.bno
     right outer join food f on r.bno = f.bno
     right outer join tag t on f.tno = t.tno
-    where r.title like #{title}
+    where r.title like CONCAT('%',#{title},'%')
     order by r.bno desc
   </select>
   

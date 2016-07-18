@@ -419,13 +419,29 @@
      console.log($("#textc" + i).html());
     }     
   }); */
-  
   var tags = [];
+  
+  ddd();
+  function ddd() {
+	  $.ajax({
+      method : "GET",
+      url : "ajax/recipe/selectAllTag.do",
+      dataType : "json",
+      async : false,
+      success : function(result) {
+        for (var i=0; i<result.length; i++) {
+          tags[i] = result[i].tname;
+          console.log(tags[i]);
+        }
+      }
+    });
+  }
+  
   var inputTags = [];
   var bnos = [];
   
-  
   var k = tags.length + 1;
+ 
   
   function stars(n){
 	    $(".stars").attr("src","./img/" + n + "star.png")
@@ -466,11 +482,13 @@
         if(inputTags[i] == tags[j]) {
           console.log(inputTags[i] + "==" + tags[j])
           bnos.push(j+1);
+          console.log(bnos);
           break;
         } else {
           console.log(inputTags[i] + "!=" + tags[j])
           if(j == tags.length-1) {
             bnos.push(k);
+            console.log(bnos);
             k++;
           }
         }
@@ -490,9 +508,9 @@
           );
       }
     }
-    for (var fi = 0; fi<bnos.length; fi++){
+    for (var a in bnos){
       $.post("ajax/recipe/addFood.do", {
-              tno : bnos[fi]
+              tno : bnos[a]
             }, function(result) {
               if (result.status == "success") {
                 window.alert("음식 등록 성공");
@@ -621,3 +639,13 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

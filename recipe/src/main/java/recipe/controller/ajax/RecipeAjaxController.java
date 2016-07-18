@@ -385,6 +385,8 @@ public class RecipeAjaxController {
   public String addFood(int tno) throws ServletException, IOException {
     Food food = new Food();
     food.setTno(tno);
+    System.out.println(tno);
+    
     
     HashMap<String,Object> result = new HashMap<>();
     
