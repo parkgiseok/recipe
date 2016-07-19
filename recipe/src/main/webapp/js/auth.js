@@ -4,7 +4,7 @@ $.post("auth/log.do", {
 		$('#logout').css("display", "");
 		$('#mypage').css("display", "");
 		$('#login').css("display", "none");
-		$('#signup').css("display", "none");z
+		$('#signup').css("display", "none");
 	} else {
 		$('#logout').css("display", "none");
 		$('#mypage').css("display", "none");

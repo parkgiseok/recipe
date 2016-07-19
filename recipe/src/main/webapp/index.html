@@ -234,7 +234,7 @@
   <div class="desc">
     <div id="card_slide">
       <div class="topcon row">
-        <div class="topcon1 col-xs-3">{{c_nara}}</div>
+        <div class="topcon1 col-xs-3">{{c_situ}}</div>
         <div class="topcon2 col-xs-6">레시피 정보</div>
         <div class="topcon3 col-xs-3"><img id="level_img{{@index}}" src=" " style="height: 27px;margin-left: 2px;"></div>
       </div>
@@ -362,7 +362,7 @@
 				method : "GET",
 				dataType : "json",
 				success : function(result) {
-					console.log((result.list).length);
+					console.log(result);
 					for (var i = 0; i <= (result.list).length - 1; i++) {
 						result.list[i].w_dt = moment(result.list[i].w_dt)
 								.format().substr(0, 10);
