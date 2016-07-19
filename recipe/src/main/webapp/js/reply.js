@@ -2,7 +2,6 @@ var bno = location.href.split("=")[1];
 $(function(){
    $("#sendReview").click(function() {
     if (sessionStorage.getItem("login") != "success") {
-      console.log(sessionStorage);
       swal("로그인 오류", "로그인 해야 이용할 수 있습니다.", "warning")
       return;
     }

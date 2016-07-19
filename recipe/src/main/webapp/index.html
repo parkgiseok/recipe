@@ -17,6 +17,8 @@
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/handlebars/handlebars.min.js"></script>
 <script type="text/javascript" src="js/modernizr.2.5.3.min.js"></script>
+<script src="js/loginCheck.js"></script>
+<script src="js/auth.js"></script>
 </head>
 
 <body>
@@ -51,7 +53,7 @@
         </script>
 
         <!-- 로그인 -->
-        <form action="auth/login.do" method="post">
+        <!-- <form action="auth/login.do" method="post"> -->
         <div class="modal fade" id="modal-register1" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -64,18 +66,18 @@
               <div class="modal-body">
                   <div class="form-group">
                     <label class="sr-only">Id</label>
-                    <input type="text" placeholder="ID" class="form-id form-control" name="id">
+                    <input type="text" placeholder="ID" class="form-id form-control" id="mem_id" name="id">
                   </div>
                   <div class="form-group">
                     <label class="sr-only">Password</label>
-                    <input type="password" placeholder="Password" class="form-password form-control" name="password">
+                    <input type="password" placeholder="Password" id="mem_pwd" class="form-password form-control" name="password">
                   </div>
-                  <button class="btn">로그인</button>
+                  <button class="log_btn btn">로그인</button>
               </div>
             </div>
           </div>
         </div>
-        </form>
+        <!-- </form> -->
         <!-- 회원가입 -->
         <form action="auth/add.do" method="post">
         <div class="modal fade" id="modal-register2" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
@@ -141,7 +143,8 @@
   <hr>
   <div class="container">
     <section class="sec_main_recipe">
-      <button class="recipe_btn recipe_btn--saqui recipe_btn--inverted" data-text="나만의 레시피 등록하기" onclick="location.href='insert.html'">나만의 레시피 등록하기</button>
+      <button class="recipe_btn recipe_btn--saqui recipe_btn--inverted" 
+       data-text="나만의 레시피 등록하기" id="check_myRecipe">나만의 레시피 등록하기</button>
       <dl class="inner">
         <dt>
           <h3>방금 올라왔다!!!<br> <em>지금 만든 메뉴~!~!</em></h3>
@@ -181,7 +184,34 @@
     </div>
   </footer>
 </div>
-<script src="js/auth.js"></script>
+
+<script>
+$("#check_myRecipe").click(function() {
+	 if (sessionStorage.getItem("login") != "success") {
+     alert("로그인하고 해라 (현신아 이 alert 창 좀 바꿔라)")
+	 } else {
+	   location.href='insert.html'
+	 }
+})  
+
+$(".log_btn").click(function() {
+    $.ajax("auth/login.do?", {
+        method : "POST",
+        dataType : "JSON",
+        data : {
+        	 id : $("#mem_id").val(),
+        	 password :$("#mem_pwd").val()
+       },success : function(result) {
+         if (result.status == "success") {
+           location.href = "index.html"
+         } else if ( result.status == "failure") {
+        	 alert("로그인 fail (현신아 이 alert 창 좀 바꿔라)")
+         }
+       }
+    });
+
+})  
+</script>
 
   <script id="card" type="text/x-handlebars-template" style="text-align: center;">
   {{#each list}}
@@ -256,7 +286,7 @@
   </li>
   {{/each}}
   </script>
-
+  
   <script id="test" type="text/x-handlebars-template" style="text-align: center;">
   {{#each list}}
     <li><img src="webapp/{{p_url}}" alt="..." /></li>
@@ -324,6 +354,7 @@
           }
        }); 
     })
+    
    function init(cardno) {
     for(var i = 0; i < cardno.length; i++) {  
     $.ajax({

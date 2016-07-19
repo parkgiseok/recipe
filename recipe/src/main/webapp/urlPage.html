@@ -10,15 +10,17 @@
 <link href="css/urlPage.css" rel="stylesheet">
 <link href="css/sweetalert.css" rel="stylesheet">
 
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="js/moment.js"></script>
-<script src="js/jquery-ui.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/handlebars/handlebars.min.js"></script>
-<script src="js/loginCheck.js"></script>
+<script src="js/moment.js"></script>
+<script src="js/jquery-ui.js"></script>
 <script src="js/sweetalert.min.js"></script>
 <script src="js/reply.js"></script>
+<script src="js/loginCheck.js"></script>
+<!-- <script src="js/auth.js"></script>-->
+<script src="js/scripts.js"></script>
 </head>
 
 <body>
@@ -47,19 +49,78 @@
         </ul> -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-                <li>
-                    <a class="page-scroll not_login" href="#" id='login'>로그인/회원가입</a>
-                </li>
-                <li class="login">
-                    <a href="auth/logout.do" id="logout">로그아웃</a>
-                </li>
-                <li class="login">
-                    <a href="member/myPage.html" id="mypage">마이페이지</a>
-                </li>
+                <li class="hidden"><a href="#page-top"></a></li>
+ 
+                <li class="not_login"><a id="login" class="launch-modal" href="#" data-modal-id="modal-register1">로그인</a></li>
+                <li class="not_login"><a id="signup" class="launch-modal" href="#" data-modal-id="modal-register2">회원가입</a></li>
+                <li class="login"><a href="auth/logout.do" id="logout">로그아웃</a></li>
+                <li class="login"><a href="member/myPage.html" id="mypage">마이페이지</a></li>
+                        
+                        <!--   <li><a id="login" class="launch-modal" href="#" data-modal-id="modal-register1">로그인</a></li>
+          <li><a id="signup" class="launch-modal" href="#" data-modal-id="modal-register2">회원가입</a></li>
+          <li><a id="logout" href="auth/logout.do">로그아웃</a></li>
+          <li><a id="mypage" href="member/myPage.html">마이페이지</a></li> -->
+                
             </ul>
+            <!-- 로그인 -->
+        <form action="auth/login.do" method="post">
+        <div class="modal fade" id="modal-register1" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h3 class="modal-title" id="modal-register-label">로그인</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="form-group">
+                    <label class="sr-only">Id</label>
+                    <input type="text" placeholder="ID" class="form-id form-control" name="id">
+                  </div>
+                  <div class="form-group">
+                    <label class="sr-only">Password</label>
+                    <input type="password" placeholder="Password" class="form-password form-control" name="password">
+                  </div>
+                  <button class="btn">로그인</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
+        <!-- 회원가입 -->
+        <form action="auth/add.do" method="post">
+        <div class="modal fade" id="modal-register2" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+                  <span class="sr-only">Close</span>
+                </button>
+                <h3 class="modal-title" id="modal-register-label">회원가입</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="form-group">
+                    <label class="sr-only">Id</label>
+                    <input type="text" placeholder="ID" class="form-id form-control" name="id">
+                  </div>
+                  <div class="form-group">
+                    <label class="sr-only">Email</label>
+                     <input type="text" placeholder="Email" class="form-email form-control" name="email">
+                  </div>
+                  <div class="form-group">
+                    <label class="sr-only">Password</label>
+                    <input type="password" placeholder="Password" class="form-password form-control" name="password">
+                  </div>
+                  <button class="btn">회원가입</button>
+              </div>
+            </div>
+          </div>
+        </div> 
+        </form> 
+            
+            
         </div>
       </div>
     </div>
@@ -179,8 +240,8 @@
     {{c_nara}}
   </div>
   <div class="delete_update col-xs-2">
-    <a id="update" href="insert/update.html?bno={{bno}}">수정</a> |
-    <a id="delete" href="#" onclick="deleter()">삭제</a>
+    <a id="update" class="update_delete" href="insert/update.html?bno={{bno}}">수정</a> |
+    <a id="delete" class="update_delete" href="#" onclick="deleter()">삭제</a>
     <a id='addbm' onclick='addfavorite()' style="display: none;">즐겨찾기</a>
     <a id='delbm' onclick='delfavorite()' style="display: none;">싫어찾기</a>
   </div>
@@ -271,8 +332,18 @@
                  location.href = "index.html"
               })
         });
+        
+        
 
-        /* location.href = "index.html"; */
+    	    /*  $(document).ready(function() {
+    	    	 $.getJSON("./ajax/recipe/detailMember.do", function(result) {
+        	     if ( == ) {
+        	    	 $("#update_delete").css("display", "")
+          	   } else {
+        	    	 $("#update_delete").css("display", "none")
+        	     }
+    	    	 }
+        	 })   */
      }
   </script>
   <script>
@@ -293,7 +364,6 @@
 	    	  $(".confirm").click(function() {
 	    		  location.href = location.href; 
           })
-	      
 	     } else {
 	       alert("오류발생..다시 시도해주세요.");
 	     }

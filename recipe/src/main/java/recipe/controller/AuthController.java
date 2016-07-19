@@ -68,27 +68,29 @@ public class AuthController {
   }
   
   //로그인
-  @RequestMapping(value="/login", method=RequestMethod.POST)
+  @RequestMapping(value="/login", produces="application/json;charset=UTF-8")
+  @ResponseBody
   public String login(
       String id,
       String password,
-      HttpServletResponse response,
       HttpSession session) {
-    
+    HashMap<String,Object> result = new HashMap<>();
+    System.out.println(id);
+    System.out.println(password);
     if (memberService.exist(id, password)) {
+      result.put("status", "success");
       Member member = memberService.retrieveById(id);
       session.setAttribute("loginUser", member);
       System.out.println("-----------");
       System.out.println("로그인성공");
       System.out.println("-----------");
-      return "redirect:../index.html";
-
     } else { // 로그인 실패!
+      result.put("status", "failure");
       System.out.println("-----------");
       System.out.println("로그인실패"); 
       System.out.println("-----------");
-      return "redirect:../index.html";
     }
+    return new Gson().toJson(result);
   }
   
   //로그아웃
