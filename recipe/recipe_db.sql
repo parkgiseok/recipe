@@ -21,43 +21,43 @@ values('ttt', 'ttt@naver.com', '1111', '../files/default.png', now(), now(), 'ma
 
 
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('1', '레시피제목1-1 레시피제목1-1 레시피제목1-1 레시피제목1-1', '2016-03-01', '1', '../img/1.jpg', '한식', '1', '1', '1', '1' , '1');
+values('1', '레시피제목1-1 레시피제목1-1 레시피제목1-1 레시피제목1-1', '2016-03-01', '1', '../img/1.jpg', '1', '술안주', '1', '1', '1' , '1');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('1', '레시피제목1-2 레시피제목1-2 레시피제목1-2 레시피제목1-2', '2016-03-02', '1', '../img/2.jpg', '한식', '1', '1', '1', '1' , '1');
+values('1', '레시피제목1-2 레시피제목1-2 레시피제목1-2 레시피제목1-2', '2016-03-02', '1', '../img/2.jpg', '1', '술안주', '1', '1', '1' , '1');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('1', '레시피제목1-3 레시피제목1-3 레시피제목1-3 레시피제목1-3', '2016-03-03', '1', '../img/3.jpg', '한식', '1', '1', '1', '1' , '1');
+values('1', '레시피제목1-3 레시피제목1-3 레시피제목1-3 레시피제목1-3', '2016-03-03', '1', '../img/3.jpg', '1', '술안주', '1', '1', '1' , '1');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('1', '레시피제목1-4 레시피제목1-4 레시피제목1-4 레시피제목1-4', '2016-03-04', '1', '../img/1.jpg', '한식', '1', '1', '1', '1' , '1');
+values('1', '레시피제목1-4 레시피제목1-4 레시피제목1-4 레시피제목1-4', '2016-03-04', '1', '../img/1.jpg', '1', '술안주', '1', '1', '1' , '1');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('1', '레시피제목1-5 레시피제목1-5 레시피제목1-5 레시피제목1-5', '2016-03-05', '1', '../img/2.jpg', '한식', '1', '1', '1', '1' , '1');
+values('1', '레시피제목1-5 레시피제목1-5 레시피제목1-5 레시피제목1-5', '2016-03-05', '1', '../img/2.jpg', '1', '술안주', '1', '1', '1' , '1');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('1', '레시피제목1-6 레시피제목1-6 레시피제목1-6 레시피제목1-6', '2016-03-06', '1', '../img/3.jpg', '한식', '1', '1', '1', '1' , '1');
+values('1', '레시피제목1-6 레시피제목1-6 레시피제목1-6 레시피제목1-6', '2016-03-06', '1', '../img/3.jpg', '1', '술안주', '1', '1', '1' , '1');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('1', '레시피제목1-7 레시피제목1-7 레시피제목1-7 레시피제목1-7', '2016-03-07', '1', '../img/1.jpg', '한식', '1', '1', '1', '1' , '1');
+values('1', '레시피제목1-7 레시피제목1-7 레시피제목1-7 레시피제목1-7', '2016-03-07', '1', '../img/1.jpg', '1', '술안주', '1', '1', '1' , '1');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('1', '레시피제목1-8 레시피제목1-8 레시피제목1-8 레시피제목1-8', '2016-03-08', '1', '../img/2.jpg', '한식', '1', '1', '1', '1' , '1');
+values('1', '레시피제목1-8 레시피제목1-8 레시피제목1-8 레시피제목1-8', '2016-03-08', '1', '../img/2.jpg', '1', '술안주', '1', '1', '1' , '1');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('1', '레시피제목1-9 레시피제목1-9 레시피제목1-9 레시피제목1-9', '2016-03-09', '1', '../img/3.jpg', '한식', '1', '1', '1', '1' , '1');
+values('1', '레시피제목1-9 레시피제목1-9 레시피제목1-9 레시피제목1-9', '2016-03-09', '1', '../img/3.jpg', '1', '술안주', '1', '1', '1' , '1');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('1', '레시피제목1-10 레시피제목1-10 레시피제목1-10 레시피제목1-10', '2016-03-10', '1', '../img/1.jpg', '한식', '1', '1', '1', '1' , '1');
+values('1', '레시피제목1-10 레시피제목1-10 레시피제목1-10 레시피제목1-10', '2016-03-10', '1', '../img/1.jpg', '1', '술안주', '1', '1', '1' , '1');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('2', '레시피제목2 레시피제목2 레시피제목2 레시피제목2', '2016-03-11', '2', '../img/2.jpg', '한식', '2', '2', '2', '2' , '2');
+values('2', '레시피제목2 레시피제목2 레시피제목2 레시피제목2', '2016-03-11', '2', '../img/2.jpg', '1', '술안주', '2', '2', '2' , '2');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('3', '레시피제목3 레시피제목3 레시피제목3 레시피제목3', '2016-03-12', '3', '../img/3.jpg', '한식', '3', '3', '3', '3' , '3');
+values('3', '레시피제목3 레시피제목3 레시피제목3 레시피제목3', '2016-03-12', '3', '../img/3.jpg', '1', '술안주', '3', '3', '3' , '3');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('4', '레시피제목4 레시피제목4 레시피제목4 레시피제목4', '2016-03-13', '4', '../img/1.jpg', '한식', '4', '4', '4', '4' , '4');
+values('4', '레시피제목4 레시피제목4 레시피제목4 레시피제목4', '2016-03-13', '4', '../img/1.jpg', '1', '술안주', '4', '4', '4' , '4');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('5', '레시피제목5 레시피제목5 레시피제목5 레시피제목5', '2016-03-14', '5', '../img/2.jpg', '한식', '5', '5', '5', '5' , '5');
+values('5', '레시피제목5 레시피제목5 레시피제목5 레시피제목5', '2016-03-14', '5', '../img/2.jpg', '1', '술안주', '5', '5', '5' , '5');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('6', '레시피제목6 레시피제목6 레시피제목6 레시피제목6', '2016-03-15', '6', '../img/3.jpg', '한식', '6', '6', '6', '6' , '6');
+values('6', '레시피제목6 레시피제목6 레시피제목6 레시피제목6', '2016-03-15', '6', '../img/3.jpg', '1', '술안주', '6', '6', '6' , '6');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('7', '레시피제목7 레시피제목7 레시피제목7 레시피제목7', '2016-03-16', '7', '../img/1.jpg', '한식', '7', '7', '7', '7' , '7');
+values('7', '레시피제목7 레시피제목7 레시피제목7 레시피제목7', '2016-03-16', '7', '../img/1.jpg', '1', '술안주', '7', '7', '7' , '7');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('8', '레시피제목8 레시피제목8 레시피제목8 레시피제목8', '2016-03-17', '8', '../img/2.jpg', '한식', '8', '8', '8', '8' , '8');
+values('8', '레시피제목8 레시피제목8 레시피제목8 레시피제목8', '2016-03-17', '8', '../img/2.jpg', '1', '술안주', '8', '8', '8' , '8');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('9', '레시피제목9 레시피제목9 레시피제목9 레시피제목9', '2016-03-18', '9', '../img/3.jpg', '한식', '9', '9', '9', '9' , '9');
+values('9', '레시피제목9 레시피제목9 레시피제목9 레시피제목9', '2016-03-18', '9', '../img/3.jpg', '1', '술안주', '9', '9', '9' , '9');
 Insert into RECIPE(mno, title, w_dt, count, m_photo, c_nara, c_situ, c_cook, c_food, time, level) 
-values('10', '레시피제목10 레시피제목10 레시피제목10 레시피제목10', '2016-03-19', '10', '../img/1.jpg', '한식', '10', '10', '10', '10' , '10');
+values('10', '레시피제목10 레시피제목10 레시피제목10 레시피제목10', '2016-03-19', '10', '../img/1.jpg', '1', '술안주', '10', '10', '10' , '10');
 
 
 

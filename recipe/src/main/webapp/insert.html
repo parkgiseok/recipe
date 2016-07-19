@@ -7,6 +7,7 @@
 	rel="stylesheet">
 <link href="css/jquery-ui.css" rel="stylesheet">
 <link href="css/mypage.css" rel="stylesheet">
+<link href="css/sweetalert.css" rel="stylesheet">
 <link href="css/font.css" rel="stylesheet">
 <link href="css/w3.css" rel="stylesheet">
 <link href="css/summernote.css" rel="stylesheet">
@@ -15,6 +16,7 @@
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/handlebars/handlebars.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/summernote.js"></script>
 
@@ -93,7 +95,7 @@
           // ppt 생성 handlebars code
           $(document).on("click", ".addbtn", function() {
             if(curindex > 10) {
-              window.alert("최대치");
+            	swal("추가 실패", "폼의 전체 갯수는 10개를 넘을 수 없습니다.", "warning")
               curindex = 11;
             } else if (curindex < 11 && curindex > 0) {
               $("#fm").append(Handlebars.compile($('#pinput').html())),
@@ -111,7 +113,7 @@
           // ppt 제거 handlebars code
           $(document).on("click", ".delbtn", function() {    
           if (curindex < 3) {
-            window.alert("최소치");
+        	  swal("삭제 실패", "최소 1개이상의 폼이 필요합니다", "warning")
             curindex = 2;
           } else if (curindex < 12 && curindex > 1) {
             $("#delob" + slideIndex).remove();
@@ -215,22 +217,22 @@
 									<div class="panel-body">
 										<div class="radio">
 											<label> <input type="radio" name="optionsRadios"
-												id="optionsRadios1on1" value="1" checked> 간식/야식
+												id="optionsRadios1on1" value="간식/야식" checked> 간식/야식
 											</label>
 										</div>
 										<div class="radio">
 											<label> <input type="radio" name="optionsRadios"
-												id="optionsRadios1on2" value="2"> 술안주
+												id="optionsRadios1on2" value="술안주"> 술안주
 											</label>
 										</div>
 										<div class="radio">
 											<label> <input type="radio" name="optionsRadios"
-												id="optionsRadios1on3" value="3"> 나들이 요리
+												id="optionsRadios1on3" value="나들이 요리"> 나들이 요리
 											</label>
 										</div>
 										<div class="radio">
 											<label> <input type="radio" name="optionsRadios"
-												id="optionsRadios1on4" value="4"> 브런치 요리
+												id="optionsRadios1on4" value="브런치 요리"> 브런치 요리
 											</label>
 										</div>
 									</div>
@@ -250,23 +252,23 @@
 									<div class="panel-body">
 										<div class="radio">
 											<label> <input type="radio" name="optionsRadios2"
-												id="optionsRadios2on1" value="한식" checked> 한식
+												id="optionsRadios2on1" value="1" checked> 한식
 											</label>
 										</div>
 										<div class="radio">
 											<label> <input type="radio" name="optionsRadios2"
-												id="optionsRadios2on2" value="일식/중식"> 일식/중식
+												id="optionsRadios2on2" value="2"> 일식/중식
 											</label>
 										</div>
 										<div class="radio">
 											<label> <input type="radio" name="optionsRadios2"
-												id="optionsRadios2on3" value="양식"> 양식
+												id="optionsRadios2on3" value="3"> 양식
 
 											</label>
 										</div>
 										<div class="radio">
 											<label> <input type="radio" name="optionsRadios2"
-												id="optionsRadios2on4" value="기타"> 기타
+												id="optionsRadios2on4" value="4"> 기타
 
 											</label>
 										</div>

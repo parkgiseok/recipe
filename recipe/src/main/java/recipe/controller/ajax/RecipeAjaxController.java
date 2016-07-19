@@ -49,7 +49,7 @@ public class RecipeAjaxController {
   
   @RequestMapping(value="add", produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String add(HttpSession session,String title,String m_photo, String c_nara, int c_situ, int c_cook, int c_food, int time, int level) throws ServletException, IOException {
+  public String add(HttpSession session,String title,String m_photo, int c_nara, String c_situ, int c_cook, int c_food, int time, int level) throws ServletException, IOException {
     Member member = (Member)session.getAttribute("loginUser");
     
     Recipe recipe = new Recipe();
@@ -407,7 +407,7 @@ public class RecipeAjaxController {
       method=RequestMethod.POST,
       produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String update(int bno,String m_photo, String title, String c_nara, int c_situ, int c_cook, int c_food, int time, int level) throws ServletException, IOException {
+  public String update(int bno,String m_photo, String title, int c_nara, String c_situ, int c_cook, int c_food, int time, int level) throws ServletException, IOException {
     
     Recipe recipe = new Recipe();
     if (m_photo.startsWith("data:image")) {

@@ -62,8 +62,8 @@ CREATE TABLE RECIPE (
   W_DT    DATETIME     NOT NULL, -- 작성일
   COUNT   INTEGER      NOT NULL, -- 조회수
   M_PHOTO VARCHAR(255) NOT NULL, -- 대표사진
-  C_NARA  VARCHAR(40)  NOT NULL, -- 카테고리-나라
-  C_SITU  INTEGER      NOT NULL, -- 카테고리-상황
+  C_NARA  INTEGER      NOT NULL, -- 카테고리-나라
+  C_SITU  VARCHAR(40)  NOT NULL, -- 카테고리-상황
   C_COOK  INTEGER      NOT NULL, -- 카테고리-조리
   C_FOOD  INTEGER      NOT NULL, -- 카테고리-재료
   TIME    INTEGER      NULL,     -- 조리시간

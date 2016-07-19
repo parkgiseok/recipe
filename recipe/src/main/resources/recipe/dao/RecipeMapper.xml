@@ -25,12 +25,6 @@
     select tname from tag
   </select>
   
-  <insert id="addtag">
-  </insert>
-  
-  <insert id="addfood">
-  </insert>
-  
   <select id="selectRecentList" parameterType="Integer" resultType="RecipeMember">
      select m.mno, r.title, r.m_photo, r.w_dt, rp.cont, r.bno from 
      member m right outer join recipe r on m.mno = r.mno 

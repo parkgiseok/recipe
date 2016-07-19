@@ -9,13 +9,13 @@ public class Recipe {
   Date w_dt;
   int count;
   String m_photo;
-  String c_nara;
-  int c_situ;
+  int c_nara;
+  String c_situ;
   int c_cook;
   int c_food;
   int time;
   int level;
-  public Recipe(int bno, int mno, String title, Date w_dt, int count, String m_photo, String c_nara, int c_situ,
+  public Recipe(int bno, int mno, String title, Date w_dt, int count, String m_photo, int c_nara, String c_situ,
       int c_cook, int c_food, int time, int level) {
     super();
     this.bno = bno;
@@ -70,16 +70,16 @@ public class Recipe {
   public void setM_photo(String m_photo) {
     this.m_photo = m_photo;
   }
-  public String getC_nara() {
+  public int getC_nara() {
     return c_nara;
   }
-  public void setC_nara(String c_nara) {
+  public void setC_nara(int c_nara) {
     this.c_nara = c_nara;
   }
-  public int getC_situ() {
+  public String getC_situ() {
     return c_situ;
   }
-  public void setC_situ(int c_situ) {
+  public void setC_situ(String c_situ) {
     this.c_situ = c_situ;
   }
   public int getC_cook() {
