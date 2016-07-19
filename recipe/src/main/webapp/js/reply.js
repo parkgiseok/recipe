@@ -2,7 +2,10 @@ var bno = location.href.split("=")[1];
 $(function(){
    $("#sendReview").click(function() {
     if (sessionStorage.getItem("login") != "success") {
-      swal("로그인 오류", "로그인 해야 이용할 수 있습니다.", "warning")
+      swal({confirmButtonColor: "#DD6B55",
+              title: '로그인 오류',
+              text: "로그인 해야 이용할 수 있습니다.",
+              type: 'warning'})
       return;
     }
       $.ajax("./ajax/reply/add.do?", {
@@ -18,7 +21,10 @@ $(function(){
             } else if ( result.status == "failure") {
               window.alert("댓글 등록에 실패했습니다.")
             } else {
-            	swal("댓글 오류", "댓글은 하나만 등록할 수 있습니다.", "warning")
+           	  swal({confirmButtonColor: "#DD6B55",
+              title: '댓글 오류',
+              text: "댓글은 하나만 등록할 수 있습니다.",
+              type: 'warning'})
             }
           }
       });

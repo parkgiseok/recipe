@@ -9,7 +9,10 @@ var member;
           async : false,
           success : function(result) {
              if(result.status=="failure") {
-                 swal("로그인 오류", "로그인 해야 이용할 수 있습니다.", "warning")
+            	 swal({confirmButtonColor: "#DD6B55",
+                     title: '로그인 오류',
+                     text: "로그인 해야 이용할 수 있습니다.",
+                     type: 'warning'})
                   } else {
                      var state = e.getAttribute("data-state");
                         if (state == "before") {

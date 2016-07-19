@@ -335,7 +335,10 @@
 					if (result.status == "success") {
 						location.href = "urlPage.html?bno=" + bno; 
 					} else if (result.status == "failure") {
-						swal("로그인 실패", "아이디 또는 비밀번호를 다시 확인해주세요", "warning")
+						swal({confirmButtonColor: "#DD6B55",
+              title: '로그인 실패',
+              text: "아이디 또는 비밀번호를 다시 확인해주세요.",
+              type: 'warning'})
 					}
 				}
 			});
@@ -381,7 +384,10 @@
 			$.getJSON("ajax/favorite/delete.do?bno=" + bno, function(data) {
 				if (data.status == "success") {
 
-					swal("즐겨찾기 취소", "즐겨찾기 리스트에서 제거되었습니다.", "warning")
+					swal({confirmButtonColor: "#DD6B55",
+              title: '즐겨찾기 취소',
+              text: "즐겨찾기 리스트에서 삭제되었습니다.",
+              type: 'warning'})
 					$(".confirm").click(function() {
 						location.href = location.href;
 					})

@@ -295,7 +295,10 @@
 		// 비회원일때 '나만의 레시피 작성하려고 하면 뜨는 팝업
 		$("#check_myRecipe").click(function() {
 			if (sessionStorage.getItem("login") != "success") {
-				swal("로그인 오류", "로그인 해야 작성할 수 있습니다.", "warning")
+				swal({confirmButtonColor: "#DD6B55",
+              title: '로그인 오류',
+              text: "로그인 해야 작성할 수 있습니다.",
+              type: 'warning'})
 			} else {
 				location.href = 'insert.html'
 			}
@@ -314,7 +317,10 @@
 					if (result.status == "success") {
 						location.href = "index.html"
 					} else if (result.status == "failure") {
-						swal("로그인 실패", "아이디 또는 비밀번호를 다시 확인해주세요", "warning")
+						swal({confirmButtonColor: "#DD6B55",
+							title: '로그인 실패',
+							text: "아이디 또는 비밀번호를 다시 확인해주세요",
+							type: 'warning'})
 					}
 				}
 			});

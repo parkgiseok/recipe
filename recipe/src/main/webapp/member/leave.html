@@ -137,7 +137,10 @@ hr {
         		location.href = "../auth/logout.do";
           })
         } else if (result.status == "fail") {
-        	swal("탈퇴 실패", "비밀번호가 일치하지 않습니다. 비밀번호를 다시 입력하세요.", "warning")
+        	swal({confirmButtonColor: "#DD6B55",
+              title: '탈퇴 실패',
+              text: "비밀번호가 일치하지 않습니다. 비밀번호를 다시 입력하세요.",
+              type: 'warning'})
         } else {
         	window.alert("삭제 실패");
         }
