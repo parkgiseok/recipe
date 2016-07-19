@@ -230,8 +230,9 @@
     {{c_situ}}
   </div>
   <div class="delete_update col-xs-2">
+    <div class="update_delete1">
     <a id="update" class="update_delete" href="insert/update.html?bno={{bno}}">수정</a> |
-    <a id="delete" class="update_delete" href="#" onclick="deleter()">삭제</a>
+    <a id="delete" class="update_delete" href="#" onclick="deleter()">삭제</a></div>
     <a id='addbm' onclick='addfavorite()' style="display: none;">즐겨찾기</a>
     <a id='delbm' onclick='delfavorite()' style="display: none;">싫어찾기</a>
   </div>
@@ -344,6 +345,7 @@
 			});
 		})
 			
+		// 로그아웃 눌렀을 때, 현재 urlPage 유지하기
 			$("#logout").click(function() {
 	      $.ajax("auth/logout_url.do?", {
 	        method : "POST",
@@ -355,6 +357,28 @@
 	        })
 	      });
 		})
+		
+		// 해당 작성 사용자가 아니면 수정 | 삭제 버튼 없애기
+		$(".log_btn").click(function() {
+      $.ajax("auth/login.do?", {
+        method : "POST",
+        dataType : "JSON",
+        data : {
+          id : $("#mem_id").val(),
+          password : $("#mem_pwd").val()
+        },
+        success : function(result) {
+          if (result.status == "success") {
+            location.href = "urlPage.html?bno=" + bno; 
+          } else if (result.status == "failure") {
+            swal({confirmButtonColor: "#DD6B55",
+              title: '로그인 실패',
+              text: "아이디 또는 비밀번호를 다시 확인해주세요.",
+              type: 'warning'})
+          }
+        }
+      });
+    })
 	</script>
 	
 	<script>

@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="recipe.dao.RecipeDao">
-  
+
   <select id="selectList" resultType="Recipe" parameterType="int">
     select *
     from RECIPE
@@ -24,6 +24,12 @@
   <select id="selectAllTag" resultType="Tag">
     select tname from tag
   </select>
+  
+  <insert id="addtag">
+  </insert>
+  
+  <insert id="addfood">
+  </insert>
   
   <select id="selectRecentList" parameterType="Integer" resultType="RecipeMember">
      select m.mno, r.title, r.m_photo, r.w_dt, rp.cont, r.bno from 
@@ -88,32 +94,35 @@
   </select>
   
   <select id="searchRecipeListByNick" parameterType="map" resultType="SearchedRecipe">
-    select m.mno, m.nick, m.photo, m.desct, m.category, r.bno, r.title, r.w_dt, r.m_photo, r.time, r.level, rp.cont, t.tname
+    select m.mno, m.nick, m.photo, m.desct, m.category, r.bno, r.title, r.w_dt, r.m_photo, r.time, r.level, rp.cont, group_concat(distinct " #",t.tname) as tname
     from member m right outer join recipe r on m.mno = r.mno 
     left outer join r_photo rp on r.bno = rp.bno
     right outer join food f on r.bno = f.bno
     right outer join tag t on f.tno = t.tno
     where r.mno in (select mno from member where member.nick like #{nick})
+    group by r.bno
     order by r.bno desc
   </select>
   
   <select id="searchRecipeListByTitle" parameterType="map" resultType="SearchedRecipe">
-    select m.mno, m.nick, m.photo, m.desct, m.category, r.bno, r.title, r.w_dt, r.m_photo, r.time, r.level, rp.cont, t.tname
+    select m.mno, m.nick, m.photo, m.desct, m.category, r.bno, r.title, r.w_dt, r.m_photo, r.time, r.level, rp.cont, group_concat(distinct " #",t.tname) as tname
     from member m right outer join recipe r on m.mno = r.mno
     left outer join r_photo rp on r.bno = rp.bno
     right outer join food f on r.bno = f.bno
     right outer join tag t on f.tno = t.tno
     where r.title like CONCAT('%',#{title},'%')
+    group by r.bno
     order by r.bno desc
   </select>
   
   <select id="searchRecipeListByTag" parameterType="map" resultType="SearchedRecipe">
-    select m.mno, m.nick, m.photo, m.desct, m.category, r.bno, r.title, r.w_dt, r.m_photo, r.time, r.level, rp.cont, t.tname
+    select m.mno, m.nick, m.photo, m.desct, m.category, r.bno, r.title, r.w_dt, r.m_photo, r.time, r.level, rp.cont, group_concat(distinct " #",t.tname) as tname
     from member m right outer join recipe r on m.mno = r.mno 
     left outer join r_photo rp on r.bno = rp.bno
     right outer join food f on r.bno = f.bno
     right outer join tag t on f.tno = t.tno
     where r.bno in (select f.bno from tag t right outer join food f on t.tno = f.tno where t.tname=#{tname})
+    group by r.bno
     order by r.bno desc
   </select>
   
