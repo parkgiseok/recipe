@@ -9,8 +9,10 @@
 <link rel="stylesheet" media="all" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/slide.css" />
 <link rel="stylesheet" href="css/font.css">
+<link href="css/sweetalert.css" rel="stylesheet">
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="js/jquery.lazyload.js"></script>
@@ -293,7 +295,7 @@
 		// 비회원일때 '나만의 레시피 작성하려고 하면 뜨는 팝업
 		$("#check_myRecipe").click(function() {
 			if (sessionStorage.getItem("login") != "success") {
-				alert("로그인하고 해라 (현신아 이 alert 창 좀 바꿔라)")
+				swal("로그인 오류", "로그인 해야 작성할 수 있습니다.", "warning")
 			} else {
 				location.href = 'insert.html'
 			}
@@ -312,7 +314,7 @@
 					if (result.status == "success") {
 						location.href = "index.html"
 					} else if (result.status == "failure") {
-						alert("로그인 fail (현신아 이 alert 창 좀 바꿔라)")
+						swal("로그인 실패", "아이디 또는 비밀번호를 다시 확인해주세요", "warning")
 					}
 				}
 			});

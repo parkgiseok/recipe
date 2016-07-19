@@ -335,7 +335,7 @@
 					if (result.status == "success") {
 						location.href = "urlPage.html?bno=" + bno; 
 					} else if (result.status == "failure") {
-						alert("로그인 fail (현신아 이 alert 창 좀 바꿔라)")
+						swal("로그인 실패", "아이디 또는 비밀번호를 다시 확인해주세요", "warning")
 					}
 				}
 			});
