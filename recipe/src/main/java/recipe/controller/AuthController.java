@@ -91,7 +91,7 @@ public class AuthController {
     return new Gson().toJson(result);
   }
   
-  //로그아웃
+  //로그아웃(index 용)
   @RequestMapping("/logout")
   public String logout(HttpSession session, SessionStatus status) {
     status.setComplete(); // @SessionAttributes 로 관리하는 값 제거
@@ -102,6 +102,22 @@ public class AuthController {
     System.out.println("로그아웃");
     System.out.println("-----------");
     return "redirect:../index.html";
+  }
+  
+  //로그아웃(urlPage 용)
+  @RequestMapping(value="/logout_url", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String logout_url(HttpSession session, SessionStatus status, int bno) {
+    status.setComplete(); // @SessionAttributes 로 관리하는 값 제거
+    session.invalidate(); // HttpSession 객체 무효화시킨다.
+                          // => invalidate()는 스프링에서 @SessionAttributes로
+                          //    관리하는 값을 제거하지 못한다.
+    int no = bno;
+    
+    System.out.println("-----------");
+    System.out.println("로그아웃");
+    System.out.println("-----------");
+    return "redirect:../urlPage.html?bno=" + no;
   }
   
   //로그인 상태 확인

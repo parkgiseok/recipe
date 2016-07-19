@@ -7,6 +7,10 @@
   font-family: '옛날목욕탕';
 }
 
+#logout {
+	cursor: pointer;
+}
+
 #side {
   border: 0px solid skyblue;
 }
@@ -36,6 +40,10 @@
 	border: 1px solid lightgray; 
   border-radius: 20px;
   padding: 10px;
+  width: 210px;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 135px;
 }
 
 .my_intro2 {
@@ -43,6 +51,9 @@
   border: 1px solid lightgray; 
   border-radius: 20px;
   padding: 10px;
+  width: 210px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .list_btn {
