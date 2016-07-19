@@ -4,130 +4,153 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>냉장고를 가져와 - index</title>
-<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet"
+	href="bower_components/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" media="all" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/slide.css" />
-<link rel="stylesheet" href="css/font.css" >
+<link rel="stylesheet" href="css/font.css">
 
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/handlebars/handlebars.min.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="js/jquery.lazyload.js"></script>
 <script src="js/moment.js"></script>
 <script src="js/slick.min.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="bower_components/handlebars/handlebars.min.js"></script>
-<script type="text/javascript" src="js/modernizr.2.5.3.min.js"></script>
+<script src="js/modernizr.2.5.3.min.js"></script>
 <script src="js/loginCheck.js"></script>
 <script src="js/auth.js"></script>
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1">
-          <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html"><img id="titleimg" src="img/title.PNG" /></a>
-      </div>
-      <div class="collapse navbar-collapse" id="defaultNavbar1">
-        <form class="navbar-form navbar-left" role="search">
-          <div class="form-group"><input type="text" value="" class="form-control" id="searchvalue" placeholder="예) 김치 볶음밥"></div>
-          <a onclick='javascript:fncSubmit();' class="btn btn-default">검색</a>    
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a id="login" class="launch-modal" href="#" data-modal-id="modal-register1">로그인</a></li>
-          <li><a id="signup" class="launch-modal" href="#" data-modal-id="modal-register2">회원가입</a></li>
-          <li><a id="logout" href="auth/logout.do">로그아웃</a></li>
-          <li><a id="mypage" href="member/myPage.html">마이페이지</a></li>
-        </ul>
-        
-        <script>
-        var searchValue;        
-        $('input').keyup(function() {
-          searchValue = $(this).val();
-        });        
-        function fncSubmit() {
-          location.href = 'search.html?value=' + searchValue;
-        }
-        </script>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#defaultNavbar1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html"><img id="titleimg"
+					src="img/title.PNG" /></a>
+			</div>
+			<div class="collapse navbar-collapse" id="defaultNavbar1">
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" value="" class="form-control" id="searchvalue"
+							placeholder="예) 김치 볶음밥">
+					</div>
+					<a onclick='javascript:fncSubmit();' class="btn btn-default">검색</a>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a id="login" class="launch-modal" href="#"
+						data-modal-id="modal-register1">로그인</a></li>
+					<li><a id="signup" class="launch-modal" href="#"
+						data-modal-id="modal-register2">회원가입</a></li>
+					<li><a id="logout" href="auth/logout.do">로그아웃</a></li>
+					<li><a id="mypage" href="member/myPage.html">마이페이지</a></li>
+				</ul>
 
-        <!-- 로그인 -->
-        <!-- <form action="auth/login.do" method="post"> -->
-        <div class="modal fade" id="modal-register1" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                </button>
-                <h3 class="modal-title" id="modal-register-label">로그인</h3>
-              </div>
-              <div class="modal-body">
-                  <div class="form-group">
-                    <label class="sr-only">Id</label>
-                    <input type="text" placeholder="ID" class="form-id form-control" id="mem_id" name="id">
-                  </div>
-                  <div class="form-group">
-                    <label class="sr-only">Password</label>
-                    <input type="password" placeholder="Password" id="mem_pwd" class="form-password form-control" name="password">
-                  </div>
-                  <button class="log_btn btn">로그인</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- </form> -->
-        <!-- 회원가입 -->
-        <form action="auth/add.do" method="post">
-        <div class="modal fade" id="modal-register2" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  <span aria-hidden="true">&times;</span>
-                  <span class="sr-only">Close</span>
-                </button>
-                <h3 class="modal-title" id="modal-register-label">회원가입</h3>
-              </div>
-              <div class="modal-body">
-                  <div class="form-group">
-                    <label class="sr-only">Id</label>
-                    <input type="text" placeholder="ID" class="form-id form-control" name="id">
-                  </div>
-                  <div class="form-group">
-                    <label class="sr-only">Email</label>
-                     <input type="text" placeholder="Email" class="form-email form-control" name="email">
-                  </div>
-                  <div class="form-group">
-                    <label class="sr-only">Password</label>
-                    <input type="password" placeholder="Password" class="form-password form-control" name="password">
-                  </div>
-                  <button class="btn">회원가입</button>
-              </div>
-            </div>
-          </div>
-        </div> 
-        </form>       
-      </div>
-    </div>
-  </nav>
+				<!-- 로그인 -->
+				<!-- <form action="auth/login.do" method="post"> -->
+				<div class="modal fade" id="modal-register1" tabindex="-1"
+					role="dialog" aria-labelledby="modal-register-label"
+					aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+								</button>
+								<h3 class="modal-title" id="modal-register-label">로그인</h3>
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="sr-only">Id</label> <input type="text"
+										placeholder="ID" class="form-id form-control" id="mem_id"
+										name="id">
+								</div>
+								<div class="form-group">
+									<label class="sr-only">Password</label> <input type="password"
+										placeholder="Password" id="mem_pwd"
+										class="form-password form-control" name="password">
+								</div>
+								<button class="log_btn btn">로그인</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- </form> -->
+				<!-- 회원가입 -->
+				<form action="auth/add.do" method="post">
+					<div class="modal fade" id="modal-register2" tabindex="-1"
+						role="dialog" aria-labelledby="modal-register-label"
+						aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
+									</button>
+									<h3 class="modal-title" id="modal-register-label">회원가입</h3>
+								</div>
+								<div class="modal-body">
+									<div class="form-group">
+										<label class="sr-only">Id</label> <input type="text"
+											placeholder="ID" class="form-id form-control" name="id">
+									</div>
+									<div class="form-group">
+										<label class="sr-only">Email</label> <input type="text"
+											placeholder="Email" class="form-email form-control"
+											name="email">
+									</div>
+									<div class="form-group">
+										<label class="sr-only">Password</label> <input type="password"
+											placeholder="Password" class="form-password form-control"
+											name="password">
+									</div>
+									<button class="btn">회원가입</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</nav>
 
-  <div id="vid_container">
-    <section class="slide-list">
-      <h2 class="hide">메인 롤링 슬라이드</h2>
-      <div class="slide-con">
-        <div class="slider" style="display: none">
-          
-          <div class="as"><a href="#"> <iframe width="560" height="335" src=""></iframe></a></div>
-          <div class="as"><a href="#"> <iframe width="560" height="335" src=""></iframe></a></div>
-          <div class="as"><a href="#"> <iframe width="560" height="335" src=""></iframe></a></div>
-          <div class="as"><a href="#"> <iframe width="560" height="335" src=""></iframe></a></div>
-          <div class="as"><a href="#"> <iframe width="560" height="335" src=""></iframe></a></div>
-          <div class="as"><a href="#"> <iframe width="560" height="335" src=""></iframe></a></div>
-          <div class="as"><a href="#"> <iframe width="560" height="335" src=""></iframe></a></div>
-          <div class="as"><a href="#"> <iframe width="560" height="335" src=""></iframe></a></div>
-          <!--
+	<div id="vid_container">
+		<section class="slide-list">
+			<h2 class="hide">메인 롤링 슬라이드</h2>
+			<div class="slide-con">
+				<div class="slider" style="display: none">
+
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<!--
           <div class="as"><a href="#"> <iframe width="560" height="335" src="https://www.youtube.com/embed/h1OgYqFd0PQ"></iframe></a></div>
           <div class="as"><a href="#"> <iframe width="560" height="335" src="https://www.youtube.com/embed/0HDivRXEqNg"></iframe></a></div>
           <div class="as"><a href="#"> <iframe width="560" height="335" src="https://www.youtube.com/embed/4V2oRGyC9Lg"></iframe></a></div>
@@ -136,25 +159,27 @@
           <div class="as"><a href="#"> <iframe width="560" height="335" src="https://www.youtube.com/embed/X060QqlbiG0"></iframe></a></div>
           <div class="as"><a href="#"> <iframe width="560" height="335" src="https://www.youtube.com/embed/07WZSrqV4Dg"></iframe></a></div>
            -->
-        </div>
-      </div>
-    </section>
-  </div>
-  <hr>
-  <div class="container">
-    <section class="sec_main_recipe">
-      <button class="recipe_btn recipe_btn--saqui recipe_btn--inverted" 
-       data-text="나만의 레시피 등록하기" id="check_myRecipe">나만의 레시피 등록하기</button>
-      <dl class="inner">
-        <dt>
-          <h3>방금 올라왔다!!!<br> <em>지금 만든 메뉴~!~!</em></h3>
-        </dt>
-        <dd>
-          <ol class="lst_recipe" id="list0"></ol>
-        </dd>
-      </dl>
-      <hr>
-      <!-- 
+				</div>
+			</div>
+		</section>
+	</div>
+	<hr>
+	<div class="container">
+		<section class="sec_main_recipe">
+			<button class="recipe_btn recipe_btn--saqui recipe_btn--inverted"
+				data-text="나만의 레시피 등록하기" id="check_myRecipe">나만의 레시피 등록하기</button>
+			<dl class="inner">
+				<dt>
+					<h3>
+						방금 올라왔다!!!<br> <em>지금 만든 메뉴~!~!</em>
+					</h3>
+				</dt>
+				<dd>
+					<ol class="lst_recipe" id="list0"></ol>
+				</dd>
+			</dl>
+			<hr>
+			<!-- 
       <dl class="inner">
         <dt>
           <h3>얼얼한 매운맛에 중독되다<br> <em>하드코어 매운맛 열전</em></h3>
@@ -173,47 +198,20 @@
         </dd>
       </dl>
       <hr>
-       -->      
-    </section>
-  <footer>
-    <div class="text-center col-xs-6 col-xs-offset-3">
-      <p>
-        Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a
-          href="http://127.0.0.1:8080/index.html">냉장고를 가져와</a>
-      </p>
-    </div>
-  </footer>
-</div>
+       -->
+		</section>
+		<footer>
+			<div class="text-center col-xs-6 col-xs-offset-3">
+				<p>
+					Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a
+						href="http://127.0.0.1:8080/index.html">냉장고를 가져와</a>
+				</p>
+			</div>
+		</footer>
+	</div>
 
-<script>
-$("#check_myRecipe").click(function() {
-	 if (sessionStorage.getItem("login") != "success") {
-     alert("로그인하고 해라 (현신아 이 alert 창 좀 바꿔라)")
-	 } else {
-	   location.href='insert.html'
-	 }
-})  
-
-$(".log_btn").click(function() {
-    $.ajax("auth/login.do?", {
-        method : "POST",
-        dataType : "JSON",
-        data : {
-        	 id : $("#mem_id").val(),
-        	 password :$("#mem_pwd").val()
-       },success : function(result) {
-         if (result.status == "success") {
-           location.href = "index.html"
-         } else if ( result.status == "failure") {
-        	 alert("로그인 fail (현신아 이 alert 창 좀 바꿔라)")
-         }
-       }
-    });
-
-})  
-</script>
-
-  <script id="card" type="text/x-handlebars-template" style="text-align: center;">
+	<script id="card" type="text/x-handlebars-template"
+		style="text-align: center;">
   {{#each list}}
   <li class="lis" id="a{{@index}}">
   <div class="card" id="card{{@index}}">
@@ -287,134 +285,187 @@ $(".log_btn").click(function() {
   {{/each}}
   </script>
   
-  <script id="test" type="text/x-handlebars-template" style="text-align: center;">
+  <script>
+    // 비회원일때 '나만의 레시피 작성하려고 하면 뜨는 팝업
+    $("#check_myRecipe").click(function() {
+      if (sessionStorage.getItem("login") != "success") {
+        alert("로그인하고 해라 (현신아 이 alert 창 좀 바꿔라)")
+      } else {
+        location.href = 'insert.html'
+      }
+    })
+
+    // 로그인 실패시 뜨는 팝업
+    $(".log_btn").click(function() {
+      $.ajax("auth/login.do?", {
+        method : "POST",
+        dataType : "JSON",
+        data : {
+          id : $("#mem_id").val(),
+          password : $("#mem_pwd").val()
+        },
+        success : function(result) {
+          if (result.status == "success") {
+            location.href = "index.html"
+          } else if (result.status == "failure") {
+            alert("로그인 fail (현신아 이 alert 창 좀 바꿔라)")
+          }
+        }
+      });
+
+    })
+  </script>
+  
+  <script>
+	  // 서치 기능
+	  var searchValue;        
+	  $('input').keyup(function() {
+	    searchValue = $(this).val();
+	  });        
+	  function fncSubmit() {
+	    location.href = 'search.html?value=' + searchValue;
+	  }
+  </script>
+
+	<script id="test" type="text/x-handlebars-template"
+		style="text-align: center;">
   {{#each list}}
     <li><img src="webapp/{{p_url}}" alt="..." /></li>
   {{/each}}
   </script>
-  <script>
-  /* 간략히 보기 슬라이드 */
-  function tete(cardno){
-      $.ajax({
-        method : "GET",
-        url : "auth/detailContent.do?bno="+cardno[0].bno,
-        dataType : "json",
-        async : false,
-        success : function(result) {
-          var template = Handlebars.compile($('#test').html());
-          $("#card_slider").append(template(result));
-        }
-      });
-  }
-  </script>
+	<script>
+		/* 간략히 보기 슬라이드 */
+		function tete(cardno) {
+			$.ajax({
+				method : "GET",
+				url : "auth/detailContent.do?bno=" + cardno[0].bno,
+				dataType : "json",
+				async : false,
+				success : function(result) {
+					var template = Handlebars.compile($('#test').html());
+					$("#card_slider").append(template(result));
+				}
+			});
+		}
+	</script>
 
-  <script>
-    /* 카드 안에 들어갈 정보 */
-    var cardLeft;
-    $(function() {
-        $.ajax("auth/detailIndex.do", {
-         method : "GET",
-         dataType : "json",
-         success : function(result) {
-        	 console.log((result.list).length);
-        	 for(var i = 0; i <= (result.list).length-1; i++) {
-        		 result.list[i].w_dt = moment(result.list[i].w_dt).format().substr(0,10);
-        	 }
-             var template = Handlebars.compile($('#card').html());
-             var cardno=result.list;
-             $("#list0").append(template(result));
-        	 for(var i = 0; i <= (result.list).length-1; i++) {
-                 var im = result.list[i].level;
-                 switch (im) {
-                 case 1  : $("#level_img"+i).attr("src","img/1star.png");                	 
-                              break;
-                 case 2  : $("#level_img"+i).attr("src","img/2star.png");
-                              break;
-                 case 3  : $("#level_img"+i).attr("src","img/3star.png");
-                              break;
-                 case 4  : $("#level_img"+i).attr("src","img/4star.png");
-                              break;
-                 default  : $("#level_img"+i).attr("src","img/5star.png");
-                              break;
-                 
-                 }
-               }
+	<script>
+		/* 카드 안에 들어갈 정보 */
+		var cardLeft;
+		$(function() {
+			$.ajax("auth/detailIndex.do", {
+				method : "GET",
+				dataType : "json",
+				success : function(result) {
+					console.log((result.list).length);
+					for (var i = 0; i <= (result.list).length - 1; i++) {
+						result.list[i].w_dt = moment(result.list[i].w_dt)
+								.format().substr(0, 10);
+					}
+					var template = Handlebars.compile($('#card').html());
+					var cardno = result.list;
+					$("#list0").append(template(result));
+					for (var i = 0; i <= (result.list).length - 1; i++) {
+						var im = result.list[i].level;
+						switch (im) {
+						case 1:
+							$("#level_img" + i).attr("src", "img/1star.png");
+							break;
+						case 2:
+							$("#level_img" + i).attr("src", "img/2star.png");
+							break;
+						case 3:
+							$("#level_img" + i).attr("src", "img/3star.png");
+							break;
+						case 4:
+							$("#level_img" + i).attr("src", "img/4star.png");
+							break;
+						default:
+							$("#level_img" + i).attr("src", "img/5star.png");
+							break;
+						}
+					}
 
-             $('#a1').css('left', "260px");
-             $('#a2').css('left', "520px");
-             $('#a3').css('left', "780px");
-             $('.desc').hide();
-             init(cardno);  //좋아요
-             preview(cardno);     //간락히 보기
-             tete(cardno);
-             slide();       //카드슬라이드 돌아가게 하는거
-         },
-         error:function(request,status,error){
-             console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-          }
-       }); 
-    })
-    
-   function init(cardno) {
-    for(var i = 0; i < cardno.length; i++) {  
-    $.ajax({
-          method : "POST",
-          url : "./ajax/likes/islike.do?bno="+cardno[i].bno,
-          dataType : "json",
-          async : false,
-          success : function(result) {
-            if(result) {
-              //console.log("#like_"+cardno[i].bno);
+					$('#a1').css('left', "260px");
+					$('#a2').css('left', "520px");
+					$('#a3').css('left', "780px");
+					$('.desc').hide();
+					init(cardno); //좋아요
+					preview(cardno); //간락히 보기
+					tete(cardno);
+					slide(); //카드슬라이드 돌아가게 하는거
+				},
+				error : function(request, status, error) {
+					console.log("code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n" + "error:" + error);
+				}
+			});
+		})
 
-              $("#like_"+cardno[i].bno).attr("data-state", "after");
-              $("#like_"+cardno[i].bno).css("background", "url(./img/icon_heart_full.png) 7px center no-repeat");
-            } else {}
-            
-          }
-        })
-      }
-    }
-  </script>
+		function init(cardno) {
+			for (var i = 0; i < cardno.length; i++) {
+				$
+						.ajax({
+							method : "POST",
+							url : "./ajax/likes/islike.do?bno=" + cardno[i].bno,
+							dataType : "json",
+							async : false,
+							success : function(result) {
+								if (result) {
+									//console.log("#like_"+cardno[i].bno);
 
-  
-  
-  <script id="data-ul01" type="text/x-handlebars-template">
+									$("#like_" + cardno[i].bno).attr(
+											"data-state", "after");
+									$("#like_" + cardno[i].bno)
+											.css("background",
+													"url(./img/icon_heart_full.png) 7px center no-repeat");
+								} else {
+								}
+							}
+						})
+			}
+		}
+	</script>
+
+
+
+	<script id="data-ul01" type="text/x-handlebars-template">
   {{#each list}}
     <div class="pop_flip_img"><img src="webapp/{{p_url}}" class="pop_flip_img1"></div>
     <div class="pop_flip_text"><div class="pop_flip_text1">{{{cont}}}</div></div>
   {{/each}}
   </script>
 
-  <script>
-  /* 간략히 보기 슬라이드 */
-  function preview(cardno){
-	    $.ajax({
-	      method : "GET",
-	      url : "auth/detailContent.do?bno="+cardno[0].bno,
-	      dataType : "json",
-	      async : false,
-	      success : function(result) {
-	        var template = Handlebars.compile($('#data-ul01').html());
-	        $("#pop_mybook").append(template(result));
-	      }
-	    });
-  }
-  </script>
-  
-  <!-- 좋아요 -->
-  <script src="js/likes.js"></script>
-  <!-- 책장 넘기기 -->
-  <script type="text/javascript" src="js/bookslide.js"></script>
-  <!-- 비디오 -->
-  <script src="js/videoslide.js"></script>
-  <!-- 카드 이동 -->
-  <script src="js/cardslide.js"></script>
-  <!-- 카드 안에 사진 변경 -->
-  <script src="js/cardinnerslide.js"></script>
-  <!-- 카드 간략히 보기 팝업 -->
-  <script type="text/javascript" src="js/preview.js" ></script>
-  <script src="js/jquery.backstretch.min.js"></script>
-  <script src="js/scripts.js"></script>
-  
+	<script>
+		/* 간략히 보기 슬라이드 */
+		function preview(cardno) {
+			$.ajax({
+				method : "GET",
+				url : "auth/detailContent.do?bno=" + cardno[0].bno,
+				dataType : "json",
+				async : false,
+				success : function(result) {
+					var template = Handlebars.compile($('#data-ul01').html());
+					$("#pop_mybook").append(template(result));
+				}
+			});
+		}
+	</script>
+
+	<!-- 좋아요 -->
+	<script src="js/likes.js"></script>
+	<!-- 책장 넘기기 -->
+	<script type="text/javascript" src="js/bookslide.js"></script>
+	<!-- 비디오 -->
+	<script src="js/videoslide.js"></script>
+	<!-- 카드 이동 -->
+	<script src="js/cardslide.js"></script>
+	<!-- 카드 안에 사진 변경 -->
+	<script src="js/cardinnerslide.js"></script>
+	<!-- 카드 간략히 보기 팝업 -->
+	<script type="text/javascript" src="js/preview.js"></script>
+	<script src="js/jquery.backstretch.min.js"></script>
+	<script src="js/scripts.js"></script>
+
 </body>
 </html>
