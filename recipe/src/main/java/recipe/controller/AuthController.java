@@ -67,7 +67,7 @@ public class AuthController {
     return new Gson().toJson(paramMap);
   }
   
-  //로그인
+  //로그인 아이디, 비밀번호 확인
   @RequestMapping(value="/login", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String login(
@@ -75,8 +75,6 @@ public class AuthController {
       String password,
       HttpSession session) {
     HashMap<String,Object> result = new HashMap<>();
-    System.out.println(id);
-    System.out.println(password);
     if (memberService.exist(id, password)) {
       result.put("status", "success");
       Member member = memberService.retrieveById(id);
