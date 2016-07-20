@@ -15,11 +15,9 @@
     delete from FOOD where BNO=#{bno} 
   </delete>
   
-  <update id="update" parameterType="Food">
-    update FOOD set
-      TNO=#{tno}
-    where BNO=#{bno}
-  </update>
+  <insert id="update" parameterType="Food">
+    insert into FOOD(BNO,TNO) values(#{bno},#{tno})
+  </insert>
   
 
 

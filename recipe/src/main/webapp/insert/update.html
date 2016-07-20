@@ -430,7 +430,7 @@
 	  function ddd() {
 	    $.ajax({
 	      method : "GET",
-	      url : "ajax/recipe/selectAllTag.do",
+	      url : "../ajax/recipe/selectAllTag.do",
 	      dataType : "json",
 	      async : false,
 	      success : function(result) {
@@ -548,7 +548,7 @@
         }
         
         if(inputTags[i] != tags[j]) {
-          $.post("ajax/recipe/addTag.do", {
+          $.post("../ajax/recipe/addTag.do", {
                 tname : inputTags[i]
               }, function(result) {
                 if (result.status == "success") {
@@ -563,6 +563,29 @@
       }
     
     <!-- 이거는 그거다.. 푸드 업데이터-->
+      $.post("../ajax/recipe/deleteFood.do", {
+           bno : no
+           },"json"
+        );
+      
+      for (var a in bnos){
+          $.post("../ajax/recipe/updateFood.do", {
+        	        bno : no,
+                  tno : bnos[a]
+                }, function(result) {
+                  if (result.status == "success") {
+                    window.alert("음식 등록 성공");
+                    /* location.href = "index.html"; */
+                  } else {
+                    window.alert("등록 실패입니다!음식");
+                  }
+                }, "json"
+              );
+          
+        }
+      
+      
+    
     if($("#resultlength").val() == $(".option").length){
     	for(var i = 1; i < curindex; i++){
             $.post("../ajax/content/update.do", {
