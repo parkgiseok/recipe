@@ -40,11 +40,12 @@
 			</div>
 			<div class="collapse navbar-collapse" id="defaultNavbar1">
 				<form class="navbar-form navbar-left" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="예) 김치 볶음밥">
-					</div>
-					<a href="search.html" class="btn btn-default">검색</a>
-				</form>
+          <div class="form-group">
+            <input type="text" value="" class="form-control" id="searchvalue"
+              placeholder="예) 김치 볶음밥">
+          </div>
+          <a onclick='javascript:fncSubmit();' class="btn btn-default">검색</a>
+        </form>
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
@@ -232,9 +233,12 @@
   <div class="delete_update col-xs-2">
     <div class="update_delete1">
     <a id="update" class="update_delete" href="insert/update.html?bno={{bno}}">수정</a> |
-    <a id="delete" class="update_delete" href="#" onclick="deleter()">삭제</a></div>
-    <a id='addbm' onclick='addfavorite()' style="display: none;">즐겨찾기</a>
-    <a id='delbm' onclick='delfavorite()' style="display: none;">싫어찾기</a>
+    <a id="delete" class="update_delete" href="#" onclick="deleter()">삭제</a>
+    </div>
+    <div class="add_del">
+    <a id='addbm' onclick='addfavorite()' style="display: none;"><img src="./img/favorite3.png" style="width:30px; cursor:pointer;"></a>
+    <a id='delbm' onclick='delfavorite()' style="display: none;"><img src="./img/favorite1.png" style="width:30px; cursor:pointer;"></a>
+    </div>
   </div>
   <div class="date col-xs-2">
     <p>{{w_dt}}</p>
@@ -371,12 +375,25 @@
         	  $(".update_delete1").css("display", "");
           } else if (result.status == "failure") {
         	  $(".update_delete1").css("display", "none");
+        	  $(".add_del").css("padding-top", "16px");
+        	  $(".add_del").css("padding-top", "16px");
           } else {
         	  $(".update_delete1").css("display", "none");
+        	  $(".add_del").css("padding-top", "16px");
+        	  $(".add_del").css("padding-top", "16px");
           }
         }
       });
     })
+    
+    // 서치 기능
+    var searchValue;
+    $('input').keyup(function() {
+      searchValue = $(this).val();
+    });
+    function fncSubmit() {
+      location.href = 'search.html?value=' + searchValue;
+    }
 	</script>
 	
 	<script>

@@ -20,6 +20,7 @@ public class MainRecipe {
   int pno;
   String cont;
   String p_url;
+  String tname;
   
 
   public int getBno() {
@@ -190,15 +191,21 @@ public class MainRecipe {
   public void setP_url(String p_url) {
     this.p_url = p_url;
   }
+  
+  public String getTname() {
+    return tname;
+  }
 
+
+  public void setTname(String tname) {
+    this.tname = tname;
+  }
 
   @Override
   public String toString() {
     return "MainRecipe [bno=" + bno + ", mno=" + mno + ", m_photo=" + m_photo + ", photo=" + photo + ", nick=" + nick
         + ", title=" + title + ", time=" + time + ", likes=" + likes + ", w_dt=" + w_dt + ", c_food=" + c_food
         + ", c_situ=" + c_situ + ", c_nara=" + c_nara + ", c_cook=" + c_cook + ", level=" + level + ", pno=" + pno
-        + ", cont=" + cont + ", p_url=" + p_url + "]";
+        + ", cont=" + cont + ", p_url=" + p_url + ", tname=" + tname + "]";
   }
-  
-     
 }

@@ -32,6 +32,7 @@
     <result column="PNO"    property="pno"/>
     <result column="COUN"    property="cont"/>
     <result column="P_URL"    property="p_url"/>
+    <result column="TNAME"    property="tname"/>
   </resultMap>
   
   <!-- index 페이지 카드 4개 뽑기 -->
@@ -45,9 +46,11 @@
   <select id="MainRecipeList" resultMap="MainRecipeMap">
     select recipe.bno,recipe.title,recipe.m_photo,recipe.time,recipe.level,recipe.c_food,recipe.c_nara,recipe.c_situ,recipe.c_cook,recipe.w_dt,
     member.mno,member.nick,member.photo,
-    r_photo.pno,r_photo.cont,r_photo.p_url
-    from member,recipe,r_photo
-    where member.mno=recipe.mno and recipe.bno=r_photo.bno group by recipe.bno order by recipe.bno desc limit 0,4;
+    r_photo.pno,r_photo.cont,r_photo.p_url,
+    group_concat(distinct " #",tag.tname) as tname
+    from member,recipe,r_photo,food,tag
+    where member.mno=recipe.mno and recipe.bno=r_photo.bno and food.tno=tag.tno and recipe.bno=food.bno
+    group by recipe.bno order by recipe.bno desc limit 0,4;
   </select>
 
   <!-- 레시피 순위 페이지 카드 3개 뽑기 -->
