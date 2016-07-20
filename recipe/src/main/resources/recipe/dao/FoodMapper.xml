@@ -20,5 +20,7 @@
       TNO=#{tno}
     where BNO=#{bno}
   </update>
+  
+
 
 </mapper>

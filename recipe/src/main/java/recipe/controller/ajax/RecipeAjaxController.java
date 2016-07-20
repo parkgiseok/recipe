@@ -380,6 +380,12 @@ public class RecipeAjaxController {
     
     return new Gson().toJson(result);
   }
+  @RequestMapping(value="selectUsingTag", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String selectUsingTag(int bno) throws ServletException, IOException {
+    List<Tag> tag = tagService.list(bno);
+    return new Gson().toJson(tag);
+  }
   
   @RequestMapping(value="addFood", produces="application/json;charset=UTF-8")
   @ResponseBody

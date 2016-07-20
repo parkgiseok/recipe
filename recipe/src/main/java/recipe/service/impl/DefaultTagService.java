@@ -1,5 +1,7 @@
 package recipe.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ public class DefaultTagService implements TagService {
   
   public void add(Tag tag) {
     tagDao.insert(tag);
+  }
+  public List<Tag> list(int bno) {
+    return tagDao.selectList(bno);
   }
 }
 

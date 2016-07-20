@@ -8,5 +8,11 @@
   <insert id="insert" parameterType="Tag">
     insert into TAG(TNAME) values(#{tname})
   </insert>
-
+  
+  <select id="selectList" resultType="Tag" parameterType="int">
+    select t.tno, t.tname from tag t 
+    right outer join food f on t.tno = f.tno
+    right outer join recipe r on r.bno = f.bno
+    where r.bno=#{bno}
+  </select>
 </mapper>
