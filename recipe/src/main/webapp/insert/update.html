@@ -369,7 +369,7 @@
 							<!-- 태그 -->
 							<div class="mar col-lg-2 col-sm-2">재료</div>
 							<div class="col-lg-10 col-sm-10">
-								<input type="text" id="foot1" class="form-control"
+								<input type="text" id="tag" class="form-control"
 									placeholder="#닭, #당근, #양파, #감자 ...">
 							</div>
 						</div>
@@ -424,21 +424,39 @@
 	</footer>
 	
 	<script>
+	var tags = [];
+	  
+	  ddd();
+	  function ddd() {
+	    $.ajax({
+	      method : "GET",
+	      url : "ajax/recipe/selectAllTag.do",
+	      dataType : "json",
+	      async : false,
+	      success : function(result) {
+	        for (var i=0; i<result.length; i++) {
+	          tags[i] = result[i].tname;
+	          console.log(tags[i]);
+	        }
+	      }
+	    });
+	  }
+	  
+	  var inputTags = [];
+	  var bnos = [];
+	  
+	  var k = tags.length + 1;
  
-	$("#updatedd").click(function(){
-		console.log($(':radio[name="time_"]:checked').val());
-		console.log($("#lev").val());
-	})
 	function stars(n){
 		$(".stars").attr("src","../img/" + n + "star.png")
 		$("#lev").val(n);
 	}
   var no = location.href.split("=")[1];
+  var calltag = "";
   loadRecipe();
   function loadRecipe() {	  
 	  
     $.getJSON("../ajax/recipe/list.do?bno=" + no, function(result) {
-    	console.log(result.c_nara);
     	
     	$("#bno").val(result.bno);
       $("#mytitle").val(result.title);
@@ -449,9 +467,18 @@
       $('input:radio[name="time_"][value="' + result.time + '"]').prop('checked', true);
       stars(result.level);
     });
+    $.getJSON("../ajax/recipe/selectUsingTag.do?bno=" + no, function(result) {
+    	for(var i=0; i<result.length; i++){
+    		if(i == (result.length)-1) {
+    			calltag = calltag.concat("#" + result[i].tname);
+    		} else {
+       		calltag = calltag.concat("#" + result[i].tname + ",");	
+    		}
+    	}
+    	$("#tag").val(calltag);
+    });
     
     $.getJSON("../ajax/content/list.do?bno=" + no, function(result) {
-    	console.log(result);
     	for(var i=0; i<result.length-1; i++) {
     		$(".addbtn").click();
     	}
@@ -463,9 +490,6 @@
     	} 
     	
     	$("#resultlength").val(result.length);
-    	console.log($("#resultlength").val());
-    	console.log($("#pno1").val());
-    	console.log($(".option").length);
     	if($("#resultlength").val() == $(".option").length){
     	}
     
@@ -478,6 +502,10 @@
   }
   
   $("#updated").click(function(){
+	  var tagi1 = $("#tag").val();
+      var tagi2 = tagi1.replace(/,/gi,''); //특정문자 제거
+      var inputTags = tagi2.split("#");
+    console.log("돌려라");
 /*     console.log("돌려라"); */
     $.ajaxSetup({
         async: false
@@ -501,6 +529,40 @@
         }
       }, "json"
     ); 
+    
+    for(var i=1; i<inputTags.length; i++) {
+        for(var j=0; j<tags.length; j++) {
+          if(inputTags[i] == tags[j]) {
+            console.log(inputTags[i] + "==" + tags[j])
+            bnos.push(j+1);
+            console.log(bnos);
+            break;
+          } else {
+            console.log(inputTags[i] + "!=" + tags[j])
+            if(j == tags.length-1) {
+              bnos.push(k);
+              console.log(bnos);
+              k++;
+            }
+          }
+        }
+        
+        if(inputTags[i] != tags[j]) {
+          $.post("ajax/recipe/addTag.do", {
+                tname : inputTags[i]
+              }, function(result) {
+                if (result.status == "success") {
+                  /* location.href = "index.html"; */
+                  window.alert("태그 등록 성공");
+                } else {
+                  window.alert("등록 실패입니다!태그");
+                }
+              }, "json"
+            );
+        }
+      }
+    
+    <!-- 이거는 그거다.. 푸드 업데이터-->
     if($("#resultlength").val() == $(".option").length){
     	for(var i = 1; i < curindex; i++){
             $.post("../ajax/content/update.do", {
@@ -675,7 +737,6 @@
       $('.image-upload-wrap').removeClass('image-dropping');
     });
 
-    console.log($.isArray('.summernote'))
   </script>
 </body>
 </html>
