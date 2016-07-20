@@ -501,12 +501,14 @@ a.cbtn:hover {
 .topcon2 {
   height: 70px;
   text-align: center;
-  padding: 2px;
+  padding-top: 8px;
   font-size: 33px;
-  color: #800000;
-  background-image: url("../img/desc_back2.png");
+  color: red;
+  font-weight: 900;
+  background-image: url("../img/cook1.png");
   background-repeat: no-repeat;
-  background-position: 70px;
+  background-position: 282px 0px;
+  background-size: 85px;
 }
 
 .topcon3 {
