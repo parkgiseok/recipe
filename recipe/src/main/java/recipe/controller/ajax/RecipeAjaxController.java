@@ -26,6 +26,7 @@ import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 import recipe.service.ContentService;
 import recipe.service.FoodService;
+import recipe.service.LikesService;
 import recipe.service.MemberService;
 import recipe.service.RecipeService;
 import recipe.service.TagService;
@@ -43,6 +44,7 @@ public class RecipeAjaxController {
   @Autowired RecipeService recipeService;
   @Autowired MemberService memeberService;
   @Autowired ContentService contentService;
+  @Autowired LikesService likeService;
   @Autowired FoodService foodService;
   @Autowired TagService tagService;
   @Autowired ServletContext servletContext;
@@ -219,6 +221,9 @@ public class RecipeAjaxController {
       pageSize = 50;
     }
     List<SearchedRecipe> recipe = recipeService.searchByNick(nick, pageNo, pageSize);
+    for(SearchedRecipe r : recipe) {
+      r.setLikes(likeService.countAll(r.getBno())); //좋아요를 넣어준다.
+    }
     HashMap<String, Object> paramMap = new HashMap<>();
     paramMap.put("list", recipe);    
     
@@ -251,6 +256,9 @@ public class RecipeAjaxController {
       pageSize = 50;
     }
     List<SearchedRecipe> recipe = recipeService.searchByTitle(title, pageNo, pageSize);
+    for(SearchedRecipe r : recipe) {
+      r.setLikes(likeService.countAll(r.getBno())); //좋아요를 넣어준다.
+    }
     HashMap<String, Object> paramMap = new HashMap<>();
     paramMap.put("list", recipe);
     System.out.println(new Gson().toJson(paramMap));
@@ -297,6 +305,9 @@ public class RecipeAjaxController {
     }
     
     List<SearchedRecipe> recipe = recipeService.searchByTag(tag, pageNo, pageSize);
+    for(SearchedRecipe r : recipe) {
+      r.setLikes(likeService.countAll(r.getBno())); //좋아요를 넣어준다.
+    }
     HashMap<String, Object> paramMap = new HashMap<>();
     paramMap.put("list", recipe);
     

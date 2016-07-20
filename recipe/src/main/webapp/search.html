@@ -126,67 +126,33 @@
           </span>
           <div class="title"><p>{{title}}</p></div>
         </div>
-        <div class="back face center">
-          <div class="back_card">
-            <div class="m_cate_border">{{category}}
-              <p class="m_cate">주카테고리</p>
-            </div>
-            <div class="m_cate_border2">{{desct}}
-              <p class="intro">자기소개</p>
-            </div><hr>
-            <div class="last_recipe">
-              <img src="img/last.png" class="last_img" style="width:120px;"/>
-            </div>
-            <div class="row">
-              <div class="col-xs-3 col-xs-3">
-                <img src="img/2.jpg" class="last_img2" style="width:50px;"/>
-              </div>
-              <div class="last_recipe_text col-xs-9 col-xs-9">
-                <span>  </span>
-              </div>
-            </div>
-            <div class="most_recipe">
-              <img src="img/most.png" class="most_img" style="width:120px;"/>
-            </div>
-            <div class="row">
-              <div class="col-xs-3 col-xs-3">
-                <img src="img/3.jpg" class="most_img2" style="width:50px;"/>
-              </div>
-              <div class="most_recipe_text col-xs-9 col-xs-9">
-                <span> 내가 제일 잘 나가ㅏㅏㅏㅏ...</span>
-              </div>
-            </div>
-          </div>
+
+      <div class="back face center">
+        <script>
+          var level = {{level}};
+          var levelStar;
+          if(level <= 1) levelStar = "img/1star.png";
+          else if(level <= 2) levelStar = "img/2star.png";
+          else if(level <= 3) levelStar = "img/3star.png";
+          else if(level <= 4) levelStar = "img/4star.png";
+          else if(level <= 5) levelStar = "img/5star.png";
+          $("#star{{@index}}").attr("src", levelStar);
+        <{{!}}/script>
+      
+        <div class="level">난이도 : <img id="star{{@index}}" src="" style="width:40%; margin-top:-2px;"> </div>
+        <div class="intro2"> {{cont}} </div>
+        <div class="ingre" id="ingre{{@index}}">{{tname}}</div>
+        <div class="date">{{w_dt}}</div>
+        <div class="option2">
+          <div class="blog"><a href="urlPage.html">자세히 보기</a></div>
         </div>
       </div>
-      <div class="option">
-        <div class="time"><button>{{time}}분</button></div>
-        <div class="like"><button type="submit">{{like}}명</button></div>
-        <div class="share"><button>공유하기</button></div>
-      </div>
     </div>
-
-    <div class="desc">
-      <script>
-        var level = {{level}};
-        var levelStar;
-        if(level <= 2) levelStar = "img/1star.png";
-        else if(level <= 4) levelStar = "img/2star.png";
-        else if(level <= 6) levelStar = "img/3star.png";
-        else if(level <= 8) levelStar = "img/4star.png";
-        else if(level <= 10) levelStar = "img/5star.png";
-        $("#star{{@index}}").attr("src", levelStar);
-      <{{!}}/script>
-      
-      <div class="level">난이도 : <img id="star{{@index}}" src="" style="width:40%; margin-top:-2px;"> </div>
-      <div class="intro2"> {{cont}} </div>
-      <div class="ingre" id="ingre{{@index}}">{{tname}}</div>
-      <div class="date">{{w_dt}}</div>
-      <div class="option2">
-        <div class="site"><a href="urlPage.html">간단히 보기</a></div>
-        <div class="blog"><a href="urlPage.html">자세히 보기</a></div>
-      </div>
-    </div>
+        <div class="option">
+          <div class="time"><button>{{time}}분</button></div>
+          <div class="like"><button id="like_{{bno}}" type="submit" data-state="before" onclick="c_like(this);" data-bno='{{bno}}' data-likes="{{likes}}">{{likes}}명</button></div>
+          <div class="share"><button>공유하기</button></div>
+        </div>
   </li>
   {{/each}}
   </script>
@@ -248,6 +214,6 @@
     };
   });
   </script>
-
+<script src="js/likes.js"></script>
 </body>
 </html>
