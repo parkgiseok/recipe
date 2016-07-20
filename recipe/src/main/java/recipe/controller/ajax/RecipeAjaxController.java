@@ -185,29 +185,32 @@ public class RecipeAjaxController {
   @RequestMapping(value="detailRecipeControl", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String detailRecipeControl(
-      @RequestParam(defaultValue="0") int pageNo, 
+      @RequestParam(defaultValue="1") int pageNo, 
       @RequestParam(defaultValue="4") int pageSize, HttpSession session) throws ServletException, IOException {
     Member member = (Member)session.getAttribute("loginUser");        
+    int mno = member.getNo();
     
     // 페이지 번호와 페이지 당 출력 개수의 유효성 검사
-    
-    int totalPage = recipeService.countPage(pageSize);
     if (pageNo < 0) { // 1페이지 부터 시작
       pageNo = 1;
     }
+    
+    int totalPage = recipeService.countPage(pageSize, mno);
     if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
-      pageNo = totalPage;
     }
-    if (pageSize < 3) { // 최소 3개
-      pageSize = 3; 
+    // System.out.println(totalPage);
+    
+    if (pageSize < 4) { // 최소 4개
+      pageSize = 4; 
     } else if (pageSize > 50) { // 최대 50개 
       pageSize = 50;
     }
     List<RecipeMember> recipe = recipeService.retrieveRecipeControl(member.getNo(),pageNo,pageSize);
     HashMap<String, Object> paramMap = new HashMap<>();
-    paramMap.put("totalPage", totalPage);
+    paramMap.put("mno", mno);
     paramMap.put("pageNo", pageNo);
     paramMap.put("pageSize", pageSize);
+    paramMap.put("totalPage", totalPage);
     paramMap.put("list", recipe);
     return new Gson().toJson(paramMap);
   }
@@ -349,46 +352,6 @@ public class RecipeAjaxController {
     }
     */
     return new Gson().toJson(paramMap);
-  }
-  @RequestMapping(value="updateFood", produces="application/json;charset=UTF-8")
-  @ResponseBody
-  public String updateFood(int bno,int tno) throws ServletException, IOException {
-    Food food = new Food();
-    food.setBno(bno);
-    food.setTno(tno);
-    
-    
-    HashMap<String,Object> result = new HashMap<>();
-    
-    try {
-      foodService.change(food);
-      result.put("status", "success");
-      System.out.println(" 음식성공ㅋㅋ");
-    } catch(Exception e) {
-      result.put("status", "failure");
-      System.out.println("실패ㅋㅋ");
-    }
-    
-    return new Gson().toJson(result);
-  }
-  
-
-
-
-  @RequestMapping(value="deleteFood", 
-      method=RequestMethod.POST, produces="application/json;charset=UTF-8")
-  @ResponseBody
-  public String deleteFood(int bno) 
-      throws ServletException, IOException {
-    HashMap<String,Object> result = new HashMap<>();
-    try{
-      foodService.delete(bno);
-      result.put("status", "success");
-    } catch(Exception e) {
-      e.printStackTrace();
-      result.put("status", "failure");
-    }
-    return new Gson().toJson(result);
   }
   
   @RequestMapping(value="countRecipeControl", produces="application/json;charset=UTF-8")
