@@ -502,6 +502,7 @@
   }
   
   $("#updated").click(function(){
+	  currentDiv(1);
 	  var tagi1 = $("#tag").val();
       var tagi2 = tagi1.replace(/,/gi,''); //특정문자 제거
       var inputTags = tagi2.split("#");
@@ -553,7 +554,6 @@
               }, function(result) {
                 if (result.status == "success") {
                   /* location.href = "index.html"; */
-                  window.alert("태그 등록 성공");
                 } else {
                   window.alert("등록 실패입니다!태그");
                 }
@@ -574,7 +574,6 @@
                   tno : bnos[a]
                 }, function(result) {
                   if (result.status == "success") {
-                    window.alert("음식 등록 성공");
                     /* location.href = "index.html"; */
                   } else {
                     window.alert("등록 실패입니다!음식");
