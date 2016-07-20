@@ -167,8 +167,10 @@
     $.post("./ajax/recipe/searchRecipeByNick.do", {
       nick : value
     }, function(result) {
+    	var cardno = result.list;
       var template = Handlebars.compile($('#card').html());
       $("#list1").append(template(result));
+      init(cardno);
     }, "json");
   });
   
@@ -176,8 +178,10 @@
     $.post("./ajax/recipe/searchRecipeByTitle.do", {
       title : value
     }, function(result) {
+    	var cardno = result.list;
       var template = Handlebars.compile($('#card').html());
       $("#list2").append(template(result));
+      init(cardno);
     }, "json");
   });
   
@@ -185,8 +189,10 @@
     $.post("./ajax/recipe/searchRecipeByTag.do", {
       tag : value
     }, function(result) {
+    	var cardno = result.list;
       var template = Handlebars.compile($('#card').html());
       $("#list3").append(template(result));
+      init(cardno);
     }, "json");
   });
   </script>
@@ -214,6 +220,32 @@
     };
   });
   </script>
+  
+<script>
+function init(cardno) {
+    for (var i = 0; i < cardno.length; i++) {
+      $
+          .ajax({
+            method : "POST",
+            url : "./ajax/likes/islike.do?bno=" + cardno[i].bno,
+            dataType : "json",
+            async : false,
+            success : function(result) {
+              if (result) {
+                //console.log("#like_"+cardno[i].bno);
+
+                $("#like_" + cardno[i].bno).attr(
+                    "data-state", "after");
+                $("#like_" + cardno[i].bno)
+                    .css("background",
+                        "url(./img/icon_heart_full.png) 7px center no-repeat");
+              } else {
+              }
+            }
+          })
+    }
+  }
+</script>
 <script src="js/likes.js"></script>
 </body>
 </html>
