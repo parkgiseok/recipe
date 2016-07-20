@@ -242,7 +242,7 @@
       </div>
       <div class="midcon row">
         <div id="slide_box">
-          <ul id="card_slider">
+          <ul id="card_slider{{bno}}" class="card_slider">
 
           </ul>
         </div>
@@ -343,23 +343,24 @@
   {{#each list}}
     <li><img src="webapp/{{p_url}}" alt="..." /></li>
   {{/each}}
-  </script>
-
-	<script>
+  </script>	
+  <script>
 		/* 간략히 보기 슬라이드 */
-		function tete(cardno) {
-			$.ajax({
-				method : "GET",
-				url : "auth/detailContent.do?bno=" + cardno[0].bno,
-				dataType : "json",
-				async : false,
-				success : function(result) {
-					var template = Handlebars.compile($('#test').html());
-					$("#card_slider").append(template(result));
-				}
-			});
-		}
+		function tete(bno) {
+				$.ajax({
+					method : "GET",
+					url : "auth/detailContent.do?bno=" + bno,
+					dataType : "json",
+					async : false,
+					success : function(result) {
+						var template = Handlebars.compile($('#test').html());
+						$("#card_slider" + bno).append(template(result));
+					}
+				});
+			}
 	</script>
+
+
 
 	<script>
 		/* 카드 안에 들어갈 정보 */
@@ -376,6 +377,10 @@
 					}
 					var template = Handlebars.compile($('#card').html());
 					var cardno = result.list;
+					var bno0 = result.list[0].bno;
+					var bno1 = result.list[1].bno;
+					var bno2 = result.list[2].bno;
+					var bno3 = result.list[3].bno;
 					$("#list0").append(template(result));
 					for (var i = 0; i <= (result.list).length - 1; i++) {
 						var im = result.list[i].level;
@@ -403,9 +408,18 @@
 					$('#a3').css('left', "780px");
 					$('.desc').hide();
 					init(cardno); //좋아요
-					preview(cardno); //간락히 보기
-					tete(cardno);
-					slide(); //카드슬라이드 돌아가게 하는거
+					preview(bno0); //간락히 보기
+					tete(bno0);
+					slide(bno0); //카드슬라이드 돌아가게 하는거
+					preview(bno1); //간락히 보기
+					tete(bno1);
+					slide(bno1); //카드슬라이드 돌아가게 하는거
+					preview(bno2); //간락히 보기
+					tete(bno2);
+					slide(bno2); //카드슬라이드 돌아가게 하는거
+					preview(bno3); //간락히 보기
+					tete(bno3);
+					slide(bno3); //카드슬라이드 돌아가게 하는거
 				},
 				error : function(request, status, error) {
 					console.log("code:" + request.status + "\n" + "message:"
@@ -448,10 +462,10 @@
 
 	<script>
 		/* 간략히 보기 슬라이드 */
-		function preview(cardno) {
+		function preview(bno) {
 			$.ajax({
 				method : "GET",
-				url : "auth/detailContent.do?bno=" + cardno[0].bno,
+				url : "auth/detailContent.do?bno=" + bno,
 				dataType : "json",
 				async : false,
 				success : function(result) {

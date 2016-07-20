@@ -1,7 +1,7 @@
     /* 카드 슬라이드 안에 사진 자동 변경 */
     
-    function slide(){
-      var card_slider = document.getElementById("card_slider");
+    function slide(bno){
+      var card_slider = document.getElementById("card_slider" +bno);
       var slideArray = card_slider.getElementsByTagName("li");
       var slideMax = slideArray.length - 1;
       var curSlideNo = 0;

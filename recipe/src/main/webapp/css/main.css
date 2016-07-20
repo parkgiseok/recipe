@@ -536,21 +536,21 @@ a.cbtn:hover {
   height: 160px;
 }
 
-#card_slider {
+.card_slider {
   position: relative;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-#card_slider li {
+.card_slider li {
   position: absolute;
   left: 0;
   top: 0;
   height: 180px;
 }
 
-#card_slider li img {
+.card_slider li img {
   width: 179px; 
   height: 179px;
   border-radius: 15px;

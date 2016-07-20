@@ -1,5 +1,5 @@
-    function loadApp() {
-      $('.flipbook').turn({
+    function loadApp(bno) {
+      $('.flipbook'+{{bno}}).turn({
         width : 902,
         height : 449,
         elevation : 50,
@@ -14,5 +14,5 @@
       yep : [ 'js/turn.js' ],
       nope : [ 'js/turn.html4.js' ],
       both : [ 'css/basic.css' ],
-      complete : loadApp
+      complete : loadApp(bno);
     });
