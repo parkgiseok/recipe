@@ -4,12 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>냉장고를 가져와</title>
-<link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+<link href="../bower_components/bootstrap/dist/css/bootstrap.css"
+	rel="stylesheet">
 <link href="../css/jquery-ui.css" rel="stylesheet">
 <link href="../css/recipeControl.css" rel="stylesheet">
 <link href="../css/myPageInnerForm.css" rel="stylesheet">
 <link href="../css/font.css" rel="stylesheet">
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="../js/moment.js"></script>
 <script src="../js/jquery-ui.js"></script>
@@ -19,121 +22,106 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed"
-          data-toggle="collapse" data-target="#defaultNavbar1">
-          <span class="sr-only">Toggle navigation</span> <span
-            class="icon-bar"></span> <span class="icon-bar"></span> <span
-            class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="../index.html"><img id="titleimg"
-          src="../img/title.PNG" /></a>
-      </div>
-      <div class="collapse navbar-collapse" id="defaultNavbar1">
-        <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="예) 김치 볶음밥">
-          </div>
-          <a href="../search.html" class="btn btn-default">검색</a>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a id="logout" href="../auth/logout.do">로그아웃</a></li>
-          <li><a id="mypage" href="myPage.html">마이페이지</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#defaultNavbar1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="../index.html"><img id="titleimg"
+					src="../img/title.PNG" /></a>
+			</div>
+			<div class="collapse navbar-collapse" id="defaultNavbar1">
+				<form class="navbar-form navbar-left" role="search">
+	        <div class="form-group">
+	          <input type="text" value="" class="form-control" id="searchvalue"
+	            placeholder="예) 김치 볶음밥">
+	        </div>
+	        <a onclick='javascript:fncSubmit();' class="btn btn-default">검색</a>
+	      </form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a id="logout" href="../auth/logout.do">로그아웃</a></li>
+					<li><a id="mypage" href="myPage.html">마이페이지</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
+	<div class="container">
+		<div class="row">
 
-  <div class="container">
-    <div class="row">
+			<!-- side bar -->
+			<div class="col-xs-2 col-xs-2">
+				<div id="side">
+					<div class="row">
+						<a href="myPage.html"><img src="../img/mypage.png"
+							style="width: 100%; cursor: pointer;" /></a>
+					</div>
+					<div class="side"></div>
+					<div class="two row">
+						<p class="pt" id="nick_view"></p>
+						<div class="s_b">
+							<button class="mp_b1 mp_b1--aylen"
+								onclick="location.href='recipeControl.html'">레시피 관리</button>
+							<button class="mp_b1 mp_b1--aylen"
+								onclick="location.href='recipeRanking.html'">레시피 순위</button>
+						</div>
+					</div>
+					<div class="two row">
+						<p class="pt1" id="info">회원정보 관리</p>
+						<div class="s_b">
+							<button class="mp_b1 mp_b1--aylen"
+								onclick="location.href='infoChange.html'">회원정보 변경</button>
+							<button class="mp_b1 mp_b1--aylen"
+								onclick="location.href='leave.html'">회원 탈퇴</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
-      <!-- side bar -->
-      <div class="col-xs-2 col-xs-2">
-        <div id="side">
-          <div class="row">
-            <a href="myPage.html"><img src="../img/mypage.png" style="width:100%; cursor: pointer;" /></a>
-          </div>
-        <div class="side"></div>
-          <div class="two row">
-            <p class="pt" id="nick_view"></p>
-            <div class="s_b">
-              <button class="mp_b1 mp_b1--aylen" onclick="location.href='recipeControl.html'">레시피 관리</button>
-              <button class="mp_b1 mp_b1--aylen" onclick="location.href='recipeRanking.html'">레시피 순위</button>
-            </div>
-          </div>
-          <div class="two row">
-            <p class="pt1" id="info">회원정보 관리</p>
-            <div class="s_b">
-              <button class="mp_b1 mp_b1--aylen" onclick="location.href='infoChange.html'">회원정보 변경</button>
-              <button class="mp_b1 mp_b1--aylen" onclick="location.href='leave.html'">회원 탈퇴</button>
-            </div>
-          </div>
-        </div>
-      </div>
+			<div class="cc col-xs-10 col-xs-10">
+				<div class="row">
+					<img src="../img/control.png" class="title"
+						style="width: 210px; height: 66px;">
+					<hr id="topline">
 
-      <div class="cc col-xs-10 col-xs-10">
-        <div class="row">
-          <img src="../img/control.png" class="title" style="width:210px; height:66px;">
-          <hr id="topline">
-          
-          <div class="col-xs-4 col-xs-4">
-            <p id="my_count">
-            </p>
-          </div>
-        </div>
-        <ul>
-          <li class="slide mySlides" id="li1">
-          </li>
-        </ul>
-	      <div style="text-align:center;">
-	      <button type="button" onclick="c_np(0)">1</button>
-	      <button type="button" onclick="c_np(4)" style="left:20px;">2</button>
-	      <button type="button" onclick="c_np(8)" style="left:20px;">3</button>
-	      </div>
-	
-      </div>
-    </div><hr>
+					<div class="col-xs-4 col-xs-4">
+						<p id="my_count"></p>
+					</div>
+				</div>
+				<ul>
+					<li class="slide mySlides" id="li1"></li>
+				</ul>
+				<div style="text-align:center">
+			 	  <ul class="pagination">
+			 	  </ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr>
 
-  <footer>
-    <div class="text-center col-xs-6 col-xs-offset-3">
-      <p>
-        Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a
-          href="http://127.0.0.1:8080/index.html">냉장고를 가져와</a>
-      </p>
-    </div>
-  </footer>
-  </div>
-  
-  <script>
-    function c_np(no) {
-    	 $.ajax({
-             method : "GET",
-             url : "../ajax/recipe/detailRecipeControl.do?pageNo="+no,
-             dataType : "json",
-             success : function(data) {
-            	 for(var i=0; i <= (data.list).length; i++) {
-                     data.list[i].w_dt = moment(data.list[i].w_dt, 'MM/DD/YYYY').format().substr(0, 10)
-                   }
-            	 var template = Handlebars.compile($('#l1').html());
-                 $("#li1").html(template(data));
-             }
-       });
-    }
-  </script>
+	<footer>
+		<div class="text-center col-xs-6 col-xs-offset-3">
+			<p>
+				Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a
+					href="http://127.0.0.1:8080/index.html">냉장고를 가져와</a>
+			</p>
+		</div>
+	</footer>
 
-  
-  <script id="nick" type="text/x-handlebars-template">
+	<script id="nick" type="text/x-handlebars-template">
     <span id="name">{{nick}}</span>'s 레시피
   </script>
-  
-  <script id="co" type="text/x-handlebars-template">
+
+	<script id="co" type="text/x-handlebars-template">
     검색결과 : <span id="count">{{count}}</span> 건
   </script>
-  
-   <script id="l1" type="text/x-handlebars-template">
+
+	<script id="l1" type="text/x-handlebars-template">
     {{#each list}}
       <div class="col-xs-12 col-xs-12">
         <div class="rr row">
@@ -155,36 +143,82 @@
       </div>
     {{/each}}
   </script>
-  
-  <script> 
-    loadMember();
-    function loadMember() {
-      $.getJSON("../ajax/member/detail.do", function(result) {
-        var template = Handlebars.compile($('#nick').html());
-        $("#nick_view").append(template(result));
-      });
-    }
-  </script>
-  
-  <script>
-    $(document).ready(function() {
-      $.getJSON("../ajax/recipe/countRecipeControl.do", function(result) {
-        var template = Handlebars.compile($('#co').html());
-        $("#my_count").append(template(result));
-      });
-    })
-   </script>
-  
-  <script>
-	  $(document).ready(function() {
-	      $.getJSON("../ajax/recipe/detailRecipeControl.do", function(result) {
-	    	  for(var i=0; i <= (result.list).length-1; i++) {
-                  result.list[i].w_dt = moment(result.list[i].w_dt, 'MM/DD/YYYY').format().substr(0, 10)
-                }
-	        var template = Handlebars.compile($('#l1').html());
-	        $("#li1").append(template(result));
-	      });
-	  })    
+
+	<script>
+		console.log(sessionStorage)
+		//이전버튼
+		function pre() {
+			console.log(sessionStorage.getItem("nowpage"))
+			if (sessionStorage.getItem("nowpage") > 1)
+				gopage(sessionStorage.getItem("nowpage") * 1 - 1)
+		}
+		//다음버튼
+		function next() {
+			console.log(sessionStorage.getItem("nowpage"))
+			if (sessionStorage.getItem("nowpage") < sessionStorage
+					.getItem("totalPage"))
+				gopage(sessionStorage.getItem("nowpage") * 1 + 1)
+		}
+		//recipeControl들어오면 첫화면출력
+		gopage(1);
+		//페이지 버튼
+		function gopage(i) {
+			sessionStorage.setItem("nowpage", i);
+			$.getJSON("../ajax/recipe/detailRecipeControl.do?pageNo=" + i,
+					function(result) {
+						/* console.log(thisMenu); */
+						$("#li1").empty();
+						var templateData = $("#l1").html();
+						var template = Handlebars.compile(templateData);
+						var html = template(result);
+						$("#li1").append(html);
+					})
+		};
+
+		// paging 생성
+		$(function prio(thisMenu) {
+			$.getJSON(
+							"../ajax/recipe/detailRecipeControl.do",
+							function(result) {
+								var pagingTag = $(".pagination");
+								sessionStorage.setItem("totalPage",
+										result.totalPage);
+								$("<li>")
+										.html(
+												"<a href='javascript:pre()' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>")
+										.appendTo(pagingTag);
+								for (var i = 1; i <= result.totalPage; i++) {
+									$("<li>").html(
+											"<a href='javascript:gopage(" + i
+													+ ")'>" + i + "</a></li>")
+											.appendTo(pagingTag);
+								}
+								$("<li>")
+										.html(
+												"<a href='javascript:next()' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>")
+										.appendTo(pagingTag);
+							})
+		});
 	</script>
+
+	<script>
+		loadMember();
+		function loadMember() {
+			$.getJSON("../ajax/member/detail.do", function(result) {
+				var template = Handlebars.compile($('#nick').html());
+				$("#nick_view").append(template(result));
+			});
+		}
+	</script>
+
+	<script>
+		$(document).ready(function() {
+			$.getJSON("../ajax/recipe/countRecipeControl.do", function(result) {
+				var template = Handlebars.compile($('#co').html());
+				$("#my_count").append(template(result));
+			});
+		})
+	</script>
+	<script src="../js/my_search.js"></script>
 </body>
 </html>

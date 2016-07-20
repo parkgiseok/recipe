@@ -39,8 +39,8 @@ public class DefaultRecipeService implements RecipeService {
   }
   
 
-  public int countPage(int pageSize) {
-    int count = recipeDao.countAll();
+  public int countPage(int pageSize, int mno) {
+    int count = recipeDao.countRecipeControl(mno);
     int pages = count / pageSize;
     if ((count % pageSize) > 0)
       pages++;
@@ -54,7 +54,7 @@ public class DefaultRecipeService implements RecipeService {
   public List<RecipeMember> retrieveRecipeControl(int mno, int si, int len) {
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("mno",mno);
-    paramMap.put("startIndex",si);
+    paramMap.put("startIndex", (si - 1) * len);
     paramMap.put("length",len);
     return recipeDao.selectRecipeControl(paramMap);
   }

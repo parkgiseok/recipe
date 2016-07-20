@@ -13,7 +13,7 @@ public interface RecipeService {
   void change(Recipe recipe);  
   Recipe retrieve(Integer bno);  
   Recipe list(int bno);
-  int countPage(int pageSize);
+  int countPage(int pageSize, int mno);
   List<RecipeMember> retrieveRecent(Integer mno);  
   List<RecipeMember> retrieveRecipeControl(int mno, int si, int len);
   List<Tag> selectAllTag();
