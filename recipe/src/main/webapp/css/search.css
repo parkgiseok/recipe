@@ -5,6 +5,9 @@
   width: 1170px;
   max-width: none !important;
 }
+#logout {
+  cursor: pointer;
+}
 html, body, div, applet, object, iframe, del, em, img, ins, q, s, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, article, aside, embed, figure, footer, header, hgroup, menu, nav, output, section, summary {
 	margin: 0;
 	padding: 0;
@@ -97,7 +100,7 @@ input, button, img {
 	position: relative
 }
 .lst_recipe li .card .author a {
-	width: 61px;
+	width: 100px;
 }
 .lst_recipe li .card .author img {
 	width: 61px;
@@ -204,7 +207,7 @@ input, button, img {
 	box-sizing: border-box;
 	float: right;
 	background-image: url("../img/result_back.jpg");
-  background-size: 259px 368px;
+  background-size: 259px 339px;
   background-repeat: no-repeat;
 }
 .lst_recipe li .desc .option2 {
@@ -251,8 +254,8 @@ input, button, img {
 	display: block;
 	padding-top: 25px;
 	height: 80px;
-	width: 100%;
-	text-align: center;
+	width: 120px;
+	text-align: right;
 	background-color: transparent;
 	border: none;
 	box-sizing: border-box;
@@ -290,7 +293,7 @@ input, button, img {
 	float: left;
 	font-size: medium;
 	z-index: 1;
-	background-image: url("../img/card_back2.jpg");
+	background-image: url("../img/result_back.jpg");
 	background-size: 242px 340px;
 	background-position: center;
 }
