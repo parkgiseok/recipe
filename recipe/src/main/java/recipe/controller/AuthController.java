@@ -91,6 +91,33 @@ public class AuthController {
     return new Gson().toJson(result);
   }
   
+  // urlPage 수정 | 삭제 버튼 유무
+  @RequestMapping(value="/update_delete1", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String update_delete1(
+      int bno,
+      HttpSession session) {
+    HashMap<String,Object> result = new HashMap<>();
+    
+    Recipe recipe = recipeService.retrieve(bno);
+    int mno = recipe.getMno();
+    System.out.println(mno);
+    if(session.getAttribute("loginUser") != null) {
+      Member member = (Member)session.getAttribute("loginUser");
+      int m_mno = member.getNo();
+      System.out.println("....");
+      System.out.println(m_mno);
+      if (mno == m_mno) {
+        result.put("status", "success");
+      } else { 
+        result.put("status", "failure");
+      }
+    } else {
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
+  
   //로그아웃(index 용)
   @RequestMapping("/logout")
   public String logout(HttpSession session, SessionStatus status) {

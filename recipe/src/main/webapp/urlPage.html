@@ -359,22 +359,20 @@
 		})
 		
 		// 해당 작성 사용자가 아니면 수정 | 삭제 버튼 없애기
-		$(".log_btn").click(function() {
-      $.ajax("auth/login.do?", {
+		$(document).ready(function() {
+      $.ajax("auth/update_delete1.do?", {
         method : "POST",
         dataType : "JSON",
         data : {
-          id : $("#mem_id").val(),
-          password : $("#mem_pwd").val()
+          bno : bno
         },
         success : function(result) {
           if (result.status == "success") {
-            location.href = "urlPage.html?bno=" + bno; 
+        	  $(".update_delete1").css("display", "");
           } else if (result.status == "failure") {
-            swal({confirmButtonColor: "#DD6B55",
-              title: '로그인 실패',
-              text: "아이디 또는 비밀번호를 다시 확인해주세요.",
-              type: 'warning'})
+        	  $(".update_delete1").css("display", "none");
+          } else {
+        	  $(".update_delete1").css("display", "none");
           }
         }
       });
