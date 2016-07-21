@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="css/font.css">
 <link href="css/sweetalert.css" rel="stylesheet">
 
+<link href="css/basic.css" rel="stylesheet">
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="js/sweetalert.min.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -24,6 +26,8 @@
 <script src="js/scripts.js"></script>
 <script src="js/auth.js"></script>
 <script src="js/loginCheck.js"></script>
+
+
 </head>
 
 <body>
@@ -271,7 +275,7 @@
             <h2 style="color:red;padding-left:20px;">{{nick}} 레시피 : {{title}}</h2>
               <div class="flipbook-viewport">
                 <div class="container">
-                  <div class="flipbook" id="pop_mybook">
+                  <div class="flipbook" id="pop_mybook{{bno}}">
                     <div style="text-align: center; color:red;"><img src="img/han.jpg" style="width:80%;"><h2>{{nick}} 레시피 : {{title}}</h2></div>
 
                   </div>
@@ -362,8 +366,10 @@
 					success : function(result) {
 						var template = Handlebars.compile($('#test').html());
 						$("#card_slider" + bno).append(template(result));
+						slide(bno);
 						template = Handlebars.compile($('#data-ul01').html());
-						$("#pop_mybook").append(template(result));
+						$("#pop_mybook" + bno).append(template(result));
+						loadApp(bno);
 					}
 				});
 			}
@@ -417,14 +423,10 @@
 					$('#a3').css('left', "780px");
 					$('.desc').hide();
 					init(cardno); //좋아요
-					tete(bno0);
-					slide(bno0); //카드슬라이드 돌아가게 하는거
+					tete(bno0); //카드슬라이드 돌아가게 하는거					 
 					tete(bno1);
-					slide(bno1); //카드슬라이드 돌아가게 하는거
 					tete(bno2);
-					slide(bno2); //카드슬라이드 돌아가게 하는거
 					tete(bno3);
-					slide(bno3); //카드슬라이드 돌아가게 하는거
 				},
 				error : function(request, status, error) {
 					console.log("code:" + request.status + "\n" + "message:"
@@ -473,6 +475,8 @@
 	<!-- 카드 간략히 보기 팝업 -->
 	<script type="text/javascript" src="js/preview.js"></script>
 	<script src="js/jquery.backstretch.min.js"></script>
+	
+	<script src="js/turn.js"></script>
 
 </body>
 </html>

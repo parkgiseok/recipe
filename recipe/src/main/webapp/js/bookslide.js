@@ -1,5 +1,5 @@
-    function loadApp() {
-      $('.flipbook').turn({
+function loadApp(bno) {
+      $('#pop_mybook'+bno).turn({
         width : 902,
         height : 449,
         elevation : 50,
@@ -9,10 +9,12 @@
       });
     }
     // Load the HTML4 version if there's not CSS transform
-    yepnope({
+	/*
+	yepnope({
       test : Modernizr.csstransforms,
       yep : [ 'js/turn.js' ],
       nope : [ 'js/turn.html4.js' ],
       both : [ 'css/basic.css' ],
       complete : loadApp
     });
+	*/
