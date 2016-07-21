@@ -205,6 +205,7 @@ public class RecipeAjaxController {
     } else if (pageSize > 50) { // 최대 50개 
       pageSize = 50;
     }
+    
     List<RecipeMember> recipe = recipeService.retrieveRecipeControl(member.getNo(),pageNo,pageSize);
     HashMap<String, Object> paramMap = new HashMap<>();
     paramMap.put("mno", mno);

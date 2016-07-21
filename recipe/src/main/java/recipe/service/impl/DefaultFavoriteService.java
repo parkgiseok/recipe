@@ -52,8 +52,27 @@ public class DefaultFavoriteService implements FavoriteService {
     }
   }
   
-  public List<RecipeMember> retrieveRecent(Integer mno) {
-    return favoriteDao.favoriteRecipe(mno);
+  @Override
+  public List<RecipeMember> retrieveRecent(int mno, int pageNo, int pageSize) {
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("mno",mno);
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length",pageSize);
+    return favoriteDao.favoriteRecipe(paramMap);
+  }
+  
+  @Override
+  public int countyRecipeFavorite(int mno) {
+    return favoriteDao.countRecipeFavorite(mno);
+  }
+
+  @Override
+  public int countPage(int pageSize, int mno) {
+    int count = favoriteDao.countRecipeFavorite(mno);
+    int pages = count / pageSize;
+    if ((count % pageSize) > 0)
+      pages++;
+    return pages;
   }
 
 }

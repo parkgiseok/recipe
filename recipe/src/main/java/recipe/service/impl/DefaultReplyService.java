@@ -55,8 +55,8 @@ public class DefaultReplyService implements ReplyService {
   }
 
   @Override
-  public int countPage(int pageSize) {
-    int count = replyDao.countAll();
+  public int countPage(int pageSize, int mno) {
+    int count = replyDao.countRecipeReply(mno);
     int pages = count / pageSize;
     if ((count % pageSize) > 0)
       pages++;
@@ -66,14 +66,14 @@ public class DefaultReplyService implements ReplyService {
   public List<ReplyRecipeMember> replyRecipeRecent(int no, int pageNo, int pageSize) {
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("mno",no);
-    paramMap.put("startIndex",pageNo);
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
     paramMap.put("length",pageSize);
     return replyDao.selectRecentList(paramMap);
   }
 
   @Override
   public int county(int no) {
-    return replyDao.county(no);
+    return replyDao.countRecipeReply(no);
   }
 
 }

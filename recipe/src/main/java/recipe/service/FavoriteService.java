@@ -11,5 +11,7 @@ public interface FavoriteService {
   Favorite retrieveByNO(int mno,int bno);
   int countAll(int bno);
   boolean isFavorite(int bno, int mno);
-  List<RecipeMember> retrieveRecent(Integer mno);  
+  List<RecipeMember> retrieveRecent(int mno, int pageNo, int pageSize);  
+  int countyRecipeFavorite(int mno);
+  int countPage(int pageSize, int mno);
 }

@@ -18,6 +18,8 @@ public interface FavoriteDao {
   
   int isFavorite(Map<String, Object> paramMap);
   
-  List<RecipeMember> favoriteRecipe(Integer mno);
+  List<RecipeMember> favoriteRecipe(Map<String, Object> paramMap);
+  
+  int countRecipeFavorite(int mno);
   
 }

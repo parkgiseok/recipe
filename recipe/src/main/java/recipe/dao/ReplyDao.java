@@ -15,5 +15,5 @@ public interface ReplyDao {
   void update(Reply userreview);
   Reply selectOne(Map<String, Object> paramMap);
   int countAll();
-  int county(int mno);
+  int countRecipeReply(int mno);
 }

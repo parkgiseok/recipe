@@ -46,7 +46,13 @@
 }
 
 .tit {
-	font-size: 15px;
+	font-size: 17px;
+  display: inline-block;
+  width: 450px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid lightblue;
 }
 
 .cont {
@@ -72,7 +78,7 @@
 }
 
 .date2 {
-	margin-top: 11px;
+	margin-top: 29px;
 }
 
 .rr {

@@ -92,13 +92,11 @@
 					<ul>
 						<li class="slide mySlides" id="li1"></li>
 					</ul>
+					<div style="text-align:center">
+          <ul class="pagination">
+          </ul>
+        </div>
 				</div>
-					<div style="text-align:center;">
-          <button type="button" onclick="c_np(0)">1</button>
-          <button type="button" onclick="c_np(4)" style="left:20px;">2</button>
-          <button type="button" onclick="c_np(8)" style="left:20px;">3</button>
-          </div>
-				<hr>
 			</div>
 	  </div>
 
@@ -129,7 +127,8 @@
             <img src="{{m_photo}}" class="img-rounded" style="width:120px; height:120px"></a>
           </div>
           <div class="reply_title_rcont col-xs-7">
-            <a id="reply_tit" class="tit" href="../urlPage.html?bno={{bno}}">{{title}}</a>
+            <a id="reply_tit" href="../urlPage.html?bno={{bno}}">
+            <p class="tit">{{title}}</p></a>
             <p class="cont">　→ {{r_cont}}</p>
           </div>
           <div class="reply_date col-xs-2">
@@ -139,6 +138,63 @@
         </div>
       </div>
     {{/each}}
+  </script>
+  
+  <script>
+    console.log(sessionStorage)
+    //이전버튼
+    function pre() {
+      console.log(sessionStorage.getItem("nowpage"))
+      if (sessionStorage.getItem("nowpage") > 1)
+        gopage(sessionStorage.getItem("nowpage") * 1 - 1)
+    }
+    //다음버튼
+    function next() {
+      console.log(sessionStorage.getItem("nowpage"))
+      if (sessionStorage.getItem("nowpage") < sessionStorage
+          .getItem("totalPage"))
+        gopage(sessionStorage.getItem("nowpage") * 1 + 1)
+    }
+    //recipeControl들어오면 첫화면출력
+    gopage(1);
+    //페이지 버튼
+    function gopage(i) {
+      sessionStorage.setItem("nowpage", i);
+      $.getJSON("../ajax/reply/replyRecipeRecent.do?pageNo=" + i,
+          function(result) {
+            /* console.log(thisMenu); */
+            $("#li1").empty();
+            var templateData = $("#l1").html();
+            var template = Handlebars.compile(templateData);
+            var html = template(result);
+            $("#li1").append(html);
+          })
+    };
+
+    // paging 생성
+    $(function prio(thisMenu) {
+      $.getJSON(
+              "../ajax/reply/replyRecipeRecent.do",
+              function(result) {
+                var pagingTag = $(".pagination");
+                sessionStorage.setItem("totalPage",
+                    result.totalPage);
+                $("<li>")
+                    .html(
+                        "<a href='javascript:pre()' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>")
+                    .appendTo(pagingTag);
+                for (var i = 1; i <= result.totalPage; i++) {
+                  $("<li>").html(
+                      "<a href='javascript:gopage(" + i
+                          + ")'>" + i + "</a></li>")
+                      .appendTo(pagingTag);
+                }
+                $("<li>")
+                    .html(
+                        "<a href='javascript:next()' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>")
+                    .appendTo(pagingTag);
+              })
+    });
   </script>
 
 	<script> 
@@ -151,7 +207,7 @@
     }
   </script>
   
-  <script>
+  <!-- <script>
     $(document).ready(function() {
       $.getJSON("../ajax/reply/replyRecipeRecent.do", function(result) {
     	  console.log(result);
@@ -163,7 +219,7 @@
         $("#li1").append(template(result));
       });
     })
-   </script>
+   </script> -->
    
    <script>
     $(document).ready(function() {
@@ -173,21 +229,6 @@
       });
     })
    </script>
-   
-   <script>
-	    function c_np(no) {
-	       $.ajax({
-	             method : "GET",
-	             url : "../ajax/recipe/replyRecipeRecent.do?pageNo="+no,
-	             dataType : "json",
-	             success : function(data) {
-	               console.log(no)
-	               var template = Handlebars.compile($('#l1').html());
-	                 $("#li1").html(template(data));
-	             }
-	       });
-	    }
-	 </script>
 	 <script src="../js/my_search.js"></script>
 </body>
 </html>

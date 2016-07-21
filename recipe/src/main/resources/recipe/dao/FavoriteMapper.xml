@@ -25,7 +25,7 @@
     select count(*) from Favorite where BNO=#{bno} and Mno=#{mno}
   </select>
   
-  <select id="favoriteRecipe" parameterType="Integer" resultType="RecipeMember">
+  <select id="favoriteRecipe" parameterType="map" resultType="RecipeMember">
 		select favorite.mno, recipe.bno, recipe.title, recipe.m_photo, recipe.w_dt, r_photo.cont
 		from favorite 
 		inner join recipe 
@@ -33,8 +33,13 @@
 		left join r_photo 
 		on recipe.bno=r_photo.bno
 		group by r_photo.bno order by recipe.bno desc
-		limit 0, 4
+		limit #{startIndex}, #{length}
    </select>
+   
+   <select id="countRecipeFavorite" resultType="int" parameterType="int" >
+    select count(bno)
+    from FAVORITE where mno=#{mno}
+  </select>
 </mapper>
 <!-- 
    select f.mno, r.bno, r.title, r.m_photo, r.w_dt, rp.cont from 

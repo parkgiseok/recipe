@@ -5,9 +5,6 @@
 *{
   font-family: '옛날목욕탕';
 }
-.form-control {
-	width: 100px;
-}
 
 #my_count {
 	margin-left: 15px;
@@ -20,7 +17,6 @@
 .mySlides {
 	margin-top: 70px;
 	margin-bottom: 40px;
-	
 }
 
 .slide {
@@ -49,6 +45,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border-bottom: 1px solid lightblue;
 }
 
 .list_cont {
@@ -73,7 +70,7 @@
 }
 
 .date {
-  margin-top: 37px;
+  margin-top: -50px;
   position: relative;
   color: gray;
   font-style: italic;

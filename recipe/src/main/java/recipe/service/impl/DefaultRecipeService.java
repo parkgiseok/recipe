@@ -51,11 +51,11 @@ public class DefaultRecipeService implements RecipeService {
     return recipeDao.selectRecentList(mno);
   }
   
-  public List<RecipeMember> retrieveRecipeControl(int mno, int si, int len) {
+  public List<RecipeMember> retrieveRecipeControl(int mno, int pageNo, int pageSize) {
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("mno",mno);
-    paramMap.put("startIndex", (si - 1) * len);
-    paramMap.put("length",len);
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length",pageSize);
     return recipeDao.selectRecipeControl(paramMap);
   }
 

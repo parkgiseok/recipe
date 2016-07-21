@@ -12,7 +12,7 @@ public interface ReplyService {
   void change(Reply userreview);
   List<ReplyData> list(int bno, int page);
   Reply retrieveByNo(int mno, int bno);
-  int countPage(int pageSize);
+  int countPage(int pageSize, int mno);
   List<ReplyRecipeMember> replyRecipeRecent(int no, int pageNo, int pageSize);
   int county(int no);
 }

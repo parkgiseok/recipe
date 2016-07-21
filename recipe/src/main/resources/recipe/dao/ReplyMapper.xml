@@ -47,7 +47,7 @@
     from reply
   </select>
   
-  <select id="county" resultType="int" parameterType="int" >
+  <select id="countRecipeReply" resultType="int" parameterType="int" >
     select count(rno)
     from reply where mno=#{mno}
   </select>

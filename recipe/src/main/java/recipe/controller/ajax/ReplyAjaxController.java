@@ -105,13 +105,17 @@ public class ReplyAjaxController {
   @RequestMapping(value="replyRecipeRecent", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String replyRecipeRecent(
-      @RequestParam(defaultValue="0") int pageNo, 
+      @RequestParam(defaultValue="1") int pageNo, 
       @RequestParam(defaultValue="4") int pageSize, HttpSession session) throws ServletException, IOException {
-    Member member = (Member)session.getAttribute("loginUser");        
+    Member member = (Member)session.getAttribute("loginUser");      
+    int mno = member.getNo();
     
     // 페이지 번호와 페이지 당 출력 개수의 유효성 검사
+    if (pageNo < 0) { // 1페이지 부터 시작
+      pageNo = 1;
+    }
     
-    int totalPage = replyService.countPage(pageSize);
+    int totalPage = replyService.countPage(pageSize, mno);
     if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
     }
     
@@ -122,6 +126,10 @@ public class ReplyAjaxController {
     }
     List<ReplyRecipeMember> recipe = replyService.replyRecipeRecent(member.getNo(),pageNo,pageSize);
     HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("mno", mno);
+    paramMap.put("pageNo", pageNo);
+    paramMap.put("pageSize", pageSize);
+    paramMap.put("totalPage", totalPage);
     paramMap.put("list", recipe);
     return new Gson().toJson(paramMap);
   }

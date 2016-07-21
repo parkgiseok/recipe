@@ -7,6 +7,14 @@
   font-family: '옛날목욕탕';
 }
 
+#my_count {
+  margin-left: 15px;
+  padding-bottom: 10px;
+}
+#count {
+  color: #ff8040;
+}
+
 .top {
 	margin-left: -11px;
 }
@@ -22,7 +30,13 @@
 }
 
 .tit {
-  font-size: 15px;
+  font-size: 17px;
+  display: inline-block;
+  width: 450px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid lightblue;
 }
 
 .slide {
@@ -35,7 +49,7 @@
 }
 
 .date {
-	margin-top: 27px;
+	margin-top: 25px;
   position: relative;
   color: gray;
   font-style: italic;
