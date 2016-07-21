@@ -344,8 +344,15 @@
     <li><img src="webapp/{{p_url}}" alt="..." /></li>
   {{/each}}
   </script>	
+  <script id="data-ul01" type="text/x-handlebars-template">
+  {{#each list}}
+    <div class="pop_flip_img"><img src="webapp/{{p_url}}" class="pop_flip_img1"></div>
+    <div class="pop_flip_text"><div class="pop_flip_text1">{{{cont}}}</div></div>
+  {{/each}}
+  </script>
+  
   <script>
-		/* 간략히 보기 슬라이드 */
+		/* 카드 슬라이드 */
 		function tete(bno) {
 				$.ajax({
 					method : "GET",
@@ -355,11 +362,13 @@
 					success : function(result) {
 						var template = Handlebars.compile($('#test').html());
 						$("#card_slider" + bno).append(template(result));
+						template = Handlebars.compile($('#data-ul01').html());
+						$("#pop_mybook").append(template(result));
 					}
 				});
 			}
 	</script>
-
+	
 
 
 	<script>
@@ -408,16 +417,12 @@
 					$('#a3').css('left', "780px");
 					$('.desc').hide();
 					init(cardno); //좋아요
-					preview(bno0); //간락히 보기
 					tete(bno0);
 					slide(bno0); //카드슬라이드 돌아가게 하는거
-					preview(bno1); //간락히 보기
 					tete(bno1);
 					slide(bno1); //카드슬라이드 돌아가게 하는거
-					preview(bno2); //간락히 보기
 					tete(bno2);
 					slide(bno2); //카드슬라이드 돌아가게 하는거
-					preview(bno3); //간락히 보기
 					tete(bno3);
 					slide(bno3); //카드슬라이드 돌아가게 하는거
 				},
@@ -453,28 +458,7 @@
 		}
 	</script>
 
-	<script id="data-ul01" type="text/x-handlebars-template">
-  {{#each list}}
-    <div class="pop_flip_img"><img src="webapp/{{p_url}}" class="pop_flip_img1"></div>
-    <div class="pop_flip_text"><div class="pop_flip_text1">{{{cont}}}</div></div>
-  {{/each}}
-  </script>
 
-	<script>
-		/* 간략히 보기 슬라이드 */
-		function preview(bno) {
-			$.ajax({
-				method : "GET",
-				url : "auth/detailContent.do?bno=" + bno,
-				dataType : "json",
-				async : false,
-				success : function(result) {
-					var template = Handlebars.compile($('#data-ul01').html());
-					$("#pop_mybook").append(template(result));
-				}
-			});
-		}
-	</script>
 
 	<!-- 좋아요 -->
 	<script src="js/likes.js"></script>
