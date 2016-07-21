@@ -125,27 +125,6 @@ public class RecipeAjaxController {
     return new Gson().toJson(paramMap);
   }
   
-  @RequestMapping(value="detail", produces="application/json;charset=UTF-8")
-  @ResponseBody
-  public String detail(int bno) throws ServletException, IOException {
-    /*
-    int totalPage = recipeService.countPage(pageSize);
-    if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
-    }
-    
-    if (pageSize < 4) { // 최소 3개
-      pageSize = 4; 
-    } else if (pageSize > 50) { // 최대 50개 
-      pageSize = 50;
-    }*/
-    Recipe recipe = recipeService.retrieve(bno);
-    List<Recipe> recipe1 = recipeService.retrieveListByMno(recipe.getMno());
-    Map<String, Object> paramMap = new HashMap<String, Object>();
-    paramMap.put("list", recipe1);
-    
-    return new Gson().toJson(paramMap);
-  }
-  
   @RequestMapping(value="selectTagList", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
   @ResponseBody
   public String selectTagList(int bno, HttpSession session) throws ServletException, IOException {    
@@ -213,6 +192,40 @@ public class RecipeAjaxController {
     paramMap.put("pageSize", pageSize);
     paramMap.put("totalPage", totalPage);
     paramMap.put("list", recipe);
+    return new Gson().toJson(paramMap);
+  }
+  
+  @RequestMapping(value="detail", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String detail(
+      @RequestParam(defaultValue="1") int pageNo, 
+      @RequestParam(defaultValue="4") int pageSize, Integer bno, HttpSession session) throws ServletException, IOException {
+    Recipe recipe = recipeService.retrieve(bno);
+    int mno = recipe.getMno();
+    // System.out.println(mno);
+    
+    // 페이지 번호와 페이지 당 출력 개수의 유효성 검사
+    if (pageNo < 0) { // 1페이지 부터 시작
+      pageNo = 1;
+    }
+    
+    int totalPage = recipeService.countPage(pageSize, mno);
+    if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
+    }
+    // System.out.println(totalPage);
+    
+    if (pageSize < 4) { // 최소 4개
+      pageSize = 4; 
+    } else if (pageSize > 50) { // 최대 50개 
+      pageSize = 50;
+    }
+    
+    List<Recipe> recipe1 = recipeService.retrieveListByMno(mno,pageNo,pageSize);
+    Map<String, Object> paramMap = new HashMap<String, Object>();
+    paramMap.put("pageNo", pageNo);
+    paramMap.put("pageSize", pageSize);
+    paramMap.put("totalPage", totalPage);
+    paramMap.put("list", recipe1);
     return new Gson().toJson(paramMap);
   }
   

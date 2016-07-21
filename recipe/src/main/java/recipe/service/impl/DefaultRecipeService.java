@@ -70,8 +70,12 @@ public class DefaultRecipeService implements RecipeService {
   }
 
   @Override
-  public List<Recipe> retrieveListByMno(int bno) {
-    return recipeDao.selectRecipeByMno(bno);
+  public List<Recipe> retrieveListByMno(int mno, int pageNo, int pageSize) {
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("mno",mno);
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
+    return recipeDao.selectRecipeByMno(paramMap);
   }
 
   @Override

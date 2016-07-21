@@ -47,11 +47,11 @@
      limit #{startIndex}, #{length}
   </select>
   
-  <select id="selectRecipeByMno" parameterType="int" resultType="Recipe">
-     select r.title, r.w_dt, r.bno from 
+  <select id="selectRecipeByMno" parameterType="map" resultType="Recipe">
+     select r.mno, r.title, r.w_dt, r.bno from 
      member m right outer join recipe r on m.mno = r.mno 
      where r.mno=#{mno} group by r.title order by r.bno desc
-     limit 0, 4
+     limit #{startIndex}, #{length}
   </select>
   
   <insert id="insert" parameterType="Recipe">

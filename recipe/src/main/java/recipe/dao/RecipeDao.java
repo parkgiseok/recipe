@@ -21,7 +21,7 @@ public interface RecipeDao {
   List<Tag> selectAllTag();
   int countRecipeControl(int mno);
   void count(int bno);
-  List<Recipe> selectRecipeByMno(int mno);
+  List<Recipe> selectRecipeByMno(Map<String, Object> paramMap);
   List<SearchedRecipe> searchRecipeListByNick(Map<String, Object> paramMap);
   List<SearchedRecipe> searchRecipeListByTitle(Map<String, Object> paramMap);
   List<SearchedRecipe> searchRecipeListByTag(Map<String, Object> paramMap);

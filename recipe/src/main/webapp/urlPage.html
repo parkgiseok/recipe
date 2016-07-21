@@ -133,12 +133,13 @@
 				<div id="side"></div>
 			</div>
 			<div class="col-xs-9 col-xs-9">
-				<div class="my_list row" id="myList"></div>
-				<div class="list_btn">
-					<button>1</button>
-					<button>2</button>
-					<button>3</button>
-				</div>
+			  <ul style="margin-left: -28px; margin-right: -8px;">
+			    <li class="my_list row" id="myList"></li>
+			  </ul>
+			  <div style="text-align:center">
+          <ul class="pagination">
+          </ul>
+        </div>
 				<div class="my_title row" id="myTitle"></div>
 				<div class="my_con row" id="contt"></div>
 				<div>
@@ -153,12 +154,6 @@
 									등록</button>
 							</div>
 						</div>
-						<!-- <div id='moveBtn'  style="text-align: center;">
-              <button class='moveBtn' class="btn btn-info" type="button">〈〈</button>
-              <button class='moveBtn' class="btn btn-info" type="button">1</button>
-              <button class='moveBtn' class="btn btn-info" type="button">2</button>
-              <button class='moveBtn' class="btn btn-info" type="button">〉〉</button>
-            </div> -->
 					</div>
 				</div>
 			</div>
@@ -257,6 +252,7 @@
 		var bno = location.href.split("=")[1];
 		$("#bno").val(bno);
 
+		// 레시피의 해당 사용자 출력
 		loadMember();
 		function loadMember() {
 			$.getJSON("./ajax/recipe/detailMember.do?bno=" + bno, function(
@@ -265,19 +261,60 @@
 				$("#side").append(template(result));
 			});
 		}
+		
+		/* 리스트/ 페이징처리 */
+		// 이전 버튼
+		function pre() {
+      console.log(sessionStorage.getItem("nowpage"))
+      if (sessionStorage.getItem("nowpage") > 1)
+        gopage(sessionStorage.getItem("nowpage") * 1 - 1)
+    }
+    // 다음 버튼
+    function next() {
+      console.log(sessionStorage.getItem("nowpage"))
+      if (sessionStorage.getItem("nowpage") < sessionStorage
+          .getItem("totalPage"))
+        gopage(sessionStorage.getItem("nowpage") * 1 + 1)
+    }
+    //recipeControl들어오면 첫화면출력
+    gopage(1);
+    //페이지 버튼
+    function gopage(i) {
+      sessionStorage.setItem("nowpage", i);
+      $.getJSON("ajax/recipe/detail.do?bno=" + bno + "&pageNo=" + i,
+          function(result) {
+            $("#myList").empty();
+            var templateData = $("#list").html();
+            var template = Handlebars.compile(templateData);
+            var html = template(result);
+            $("#myList").append(html);
+          })
+    };
+    
+    // paging 생성
+    $(function prio(thisMenu) {
+      $.getJSON("ajax/recipe/detail.do?bno=" + bno,
+        function(result) {
+          var pagingTag = $(".pagination");
+          sessionStorage.setItem("totalPage", result.totalPage);
+          $("<li>").html(
+                  "<a href='javascript:pre()' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>")
+              .appendTo(pagingTag);
+          for (var i = 1; i <= result.totalPage; i++) {
+            $("<li>").html(
+                "<a href='javascript:gopage(" + i
+                    + ")'>" + i + "</a></li>")
+                .appendTo(pagingTag);
+          }
+          $("<li>").html(
+                  "<a href='javascript:next()' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>")
+              .appendTo(pagingTag);
+        })
+    });
+    /**/
+    
 
-		loadList();
-		function loadList() {
-			$.getJSON("./ajax/recipe/detail.do?bno=" + bno, function(result) {
-				for (var i = 0; i <= (result.list).length - 1; i++) {
-					result.list[i].w_dt = moment(result.list[i].w_dt,
-							'MM/DD/YYYY').format().substr(0, 10)
-				}
-				var template = Handlebars.compile($('#list').html());
-				$("#myList").append(template(result));
-			});
-		}
-
+		// 레시피 제목/카테고리/날짜 부분
 		loadTitle();
 		function loadTitle() {
 			$.getJSON("./ajax/recipe/list.do?bno=" + bno, function(result) {
@@ -288,6 +325,7 @@
 			});
 		}
 
+		// 레시피 내용 부분
 		loadCon();
 		function loadCon() {
 			$.getJSON("./ajax/recipe/detailContent.do?bno=" + bno, function(
@@ -360,7 +398,7 @@
 	        	location.href = "urlPage.html?bno=" + bno; 
 	        })
 	      });
-		})
+	   	})
 		
 		// 해당 작성 사용자가 아니면 수정 | 삭제 버튼 없애기
 		$(document).ready(function() {

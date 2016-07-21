@@ -7,6 +7,10 @@
   font-family: '옛날목욕탕';
 }
 
+li {
+	list-style:none;
+}
+
 #logout {
 	cursor: pointer;
 }
@@ -54,11 +58,6 @@
   width: 210px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.list_btn {
-	text-align: center;
-	margin-bottom: 40px;
 }
 
 .my_title {
@@ -135,3 +134,4 @@
 .reply_delete {
 	margin-left: -5px;
 }
+
