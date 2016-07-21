@@ -3,6 +3,7 @@ package recipe.controller.ajax;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -160,6 +161,14 @@ public class MemberAjaxController {
       result.put("status", "failure");
     }
     return new Gson().toJson(result);
+  }
+  
+  @RequestMapping(value="list", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String list() throws ServletException, IOException {
+    List<Member> member = memberService.list(0, 0);
+    System.out.println(new Gson().toJson(member));
+    return new Gson().toJson(member);
   }
 
   

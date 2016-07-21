@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -199,7 +201,7 @@ public class AuthController {
     
     memberService.add(member);
     System.out.println("-----------");
-    System.out.println("회원가입성공");
+    System.out.println("성공이야");
     System.out.println("-----------");
     return "redirect:../index.html";
   }
