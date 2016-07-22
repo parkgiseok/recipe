@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>냉장고를 가져와</title>
-<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet"
+	href="bower_components/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" media="all" href="css/search.css" />
 <link rel="stylesheet" href="css/font.css">
 <link href="css/sweetalert.css" rel="stylesheet">
@@ -20,108 +21,109 @@
 <script src="js/likes.js"></script>
 </head>
 
-<body>  
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed"
-          data-toggle="collapse" data-target="#defaultNavbar1">
-          <span class="sr-only">Toggle navigation</span> <span
-            class="icon-bar"></span> <span class="icon-bar"></span> <span
-            class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html"><img id="titleimg"
-          src="img/title.PNG" /></a>
-      </div>
-      <div class="collapse navbar-collapse" id="defaultNavbar1">
-        <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input type="text" value="" class="form-control" id="searchvalue"
-              placeholder="예) 김치 볶음밥">
-          </div>
-          <a onclick='javascript:fncSubmit();' class="btn btn-default">검색</a>
-        </form>
-        <div class="collapse navbar-collapse"
-          id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a id="login" class="launch-modal" href="#"
-              data-modal-id="modal-register1">로그인</a></li>
-            <li><a id="signup" class="launch-modal" href="#"
-              data-modal-id="modal-register2">회원가입</a></li>
-            <li><a id="logout">로그아웃</a></li>
-            <li><a id="mypage" href="member/myPage.html">마이페이지</a></li>
-          </ul>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#defaultNavbar1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html"><img id="titleimg"
+					src="img/title.PNG" /></a>
+			</div>
+			<div class="collapse navbar-collapse" id="defaultNavbar1">
+				     <form class="navbar-form navbar-left" role="search" onsubmit="return false">
+               <div class="form-group">
+                  <input type="text" value="" class="form-control" id="searchvalue"
+                     placeholder="예) 김치 볶음밥" onkeypress="if( event.keyCode==13 ){fncSubmit();}">
+               </div>
+               <a onclick='javascript:fncSubmit();' class="btn btn-default">검색</a>
+            </form>
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a id="login" class="launch-modal" href="#"
+							data-modal-id="modal-register1">로그인</a></li>
+						<li><a id="signup" class="launch-modal" href="#"
+							data-modal-id="modal-register2">회원가입</a></li>
+						<li><a id="logout">로그아웃</a></li>
+						<li><a id="mypage" href="member/myPage.html">마이페이지</a></li>
+					</ul>
 
-          <!-- 로그인 -->
-          <!-- <form action="auth/login.do" method="post"> -->
-            <div class="modal fade" id="modal-register1" tabindex="-1"
-              role="dialog" aria-labelledby="modal-register-label"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                      <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                    </button>
-                    <h3 class="modal-title" id="modal-register-label">로그인</h3>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label class="sr-only">Id</label> <input type="text"
-                        placeholder="ID" class="form-id form-control" id="mem_id" name="id">
-                    </div>
-                    <div class="form-group">
-                      <label class="sr-only">Password</label> <input
-                        type="password" placeholder="Password"
-                        class="form-password form-control" id="mem_pwd" name="password">
-                    </div>
-                    <button class="log_btn btn">로그인</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <!-- </form> -->
-          
-          <!-- 회원가입 -->
-          <form action="auth/add.do" method="post">
-            <div class="modal fade" id="modal-register2" tabindex="-1"
-              role="dialog" aria-labelledby="modal-register-label"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                      <span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
-                    </button>
-                    <h3 class="modal-title" id="modal-register-label">회원가입</h3>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label class="sr-only">Id</label> <input type="text"
-                        placeholder="ID" class="form-id form-control" name="id">
-                    </div>
-                    <div class="form-group">
-                      <label class="sr-only">Email</label> <input type="text"
-                        placeholder="Email" class="form-email form-control"
-                        name="email">
-                    </div>
-                    <div class="form-group">
-                      <label class="sr-only">Password</label> <input
-                        type="password" placeholder="Password"
-                        class="form-password form-control" name="password">
-                    </div>
-                    <button class="btn">회원가입</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </nav>
-  
-  <script>
+					<!-- 로그인 -->
+					<!-- <form action="auth/login.do" method="post"> -->
+					<div class="modal fade" id="modal-register1" tabindex="-1"
+						role="dialog" aria-labelledby="modal-register-label"
+						aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+									</button>
+									<h3 class="modal-title" id="modal-register-label">로그인</h3>
+								</div>
+								<div class="modal-body">
+									<div class="form-group">
+										<label class="sr-only">Id</label> <input type="text"
+											placeholder="ID" class="form-id form-control" id="mem_id"
+											name="id">
+									</div>
+									<div class="form-group">
+										<label class="sr-only">Password</label> <input type="password"
+											placeholder="Password" class="form-password form-control"
+											id="mem_pwd" name="password">
+									</div>
+									<button class="log_btn btn">로그인</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- </form> -->
+
+					<!-- 회원가입 -->
+					<form action="auth/add.do" method="post">
+						<div class="modal fade" id="modal-register2" tabindex="-1"
+							role="dialog" aria-labelledby="modal-register-label"
+							aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
+										</button>
+										<h3 class="modal-title" id="modal-register-label">회원가입</h3>
+									</div>
+									<div class="modal-body">
+										<div class="form-group">
+											<label class="sr-only">Id</label> <input type="text"
+												placeholder="ID" class="form-id form-control" name="id">
+										</div>
+										<div class="form-group">
+											<label class="sr-only">Email</label> <input type="text"
+												placeholder="Email" class="form-email form-control"
+												name="email">
+										</div>
+										<div class="form-group">
+											<label class="sr-only">Password</label> <input
+												type="password" placeholder="Password"
+												class="form-password form-control" name="password">
+										</div>
+										<button class="btn">회원가입</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<script>
   var searchValue;
   $('input').keyup(function() {
     searchValue = encodeURIComponent($(this).val());
@@ -130,52 +132,76 @@
     location.href = 'search.html?value=' + searchValue;
   }
   </script>
-        
-  <div class="container">
-    <section class="sec_main_recipe">
-      <div>
-        <div>
-          <p class="search_tag"> 
-          </p>
-        </div>
-        <hr>
-        <dl class="inner">
-          <dt>닉네임으로 검색된 결과<br><br></dt>
-          <dd></dd>
-          <dd>
-            <ol class="lst_recipe" id="list1"></ol>
-          </dd>
-        </dl>
-        <hr>
-        <dl class="inner">
-          <dt>제목으로 검색된 결과<br><br></dt>
-          <dd></dd>
-          <dd>
-            <ol class="lst_recipe" id="list2"></ol>
-          </dd>
-        </dl>
-        <hr>
-        <dl class="inner">
-          <dt>음식태그로 검색된 결과<br><br></dt>
-          <dd></dd>
-          <dd>
-            <ol class="lst_recipe" id="list3"></ol>
-          </dd>
-        </dl>
-      </div>
-      <hr>
-    </section>
-  <footer>
-    <div class="text-center col-xs-6 col-xs-offset-3">
-      <p>
-        Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a
-          href="http://127.0.0.1:8080/index.html">냉장고를 가져와</a>
-      </p>
+
+	
+	<div class="container">
+		<section class="sec_main_recipe">
+		<nav id="menubar" class="navbar">
+    <div>
+      <ul class="nav navbar-nav" style="margin-left: 42px;">
+        <li class="active"><a href="#spy1">닉네임으로 검색된 결과 ▼ |</a></li>
+        <li><a href="#spy2">제목으로 검색된 결과 ▼ |</a></li>
+        <li><a href="#spy3">음식태그로 검색된 결과 ▼ </a></li>
+      </ul>
     </div>
-  </footer>
-  </div>
-  
-  <script>
+  </nav>
+			<div>
+				<div>
+					<p class="search_tag"></p>
+				</div>
+				<hr>
+				<dl class="inner" id="spy1">
+					<dt>
+						닉네임으로 검색된 결과<br> <br>
+					</dt>
+					<dd></dd>
+					<dd>
+						<ol class="lst_recipe" id="list1"></ol>
+					</dd>
+				</dl>
+				<hr>
+				<dl class="inner" id="spy2">
+					<dt>
+						제목으로 검색된 결과<br> <br>
+					</dt>
+					<dd></dd>
+					<dd>
+						<ol class="lst_recipe" id="list2"></ol>
+					</dd>
+				</dl>
+				<hr>
+				<dl class="inner" id="spy3">
+					<dt>
+						음식태그로 검색된 결과<br> <br>
+					</dt>
+					<dd></dd>
+					<dd>
+						<ol class="lst_recipe" id="list3"></ol>
+					</dd>
+				</dl>
+			</div>
+			<nav class="navbar navbar-right navbar-fixed-bottom">
+				<div class="container-fluid">
+					<div>
+						<ul class="nav navbar-nav" style="float: right; margin-right: 200px;">
+							<li class="active" ><a href="#">▲TOP</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<hr>
+		</section>
+		<footer>
+			<div class="text-center col-xs-6 col-xs-offset-3">
+				<p>
+					Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a
+						href="http://127.0.0.1:8080/index.html">냉장고를 가져와</a>
+				</p>
+			</div>
+		</footer>
+	</div>
+
+	<script>
   var Request = function() {
     this.getParameter = function(name) {
       var rtnval = '';
@@ -194,8 +220,8 @@
   }
   var request = new Request();
   </script>
-  
-  <script id="card" type="text/x-handlebars-template">
+
+	<script id="card" type="text/x-handlebars-template">
   {{#each list}}
   <li class="cardlist" id="a{{@index}}">
     <input id="bno{{@index}}" type="hidden" value="{{bno}}"/>
@@ -243,8 +269,8 @@
   </li>
   {{/each}}
   </script>
-  
-  <script>
+
+	<script>
   var value = request.getParameter('value');
   console.log("received(encoded) value: " + value);
   value = decodeURIComponent(value);
@@ -295,8 +321,8 @@
     }, "json");
   });
   </script>
-  
-  <script>
+
+	<script>
   var c = false;
   
   $(function() {
@@ -319,8 +345,8 @@
     };
   });
   </script>
-  
-<script>
+
+	<script>
 function init(cardno) {
     for (var i = 0; i < cardno.length; i++) {
       $
@@ -345,7 +371,7 @@ function init(cardno) {
     }
   }
 </script>
-<script>
+	<script>
 // 로그인 실패시 뜨는 팝업
 $(".log_btn").click(function() {
   $.ajax("auth/login.do?", {
