@@ -94,10 +94,10 @@
           
           // ppt 생성 handlebars code
           $(document).on("click", ".addbtn", function() {
-            if(curindex > 10) {
-            	swal("추가 실패", "폼의 전체 갯수는 10개를 넘을 수 없습니다.", "warning")
-              curindex = 11;
-            } else if (curindex < 11 && curindex > 0) {
+            if(curindex > 30) {
+            	swal("추가 실패", "폼의 전체 갯수는 30개를 넘을 수 없습니다.", "warning")
+              curindex = 31;
+            } else if (curindex < 31) {
               $("#fm").append(Handlebars.compile($('#pinput').html())),
               $("#delob").attr('id', $("#delob").attr('id') + curindex),
               $("#textc").attr('id', $("#textc").attr('id') + curindex),
@@ -115,7 +115,7 @@
           if (curindex < 3) {
         	  swal("삭제 실패", "최소 1개이상의 폼이 필요합니다", "warning")
             curindex = 2;
-          } else if (curindex < 12 && curindex > 1) {
+          } else if (curindex > 1) {
             $("#delob" + slideIndex).remove();
             for(var i = slideIndex + 1; i < curindex + 1; i++) {
               $("#delob"+ i ).attr("id","delob"+(i - 1));
