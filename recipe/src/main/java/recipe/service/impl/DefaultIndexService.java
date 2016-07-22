@@ -20,6 +20,12 @@ public class DefaultIndexService implements IndexService {
   public List<Index> retrieveRankingIndex(int mno) {
     return indexDao.selectIndexRankingList(mno);
   }
+/*
+  @Override
+  public List<MainRecipe> retrieveCountIndex() {
+    return indexDao.MainRecipeCountList();
+  }
+*/
 }
 
 /*

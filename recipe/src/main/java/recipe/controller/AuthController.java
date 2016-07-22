@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -41,7 +39,7 @@ public class AuthController {
   @Autowired ContentService contentService;
   
   
-  // index 페이지 카드 4개 뽑기
+  // index 페이지 카드 생성순 4개 뽑기
   @RequestMapping(value="detailIndex", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String detailIndex() throws ServletException, IOException {
@@ -53,7 +51,20 @@ public class AuthController {
     paramMap.put("list", mainRecipe);
     return new Gson().toJson(paramMap);
   }
-  
+/*
+  // index 페이지 카드 조회수 순 4개 뽑기
+  @RequestMapping(value="detailCountIndex", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String detailCountIndex() throws ServletException, IOException {
+    List<MainRecipe> mainRecipe = indexService.retrieveCountIndex();
+    for(MainRecipe m : mainRecipe) {
+      m.setLikes(likeService.countAll(m.getBno())); //좋아요를 넣어준다.
+    }
+    Map<String, Object> paramMap = new HashMap<String, Object>();
+    paramMap.put("list", mainRecipe);
+    return new Gson().toJson(paramMap);
+  }
+*/
   @RequestMapping(value="detailContent", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String detailContent(int bno) throws ServletException, IOException {

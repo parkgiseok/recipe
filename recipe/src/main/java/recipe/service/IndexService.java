@@ -8,5 +8,6 @@ import recipe.vo.MainRecipe;
 public interface IndexService {
   //List<Index> retrieveIndex();
   List<MainRecipe> retrieveIndex();
+  //List<MainRecipe> retrieveCountIndex();
   List<Index> retrieveRankingIndex(int mno);
 }
