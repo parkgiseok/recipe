@@ -87,10 +87,29 @@
 }
 
 .pop_flip_text1 {
-	padding: 20px;
-	display: table-cell;
-	vertical-align: middle;
-	-moz-box-shadow:    inset 25px 0 25px -15px gray;
-  -webkit-box-shadow: inset 25px 0 25px -15px gray;
-  box-shadow: inset 25px 0 25px -15px gray;
+  font-size: 20px;
+   display: table-cell;
+   vertical-align: middle;
+   -moz-box-shadow: inset 25px 0 25px -15px gray;
+   -webkit-box-shadow: inset 25px 0 25px -15px gray;
+   box-shadow: inset 25px 0 25px -15px gray;
+   
+   display: inline-block;
+   width: 470px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: normal;
+   
+   line-height: 1.45;
+   height: 450px;
+   text-align: left;
+   word-wrap: break-word;
+   display: -webkit-box;
+   -webkit-line-clamp: 15;
+   -webkit-box-orient: vertical;
+   padding-top: 10px;
+   padding-left: 20px;
+   padding-right: 45px;
 }
+

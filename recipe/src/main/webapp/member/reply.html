@@ -162,7 +162,12 @@
       sessionStorage.setItem("nowpage", i);
       $.getJSON("../ajax/reply/replyRecipeRecent.do?pageNo=" + i,
           function(result) {
-            /* console.log(thisMenu); */
+	    	  for (var i = 0; i< (result.list).length; i++) {
+	              result.list[i].w_dt = moment(result.list[i].w_dt, 'MM/DD/YYYY').format()
+	                .substr(0, 10);
+	              result.list[i].r_w_dt = moment(result.list[i].r_w_dt, 'MM/DD/YYYY').format()
+                  .substr(0, 10);
+	            }
             $("#li1").empty();
             var templateData = $("#l1").html();
             var template = Handlebars.compile(templateData);

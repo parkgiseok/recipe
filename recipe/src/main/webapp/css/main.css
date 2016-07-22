@@ -440,6 +440,47 @@ a.cbtn:hover {
 	display:table-cell;
 }
 
+.pop_id_title {
+	font-size: 18px;
+	padding-right:2px;
+	display: inline-block;
+  width: 970px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pop_id {
+	font-size: 25px;
+	color: #ff8040;
+}
+
+.pop_tit {
+	font-size: 25px;
+}
+
+.pop_main_img {
+  width: 410px;
+  height: 340px;
+  margin-top: 10px;
+  border: 1px solid lightgray;
+  padding: 7px;
+}
+
+.pop_main_ {
+	margin-top: 12px;
+}
+
+.pop_intro {
+	position: absolute;
+  float: right;
+  width: 150px;
+  height: 21px;
+  margin-left: 280px;
+  bottom: 0px;
+  color: crimson;
+}
+
 .s_bt.s_bt--wapasha {
   background: #ff8040;
   color: #ffffff;
@@ -605,6 +646,11 @@ a.cbtn:hover {
   text-align: left;
   padding: 5px 30px 5px 0px;
   color: #000040;
+  display: inline-block;
+  width: 650px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* 카드 슬라이드 / 간략히 보기 End */
