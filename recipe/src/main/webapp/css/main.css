@@ -653,6 +653,10 @@ a.cbtn:hover {
   text-overflow: ellipsis;
 }
 
+.popover {
+	max-width: 500px;
+}
+
 /* 카드 슬라이드 / 간략히 보기 End */
 #titleimg {
   position: relative;
