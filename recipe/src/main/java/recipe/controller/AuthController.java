@@ -216,6 +216,36 @@ public class AuthController {
     System.out.println("-----------");
     return "redirect:../index.html";
   }
+  /* URL회원가입 */
+  @RequestMapping(value="/add_URL", method=RequestMethod.POST)
+  public String add_URL(String id, String email, String password) throws ServletException, IOException {
+
+    Member member = new Member();
+    member.setId(id);
+    member.setEmail(email);
+    member.setPassword(password);
+    
+    memberService.add(member);
+    System.out.println("-----------");
+    System.out.println("성공이야");
+    System.out.println("-----------");
+    return "redirect:../urlPage.html";
+  }
+  /* search회원가입 */
+  @RequestMapping(value="/add_search", method=RequestMethod.POST)
+  public String add_search(String id, String email, String password) throws ServletException, IOException {
+
+    Member member = new Member();
+    member.setId(id);
+    member.setEmail(email);
+    member.setPassword(password);
+    
+    memberService.add(member);
+    System.out.println("-----------");
+    System.out.println("성공이야");
+    System.out.println("-----------");
+    return "redirect:../search.html";
+  }
   
   @RequestMapping(value="/loging", produces="application/json;charset=UTF-8")
   @ResponseBody

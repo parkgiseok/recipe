@@ -7,6 +7,7 @@
 	rel="stylesheet">
 <link href="../css/jquery-ui.css" rel="stylesheet">
 <link href="../css/mypage.css" rel="stylesheet">
+<link href="../css/sweetalert.css" rel="stylesheet">
 <link href="../css/font.css" rel="stylesheet">
 <link href="../css/w3.css" rel="stylesheet">
 <link href="../css/summernote.css" rel="stylesheet">
@@ -15,6 +16,7 @@
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../bower_components/handlebars/handlebars.min.js"></script>
+<script src="../js/sweetalert.min.js"></script>
 <script src="../js/jquery-ui.js"></script>
 <script src="../js/summernote.js"></script>
 </head>
@@ -98,10 +100,10 @@
           
           // ppt 생성 handlebars code
           $(document).on("click", ".addbtn", function() {
-            if(curindex > 10) {
-              window.alert("최대치");
-              curindex = 11;
-            } else if (curindex < 11 && curindex > 0) {
+            if(curindex > 30) {
+            	swal("추가 실패", "폼의 전체 갯수는 30개를 넘을 수 없습니다.", "warning")
+              curindex = 31;
+            } else if (curindex < 31) {
               $("#fm").append(Handlebars.compile($('#pinput').html())),
               $("#delob").attr('id', $("#delob").attr('id') + curindex),
               $("#textc").attr('id', $("#textc").attr('id') + curindex),
@@ -118,9 +120,9 @@
           // ppt 제거 handlebars code
           $(document).on("click", ".delbtn", function() {    
           if (curindex < 3) {
-            window.alert("최소치");
+        	  swal("삭제 실패", "최소 1개이상의 폼이 필요합니다", "warning")
             curindex = 2;
-          } else if (curindex < 12 && curindex > 1) {
+          } else if (curindex > 1) {
             $("#delob" + slideIndex).remove();
             for(var i = slideIndex + 1; i < curindex + 1; i++) {
               $("#delob"+ i ).attr("id","delob"+(i - 1));
@@ -388,7 +390,7 @@
 							<div class="level col-lg-2 col-sm-2">난이도</div>
 							<div class="col-lg-10 col-sm-10">
 								<img src="../img/1star.png" class="stars">
-								<input id="lev" type='hidden' name='lev' value='14'>
+								<input id="lev" type='hidden' name='lev' value='1'>
 								<div class="star1" onclick="stars(1)"></div>
 								<div class="star2" onclick="stars(2)"></div>
 								<div class="star3" onclick="stars(3)"></div>
