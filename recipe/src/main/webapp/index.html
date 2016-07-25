@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>냉장고를 가져와 - index</title>
 <link rel="stylesheet"
-  href="bower_components/bootstrap/dist/css/bootstrap.css">
+	href="bower_components/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" media="all" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/slide.css" />
 <link rel="stylesheet" href="css/font.css">
@@ -29,227 +29,245 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed"
-          data-toggle="collapse" data-target="#defaultNavbar1">
-          <span class="sr-only">Toggle navigation</span> <span
-            class="icon-bar"></span> <span class="icon-bar"></span> <span
-            class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html"><img id="titleimg"
-          src="img/title.PNG" /></a>
-      </div>
-      <div class="collapse navbar-collapse" id="defaultNavbar1">
-        <form class="navbar-form navbar-left" role="search" onsubmit="return false">
-          <div class="form-group">
-             <input type="text" value="" class="form-control" id="searchvalue"
-                placeholder="예) 김치 볶음밥" onkeypress="if( event.keyCode==13 ){fncSubmit();}">
-          </div>
-            <a onclick='javascript:fncSubmit();' class="btn btn-default">검색</a>
-        </form>
-        <div class="collapse navbar-collapse"
-          id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a id="login" class="launch-modal" href="#"
-              data-modal-id="modal-register1">로그인</a></li>
-            <li><a id="signup" class="launch-modal" href="#"
-              data-modal-id="modal-register2">회원가입</a></li>
-            <li><a id="logout" href="auth/logout.do">로그아웃</a></li>
-            <li><a id="mypage" href="member/myPage.html">마이페이지</a></li>
-          </ul>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#defaultNavbar1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html"><img id="titleimg"
+					src="img/title.PNG" /></a>
+			</div>
+			<div class="collapse navbar-collapse" id="defaultNavbar1">
+				<form class="navbar-form navbar-left" role="search"
+					onsubmit="return false">
+					<div class="form-group">
+						<input type="text" value="" class="form-control" id="searchvalue"
+							placeholder="예) 김치 볶음밥"
+							onkeypress="if( event.keyCode==13 ){fncSubmit();}">
+					</div>
+					<a onclick='javascript:fncSubmit();' class="btn btn-default">검색</a>
+				</form>
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a id="login" class="launch-modal" href="#"
+							data-modal-id="modal-register1">로그인</a></li>
+						<li><a id="signup" class="launch-modal" href="#"
+							data-modal-id="modal-register2">회원가입</a></li>
+						<li><a id="logout" href="auth/logout.do">로그아웃</a></li>
+						<li><a id="mypage" href="member/myPage.html">마이페이지</a></li>
+					</ul>
 
-          <!-- 로그인 -->
-          <!-- <form action="auth/login.do" method="post"> -->
-          <div class="modal fade" id="modal-register1" tabindex="-1"
-            role="dialog" aria-labelledby="modal-register-label"
-            aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                  </button>
-                  <h3 class="modal-title" id="modal-register-label">로그인</h3>
-                </div>
-                <div class="modal-body">
-                  <div class="form-group">
-                    <label class="sr-only">Id</label> <input type="text"
-                      placeholder="ID" class="form-id form-control" id="mem_id" name="id">
-                  </div>
-                  <div class="form-group">
-                    <label class="sr-only">Password</label> <input type="password"
-                      placeholder="Password" class="form-password form-control" id="mem_pwd"
-                      name="password">
-                  </div>
-                  <button class="log_btn btn">로그인</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- </form> -->
-          <!-- 회원가입 -->
-          <form action="auth/add.do" method="post" id="test_form">
-            <div class="modal fade" id="modal-register2" tabindex="-1"
-              role="dialog" aria-labelledby="modal-register-label"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                      <span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
-                    </button>
-                    <h3 class="modal-title" id="modal-register-label">회원가입</h3>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label class="sr-only">Id</label> <input type="text"
-                        placeholder="ID" class="form-id form-control" name="id" id="jid">
-                    </div>
-                    <div class="form-group">
-                      <label class="sr-only">Email</label> <input type="text"
-                        placeholder="Email(aaa@bbb.com)" class="form-email form-control"
-                        name="email" id="jemail" >
-                    </div>
-                    <div class="form-group">
-                      <label class="sr-only">Password</label> <input
-                        type="password" placeholder="Password(6~15글자 영문+숫자조합)"
-                        class="form-password form-control" name="password" id="jPassword">
-                    </div>
-                    <button class="btn">회원가입</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </nav>
-  <script>
-  var allid = [];
-  ddd();
-  function ddd() {
-        $.ajax({
-          method : "GET",
-          url : "ajax/member/list.do",
-          dataType : "json",
-          async : false,
-          success : function(result) {
-            for (var i=0; i<result.length; i++) {
-               allid[i] = result[i].id;
-            }
-          }
-        });
-      }
-  var emailchecking = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
-  var passwordchecking = /^[a-zA-Z0-9]{6,15}$/;
-  
-    $("#test_form").submit(function() {
-      for(var i = 0; i<allid.length; i++) {
-      if ($("#jid").val() == allid[i]) {
-        swal({confirmButtonColor: "#DD6B55",
-              title: '아이디 중복',
-              text: "이미 사용중인 아이디 입니다.",
-              type: 'warning'}) 
-        return false;
-        }
-      }
-      if ($("#jid").val() == "") {
-        swal({confirmButtonColor: "#DD6B55",
-                title: "오류",
-                text: "아이디를 입력해 주세요.",
-                type: 'warning'}) 
-        return false;
-      } else if ($("#jemail").val() == "") {
-        swal({confirmButtonColor: "#DD6B55",
-              title: '오류',
-              text: "이메일을 입력해 주세요.",
-              type: 'warning'})
-        return false;
-      } else if (!($("#jemail").val()).match(emailchecking)) {
-        swal({confirmButtonColor: "#DD6B55",
-              title: '이메일 형식 오류',
-              text: "유효한 이메일 형식이 아닙니다. (aaa@bbb.com",
-              type: 'warning'}) 
-        return false;
-      } else if ($("#jPassword").val() == "") {
-        swal({confirmButtonColor: "#DD6B55",
-              title: '오류',
-              text: "패스워드를 입력해 주세요.",
-              type: 'warning'})
-        return false;
-      } else if (!($("#jPassword").val()).match(passwordchecking)) {
-        swal({confirmButtonColor: "#DD6B55",
-              title: '암호 형식 오류',
-              text: "암호는 최소 6자 최대 15자의 영문+숫자 조합으로 가능합니다.",
-              type: 'warning'})
-        return false;
-      }
-      return;
-    });
-</script>
+					<!-- 로그인 -->
+					<!-- <form action="auth/login.do" method="post"> -->
+					<div class="modal fade" id="modal-register1" tabindex="-1"
+						role="dialog" aria-labelledby="modal-register-label"
+						aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+									</button>
+									<h3 class="modal-title" id="modal-register-label">로그인</h3>
+								</div>
+								<div class="modal-body">
+									<div class="form-group">
+										<label class="sr-only">Id</label> <input type="text"
+											placeholder="ID" class="form-id form-control" id="mem_id"
+											name="id">
+									</div>
+									<div class="form-group">
+										<label class="sr-only">Password</label> <input type="password"
+											placeholder="Password" class="form-password form-control"
+											id="mem_pwd" name="password">
+									</div>
+									<button class="log_btn btn">로그인</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- </form> -->
+					<!-- 회원가입 -->
+					<form action="auth/add.do" method="post" id="test_form">
+						<div class="modal fade" id="modal-register2" tabindex="-1"
+							role="dialog" aria-labelledby="modal-register-label"
+							aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
+										</button>
+										<h3 class="modal-title" id="modal-register-label">회원가입</h3>
+									</div>
+									<div class="modal-body">
+										<div class="form-group">
+											<label class="sr-only">Id</label> <input type="text"
+												placeholder="ID" class="form-id form-control" name="id"
+												id="jid">
+										</div>
+										<div class="form-group">
+											<label class="sr-only">Email</label> <input type="text"
+												placeholder="Email(aaa@bbb.com)"
+												class="form-email form-control" name="email" id="jemail">
+										</div>
+										<div class="form-group">
+											<label class="sr-only">Password</label> <input
+												type="password" placeholder="Password(6~15글자 영문+숫자조합)"
+												class="form-password form-control" name="password"
+												id="jPassword">
+										</div>
+										<button class="btn">회원가입</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<script>
+		var allid = [];
+		ddd();
+		function ddd() {
+			$.ajax({
+				method : "GET",
+				url : "ajax/member/list.do",
+				dataType : "json",
+				async : false,
+				success : function(result) {
+					for (var i = 0; i < result.length; i++) {
+						allid[i] = result[i].id;
+					}
+				}
+			});
+		}
+		var emailchecking = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+		var passwordchecking = /^[a-zA-Z0-9]{6,15}$/;
 
-  <div id="vid_container">
-    <section class="slide-list">
-      <h2 class="hide">메인 롤링 슬라이드</h2>
-      <div class="slide-con">
-        <div class="slider" style="display: none">
+		$("#test_form").submit(function() {
+			for (var i = 0; i < allid.length; i++) {
+				if ($("#jid").val() == allid[i]) {
+					swal({
+						confirmButtonColor : "#DD6B55",
+						title : '아이디 중복',
+						text : "이미 사용중인 아이디 입니다.",
+						type : 'warning'
+					})
+					return false;
+				}
+			}
+			if ($("#jid").val() == "") {
+				swal({
+					confirmButtonColor : "#DD6B55",
+					title : "오류",
+					text : "아이디를 입력해 주세요.",
+					type : 'warning'
+				})
+				return false;
+			} else if ($("#jemail").val() == "") {
+				swal({
+					confirmButtonColor : "#DD6B55",
+					title : '오류',
+					text : "이메일을 입력해 주세요.",
+					type : 'warning'
+				})
+				return false;
+			} else if (!($("#jemail").val()).match(emailchecking)) {
+				swal({
+					confirmButtonColor : "#DD6B55",
+					title : '이메일 형식 오류',
+					text : "유효한 이메일 형식이 아닙니다. (aaa@bbb.com",
+					type : 'warning'
+				})
+				return false;
+			} else if ($("#jPassword").val() == "") {
+				swal({
+					confirmButtonColor : "#DD6B55",
+					title : '오류',
+					text : "패스워드를 입력해 주세요.",
+					type : 'warning'
+				})
+				return false;
+			} else if (!($("#jPassword").val()).match(passwordchecking)) {
+				swal({
+					confirmButtonColor : "#DD6B55",
+					title : '암호 형식 오류',
+					text : "암호는 최소 6자 최대 15자의 영문+숫자 조합으로 가능합니다.",
+					type : 'warning'
+				})
+				return false;
+			}
+			return;
+		});
+	</script>
 
-          <div class="as">
-            <a href="#"> <iframe width="560" height="335" src=""></iframe></a>
-          </div>
-          <div class="as">
-            <a href="#"> <iframe width="560" height="335" src=""></iframe></a>
-          </div>
-          <div class="as">
-            <a href="#"> <iframe width="560" height="335" src=""></iframe></a>
-          </div>
-          <div class="as">
-            <a href="#"> <iframe width="560" height="335" src=""></iframe></a>
-          </div>
-          <div class="as">
-            <a href="#"> <iframe width="560" height="335" src=""></iframe></a>
-          </div>
-          <div class="as">
-            <a href="#"> <iframe width="560" height="335" src=""></iframe></a>
-          </div>
-          <div class="as">
-            <a href="#"> <iframe width="560" height="335" src=""></iframe></a>
-          </div>
-          <div class="as">
-            <a href="#"> <iframe width="560" height="335" src=""></iframe></a> 
-          </div>
-          
-          <!-- <div class="as"><a href="#"> <iframe width="560" height="335" src="https://www.youtube.com/embed/byzFKcWWRzw"></iframe></a></div>
+	<div id="vid_container">
+		<section class="slide-list">
+			<h2 class="hide">메인 롤링 슬라이드</h2>
+			<div class="slide-con">
+				<div class="slider" style="display: none">
+
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+					<div class="as">
+						<a href="#"> <iframe width="560" height="335" src=""></iframe></a>
+					</div>
+
+					<!-- <div class="as"><a href="#"> <iframe width="560" height="335" src="https://www.youtube.com/embed/byzFKcWWRzw"></iframe></a></div>
           <div class="as"><a href="#"> <iframe width="560" height="335" src="https://www.youtube.com/embed/NwJnm4yQxTc"></iframe></a></div>
           <div class="as"><a href="#"> <iframe width="560" height="335" src="https://www.youtube.com/embed/7p6rcKJNAUg"></iframe></a></div>
           <div class="as"><a href="#"> <iframe width="560" height="335" src="https://www.youtube.com/embed/VzoIz6lZmq0"></iframe></a></div>
           <div class="as"><a href="#"> <iframe width="560" height="335" src="https://www.youtube.com/embed/R2SFyWz3S4A"></iframe></a></div> -->
-      </div>
-    </section>
-  </div>
-  <hr>
-  <div class="container">
-    <section class="sec_main_recipe">
-      <button class="recipe_btn recipe_btn--saqui recipe_btn--inverted"
-        data-text="나만의 레시피 등록하기" id="check_myRecipe">나만의 레시피 등록하기</button>
-      <dl class="inner">
-        <dt>
-          <h3>
-            방금 올라왔다!!!<br> <em>지금 만든 메뉴~!~!</em>
-          </h3>
-          <!-- <button type="button" class="btn btn-default" title="공유래" id="ddd"
+				</div>
+			</div>
+		</section>
+	</div>
+	<hr>
+	<div class="container">
+		<section class="sec_main_recipe">
+			<button class="recipe_btn recipe_btn--saqui recipe_btn--inverted"
+				data-text="나만의 레시피 등록하기" id="check_myRecipe">나만의 레시피 등록하기</button>
+			<dl class="inner">
+				<dt>
+					<h3>
+						방금 올라왔다!!!<br> <em>지금 만든 메뉴~!~!</em>
+					</h3>
+					<!-- <button type="button" class="btn btn-default" title="공유래" id="ddd"
           data-container="body" data-toggle="popover" data-placement="bottom" 
           data-content="http://localhost:8080/recipe/">공유</button> -->
-        </dt>
-        <dd>
-          <ol class="lst_recipe" id="list0"></ol>
-        </dd>
-      </dl>
-      <hr>
-      <!-- 
+				</dt>
+				<dd>
+					<ol class="lst_recipe" id="list0"></ol>
+				</dd>
+			</dl>
+			<hr>
+			<!-- 
       <dl class="inner">
         <dt>
           <h3>얼얼한 매운맛에 중독되다<br> <em>하드코어 매운맛 열전</em></h3>
@@ -269,19 +287,19 @@
       </dl>
       <hr>
        -->
-    </section>
-    <footer>
-      <div class="text-center col-xs-6 col-xs-offset-3">
-        <p>
-          Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a
-            href="http://127.0.0.1:8080/index.html">냉장고를 가져와</a>
-        </p>
-      </div>
-    </footer>
-  </div>
+		</section>
+		<footer>
+			<div class="text-center col-xs-6 col-xs-offset-3">
+				<p>
+					Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a
+						href="http://127.0.0.1:8080/index.html">냉장고를 가져와</a>
+				</p>
+			</div>
+		</footer>
+	</div>
 
-  <script id="card" type="text/x-handlebars-template"
-    style="text-align: center;">
+	<script id="card" type="text/x-handlebars-template"
+		style="text-align: center;">
   {{#each list}}
   <li class="lis" id="a{{@index}}">
   <div class="card" id="card{{@index}}">
@@ -361,195 +379,202 @@
   </li>
   {{/each}}
   </script>
-  
-  <script>
-    $(document).on("click", "#abc", function() {
-       $('[data-toggle="popover"]').popover({container: "body"});
-    });
-  </script>
-  
-  <script>
-    // 비회원일때 '나만의 레시피 작성하려고 하면 뜨는 팝업
-    $("#check_myRecipe").click(function() {
-      if (sessionStorage.getItem("login") != "success") {
-        swal({confirmButtonColor: "#DD6B55",
-              title: '로그인 오류',
-              text: "로그인 해야 작성할 수 있습니다.",
-              type: 'warning'})
-      } else {
-        location.href = 'insert.html'
-      }
-    })
 
-    // 로그인 실패시 뜨는 팝업
-    $(".log_btn").click(function() {
-      $.ajax("auth/login.do?", {
-        method : "POST",
-        dataType : "JSON",
-        data : {
-          id : $("#mem_id").val(),
-          password : $("#mem_pwd").val()
-        },
-        success : function(result) {
-          if (result.status == "success") {
-            location.href = "index.html"
-          } else if (result.status == "failure") {
-            swal({confirmButtonColor: "#DD6B55",
-              title: '로그인 실패',
-              text: "아이디 또는 비밀번호를 다시 확인해주세요",
-              type: 'warning'})
-          }
-        }
-      });
+	<script>
+		$(document).on("click", "#abc", function() {
+			$('[data-toggle="popover"]').popover({
+				container : "body"
+			});
+		});
+	</script>
 
-    })
-  </script>
+	<script>
+		// 비회원일때 '나만의 레시피 작성하려고 하면 뜨는 팝업
+		$("#check_myRecipe").click(function() {
+			if (sessionStorage.getItem("login") != "success") {
+				swal({
+					confirmButtonColor : "#DD6B55",
+					title : '로그인 오류',
+					text : "로그인 해야 작성할 수 있습니다.",
+					type : 'warning'
+				})
+			} else {
+				location.href = 'insert.html'
+			}
+		})
 
-  <script>
-    // 서치 기능
-    var searchValue;
-    $('input').keyup(function() {
-      searchValue = $(this).val();
-    });
-    function fncSubmit() {
-      location.href = 'search.html?value=' + searchValue;
-    }
-  </script>
+		// 로그인 실패시 뜨는 팝업
+		$(".log_btn").click(function() {
+			$.ajax("auth/login.do?", {
+				method : "POST",
+				dataType : "JSON",
+				data : {
+					id : $("#mem_id").val(),
+					password : $("#mem_pwd").val()
+				},
+				success : function(result) {
+					if (result.status == "success") {
+						location.href = "index.html"
+					} else if (result.status == "failure") {
+						swal({
+							confirmButtonColor : "#DD6B55",
+							title : '로그인 실패',
+							text : "아이디 또는 비밀번호를 다시 확인해주세요",
+							type : 'warning'
+						})
+					}
+				}
+			});
 
-  <script id="test" type="text/x-handlebars-template"
-    style="text-align: center;">
+		})
+	</script>
+
+	<script>
+		// 서치 기능
+		var searchValue;
+		$('input').keyup(function() {
+			searchValue = $(this).val();
+		});
+		function fncSubmit() {
+			location.href = 'search.html?value=' + searchValue;
+		}
+	</script>
+
+	<script id="test" type="text/x-handlebars-template"
+		style="text-align: center;">
   {{#each list}}
     <li><img src="webapp/{{p_url}}" alt="..." /></li>
   {{/each}}
-  </script> 
-  <script id="data-ul01" type="text/x-handlebars-template">
+  </script>
+	<script id="data-ul01" type="text/x-handlebars-template">
   {{#each list}}
     <div class="pop_flip_img"><img src="webapp/{{p_url}}" class="pop_flip_img1"></div>
     <div class="pop_flip_text"><p class="pop_flip_text1">{{{cont}}}</p></div>
   {{/each}}
   </script>
-  
-  <script>
-    /* 카드 슬라이드 */
-    function tete(bno) {
-        $.ajax({
-          method : "GET",
-          url : "auth/detailContent.do?bno=" + bno,
-          dataType : "json",
-          async : false,
-          success : function(result) {
-            var template = Handlebars.compile($('#test').html());
-            $("#card_slider" + bno).append(template(result));
-            slide(bno);
-            template = Handlebars.compile($('#data-ul01').html());
-            $("#pop_mybook" + bno).append(template(result));
-            loadApp(bno);
-          }
-        });
-      }
-  </script>
-  
 
-
-  <script>
-    /* 카드 안에 들어갈 정보 */
-    var cardLeft;
-    $(function() {
-      $.ajax("auth/detailIndex.do", {
-        method : "GET",
-        dataType : "json",
-        success : function(result) {
-          console.log(result);
-          for (var i = 0; i <= (result.list).length - 1; i++) {
-            result.list[i].w_dt = moment(result.list[i].w_dt)
-                .format().substr(0, 10);
-          }
-          var template = Handlebars.compile($('#card').html());
-          var cardno = result.list;
-          var bno0 = result.list[0].bno;
-          var bno1 = result.list[1].bno;
-          var bno2 = result.list[2].bno;
-          var bno3 = result.list[3].bno;
-          $("#list0").append(template(result));
-          for (var i = 0; i <= (result.list).length - 1; i++) {
-            var im = result.list[i].level;
-            switch (im) {
-            case 1:
-              $("#level_img" + i).attr("src", "img/1star.png");
-              break;
-            case 2:
-              $("#level_img" + i).attr("src", "img/2star.png");
-              break;
-            case 3:
-              $("#level_img" + i).attr("src", "img/3star.png");
-              break;
-            case 4:
-              $("#level_img" + i).attr("src", "img/4star.png");
-              break;
-            default:
-              $("#level_img" + i).attr("src", "img/5star.png");
-              break;
-            }
-          }
-
-          $('#a1').css('left', "260px");
-          $('#a2').css('left', "520px");
-          $('#a3').css('left', "780px");
-          $('.desc').hide();
-          init(cardno); //좋아요
-          tete(bno0); //카드슬라이드 돌아가게 하는거          
-          tete(bno1);
-          tete(bno2);
-          tete(bno3);
-        },
-        error : function(request, status, error) {
-          console.log("code:" + request.status + "\n" + "message:"
-              + request.responseText + "\n" + "error:" + error);
-        }
-      });
-    })
-    
-    function init(cardno) {
-      for (var i = 0; i < cardno.length; i++) {
-        $.ajax({
-              method : "POST",
-              url : "./ajax/likes/islike.do?bno=" + cardno[i].bno,
-              dataType : "json",
-              async : false,
-              success : function(result) {
-                if (result) {
-                  //console.log("#like_"+cardno[i].bno);
-
-                  $("#like_" + cardno[i].bno).attr(
-                      "data-state", "after");
-                  $("#like_" + cardno[i].bno)
-                      .css("background",
-                          "url(./img/icon_heart_full.png) 7px center no-repeat");
-                } else {
-                }
-              }
-            })
-      }
-    }
-  </script>
+	<script>
+		/* 카드 슬라이드 */
+		function tete(bno) {
+			$.ajax({
+				method : "GET",
+				url : "auth/detailContent.do?bno=" + bno,
+				dataType : "json",
+				async : false,
+				success : function(result) {
+					var template = Handlebars.compile($('#test').html());
+					$("#card_slider" + bno).append(template(result));
+					slide(bno);
+					template = Handlebars.compile($('#data-ul01').html());
+					$("#pop_mybook" + bno).append(template(result));
+					loadApp(bno);
+				}
+			});
+		}
+	</script>
 
 
 
-  <!-- 좋아요 -->
-  <script src="js/likes.js"></script>
-  <!-- 책장 넘기기 -->
-  <script type="text/javascript" src="js/bookslide.js"></script>
-  <!-- 비디오 -->
-  <script src="js/videoslide.js"></script>
-  <!-- 카드 이동 -->
-  <script src="js/cardslide.js"></script>
-  <!-- 카드 안에 사진 변경 -->
-  <script src="js/cardinnerslide.js"></script>
-  <!-- 카드 간략히 보기 팝업 -->
-  <script type="text/javascript" src="js/preview.js"></script>
-  <script src="js/jquery.backstretch.min.js"></script>
-  
-  <script src="js/turn.js"></script>
+	<script>
+		/* 카드 안에 들어갈 정보 */
+		var cardLeft;
+		$(function() {
+			$.ajax("auth/detailIndex.do", {
+				method : "GET",
+				dataType : "json",
+				success : function(result) {
+					console.log(result);
+					for (var i = 0; i <= (result.list).length - 1; i++) {
+						result.list[i].w_dt = moment(result.list[i].w_dt)
+								.format().substr(0, 10);
+					}
+					var template = Handlebars.compile($('#card').html());
+					var cardno = result.list;
+					var bno0 = result.list[0].bno;
+					var bno1 = result.list[1].bno;
+					var bno2 = result.list[2].bno;
+					var bno3 = result.list[3].bno;
+					$("#list0").append(template(result));
+					for (var i = 0; i <= (result.list).length - 1; i++) {
+						var im = result.list[i].level;
+						switch (im) {
+						case 1:
+							$("#level_img" + i).attr("src", "img/1star.png");
+							break;
+						case 2:
+							$("#level_img" + i).attr("src", "img/2star.png");
+							break;
+						case 3:
+							$("#level_img" + i).attr("src", "img/3star.png");
+							break;
+						case 4:
+							$("#level_img" + i).attr("src", "img/4star.png");
+							break;
+						default:
+							$("#level_img" + i).attr("src", "img/5star.png");
+							break;
+						}
+					}
+
+					$('#a1').css('left', "260px");
+					$('#a2').css('left', "520px");
+					$('#a3').css('left', "780px");
+					$('.desc').hide();
+					init(cardno); //좋아요
+					tete(bno0); //카드슬라이드 돌아가게 하는거          
+					tete(bno1);
+					tete(bno2);
+					tete(bno3);
+				},
+				error : function(request, status, error) {
+					console.log("code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n" + "error:" + error);
+				}
+			});
+		})
+
+		function init(cardno) {
+			for (var i = 0; i < cardno.length; i++) {
+				$
+						.ajax({
+							method : "POST",
+							url : "./ajax/likes/islike.do?bno=" + cardno[i].bno,
+							dataType : "json",
+							async : false,
+							success : function(result) {
+								if (result) {
+									//console.log("#like_"+cardno[i].bno);
+
+									$("#like_" + cardno[i].bno).attr(
+											"data-state", "after");
+									$("#like_" + cardno[i].bno)
+											.css("background",
+													"url(./img/icon_heart_full.png) 7px center no-repeat");
+								} else {
+								}
+							}
+						})
+			}
+		}
+	</script>
+
+
+
+	<!-- 좋아요 -->
+	<script src="js/likes.js"></script>
+	<!-- 책장 넘기기 -->
+	<script type="text/javascript" src="js/bookslide.js"></script>
+	<!-- 비디오 -->
+	<script src="js/videoslide.js"></script>
+	<!-- 카드 이동 -->
+	<script src="js/cardslide.js"></script>
+	<!-- 카드 안에 사진 변경 -->
+	<script src="js/cardinnerslide.js"></script>
+	<!-- 카드 간략히 보기 팝업 -->
+	<script type="text/javascript" src="js/preview.js"></script>
+	<script src="js/jquery.backstretch.min.js"></script>
+
+	<script src="js/turn.js"></script>
 
 </body>
 </html>
