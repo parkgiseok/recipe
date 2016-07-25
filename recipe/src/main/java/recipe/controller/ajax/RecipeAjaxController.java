@@ -67,7 +67,7 @@ public class RecipeAjaxController {
     String realPath = servletContext.getRealPath("files/");
     try (OutputStream stream = new FileOutputStream(realPath + filename)) {
       stream.write(data);
-      Thumbnails.of(realPath + filename).crop(Positions.TOP_CENTER).size(700, 500).toFile(new File(realPath+"/thumb/"+filename));
+      Thumbnails.of(realPath + filename).width(700).height(500).toFile(new File(realPath+"/thumb/"+filename));
       stream.close();
     } catch (Exception e) {
       e.printStackTrace();
@@ -504,7 +504,7 @@ public class RecipeAjaxController {
       String realPath = servletContext.getRealPath("files/");
       try (OutputStream stream = new FileOutputStream(realPath + filename)) {
         stream.write(data);
-        Thumbnails.of(realPath + filename).crop(Positions.TOP_CENTER).size(700, 500).toFile(new File(realPath+"/thumb/"+filename));
+        Thumbnails.of(realPath + filename).width(700).height(500).toFile(new File(realPath+"/thumb/"+filename));
         stream.close();
       } catch (Exception e) {
         e.printStackTrace();
