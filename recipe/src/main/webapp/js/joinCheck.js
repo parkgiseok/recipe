@@ -56,6 +56,13 @@
               text: "암호는 최소 6자 최대 15자의 영문+숫자 조합으로 가능합니다.",
               type: 'warning'})
         return false;
+      } else {
+    	  swal({confirmButtonColor: "#DD6B55",
+              title: '성공',
+              text: "성공",
+              type: 'success'})
+           $(".confirm").click(function(){
+        	   return;
+          }); 
       }
-      return;
     });
