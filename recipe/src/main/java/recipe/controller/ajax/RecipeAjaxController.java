@@ -420,6 +420,46 @@ public class RecipeAjaxController {
     List<Tag> tag = tagService.list(bno);
     return new Gson().toJson(tag);
   }
+  @RequestMapping(value="updateFood", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String updateFood(int bno,int tno) throws ServletException, IOException {
+    Food food = new Food();
+    food.setBno(bno);
+    food.setTno(tno);
+    
+    
+    HashMap<String,Object> result = new HashMap<>();
+    
+    try {
+      foodService.change(food);
+      result.put("status", "success");
+      System.out.println(" 음식성공ㅋㅋ");
+    } catch(Exception e) {
+      result.put("status", "failure");
+      System.out.println("실패ㅋㅋ");
+    }
+    
+    return new Gson().toJson(result);
+  }
+  
+
+
+
+  @RequestMapping(value="deleteFood", 
+      method=RequestMethod.POST, produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String deleteFood(int bno) 
+      throws ServletException, IOException {
+    HashMap<String,Object> result = new HashMap<>();
+    try{
+      foodService.delete(bno);
+      result.put("status", "success");
+    } catch(Exception e) {
+      e.printStackTrace();
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
   
   @RequestMapping(value="addFood", produces="application/json;charset=UTF-8")
   @ResponseBody
