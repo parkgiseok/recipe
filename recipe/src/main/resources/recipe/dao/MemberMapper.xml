@@ -59,6 +59,12 @@
     where MNO=#{no}
   </update>
   
+  <update id="logoutupdate" parameterType="Member">
+    update MEMBER set
+      L_DT=now()
+    where MNO=#{no}
+  </update>
+
   <delete id="delete" parameterType="int">
     delete from MEMBER
     where MNO=#{no}

@@ -132,6 +132,11 @@ public class AuthController {
   //로그아웃(index 용)
   @RequestMapping("/logout")
   public String logout(HttpSession session, SessionStatus status) {
+    Member member = (Member)session.getAttribute("loginUser");
+    System.out.println(member);
+    System.out.println("====");
+    memberService.logoutchange(member);
+    System.out.println(member);
     status.setComplete(); // @SessionAttributes 로 관리하는 값 제거
     session.invalidate(); // HttpSession 객체 무효화시킨다.
                           // => invalidate()는 스프링에서 @SessionAttributes로
@@ -146,6 +151,8 @@ public class AuthController {
   @RequestMapping(value="/logout_url", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String logout_url(HttpSession session, SessionStatus status, int bno) {
+    Member member = (Member)session.getAttribute("loginUser");
+    memberService.logoutchange(member);
     status.setComplete(); // @SessionAttributes 로 관리하는 값 제거
     session.invalidate(); // HttpSession 객체 무효화시킨다.
                           // => invalidate()는 스프링에서 @SessionAttributes로
@@ -162,6 +169,9 @@ public class AuthController {
   @RequestMapping(value="/logout_search", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String logout_search(HttpSession session, SessionStatus status, String searchValue) {
+    Member member = (Member)session.getAttribute("loginUser");
+    
+    memberService.logoutchange(member);
     status.setComplete(); // @SessionAttributes 로 관리하는 값 제거
     session.invalidate(); // HttpSession 객체 무효화시킨다.
     // => invalidate()는 스프링에서 @SessionAttributes로

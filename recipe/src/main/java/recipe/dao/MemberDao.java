@@ -12,6 +12,7 @@ public interface MemberDao {
   int insert(Member member);
   int delete(int no);
   int update(Member member);
+  int logoutupdate(Member member);
   int isMember(Map<String,Object> paramMap);
   int countAll();
 }

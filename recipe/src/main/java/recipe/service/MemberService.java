@@ -8,6 +8,7 @@ public interface MemberService {
   void add(Member member);  
   void delete(int no);  
   void change(Member member);  
+  void logoutchange(Member member);  
   Member retrieve(int no);  
   Member retrieveByNo(int no);
   Member retrieveById(String id);

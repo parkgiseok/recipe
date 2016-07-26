@@ -65,6 +65,10 @@ public class DefaultMemberService implements MemberService {
 	  memberDao.update(member);
   }
 
+  public void logoutchange(Member member) {
+    memberDao.logoutupdate(member);
+  }
+
   public int countPage(int pageSize) {
     int count = memberDao.countAll();
     int pages = count / pageSize;
