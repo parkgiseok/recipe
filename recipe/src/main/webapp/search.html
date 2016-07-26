@@ -300,7 +300,8 @@
     	var cardno = result.list;
       var template = Handlebars.compile($('#card').html());
       if((result.list).length == 0) {
-          $("#list1").append("　　　　검색 결과가 없습니다.");
+          $("#list1").append("검색 결과가 없습니다.");
+          $("#list1").css("text-align", "center");
         } else {
           $("#list1").append(template(result));
         }
@@ -319,7 +320,8 @@
     	var cardno = result.list;
       var template = Handlebars.compile($('#card').html());
       if((result.list).length == 0) {
-        $("#list2").append("　　　　검색 결과가 없습니다.");
+        $("#list2").append("검색 결과가 없습니다.");
+        $("#list2").css("text-align", "center");
       } else {
         $("#list2").append(template(result));
       }
@@ -338,7 +340,8 @@
     	var cardno = result.list;
       var template = Handlebars.compile($('#card').html());
       if((result.list).length == 0) {
-          $("#list3").append("　　　　검색 결과가 없습니다.");
+          $("#list3").append("검색 결과가 없습니다.");
+          $("#list3").css("text-align", "center");
         } else {
           $("#list3").append(template(result));
         }
@@ -415,8 +418,6 @@ $(".log_btn").click(function() {
           text: "아이디 또는 비밀번호를 다시 확인해주세요.",
           type: 'warning'})
       }
-      $("#mem_id").val(""),
-      $("#mem_pwd").val("")
     }
   });
 })
