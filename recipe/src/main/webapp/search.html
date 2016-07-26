@@ -299,7 +299,11 @@
           }
     	var cardno = result.list;
       var template = Handlebars.compile($('#card').html());
-      $("#list1").append(template(result));
+      if((result.list).length == 0) {
+          $("#list1").append("　　　　검색 결과가 없습니다.");
+        } else {
+          $("#list1").append(template(result));
+        }
       init(cardno);
     }, "json");
   });
@@ -314,7 +318,11 @@
           }
     	var cardno = result.list;
       var template = Handlebars.compile($('#card').html());
-      $("#list2").append(template(result));
+      if((result.list).length == 0) {
+        $("#list2").append("　　　　검색 결과가 없습니다.");
+      } else {
+        $("#list2").append(template(result));
+      }
       init(cardno);
     }, "json");
   });
@@ -329,7 +337,11 @@
           }
     	var cardno = result.list;
       var template = Handlebars.compile($('#card').html());
-      $("#list3").append(template(result));
+      if((result.list).length == 0) {
+          $("#list3").append("　　　　검색 결과가 없습니다.");
+        } else {
+          $("#list3").append(template(result));
+        }
       init(cardno);
     }, "json");
   });
