@@ -379,18 +379,23 @@
 							<div class="time col-lg-2 col-sm-2">조리시간</div>
 							<div class="col-lg-10 col-sm-10">
 								<div class="radio">
-									<label> <input type="radio" name="time_" value="5" checked="checked"> 5분 이내 </label>
-                  <label> <input type="radio" name="time_" value="10"> ~ 10분 </label>
-                  <label> <input type="radio" name="time_" value="30"> ~ 30분 </label>
-                  <label> <input type="radio" name="time_" value="60"> ~ 1시간 이상 </label>
+									<label> <input type="radio" name="time_" value="5"
+										checked="checked"> 5분 이내
+									</label> <label> <input type="radio" name="time_" value="10">
+										~ 10분
+									</label> <label> <input type="radio" name="time_" value="30">
+										~ 30분
+									</label> <label> <input type="radio" name="time_" value="60">
+										~ 1시간 이상
+									</label>
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-12 col-lg-12">
 							<div class="level col-lg-2 col-sm-2">난이도</div>
 							<div class="col-lg-10 col-sm-10">
-								<img src="../img/1star.png" class="stars">
-								<input id="lev" type='hidden' name='lev' value='1'>
+								<img src="../img/1star.png" class="stars"> <input id="lev"
+									type='hidden' name='lev' value='1'>
 								<div class="star1" onclick="stars(1)"></div>
 								<div class="star2" onclick="stars(2)"></div>
 								<div class="star3" onclick="stars(3)"></div>
@@ -424,7 +429,7 @@
 			</p>
 		</div>
 	</footer>
-	
+
 	<script>
 	var tags = [];
 	  
@@ -504,6 +509,11 @@
   }
   
   $("#updated").click(function(){
+	  if($("#mytitle").val() == ""){
+	      swal("제목 없음", "제목을 입력해주세요", "warning")
+	    } else if($("#tag").val() == ""){
+	      swal("태그 없음", "태그를 입력해주세요", "warning")
+	    } else {
 	  currentDiv(1);
 	  var tagi1 = $("#tag").val();
       var tagi2 = tagi1.replace(/,/gi,''); //특정문자 제거
@@ -676,6 +686,7 @@
     		
     	}
     }
+	    }
   });
   
 /*   $("form#fm").submit(function(event) {

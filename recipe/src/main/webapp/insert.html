@@ -172,7 +172,7 @@
 					<!-- 제목 -->
 					<input type="text" class="form-control" id="mytitle"
 						style="margin-left: -15px; width: 630px;" placeholder="제목을 입력하세요">
-						<img src="./img/frypan.png" class="frypan">
+					<img src="./img/frypan.png" class="frypan">
 				</div>
 				<form id="fd" method="post" enctype="multipart/form-data" name="fd">
 					<div class="img_con col-sm-8 col-lg-8">
@@ -187,7 +187,8 @@
 								</div>
 							</div>
 							<div class="file-upload-content">
-								<img class="file-upload-image" onclick="removeUpload()" src="#" alt="your image" />
+								<img class="file-upload-image" onclick="removeUpload()" src="#"
+									alt="your image" />
 								<div class="image-title-wrap"></div>
 							</div>
 						</div>
@@ -354,53 +355,58 @@
 						</div>
 
 					</div>
-          <div class="col-sm-10 col-lg-10">
-            <!-- 태크와 저장취소 -->
-            <div class="col-sm-12 col-lg-12">
-              <!-- 태그 -->
-              <div class="mar col-lg-2 col-sm-2">재료</div>
-              <div class="col-lg-10 col-sm-10">
-                <input type="text" id="tag" class="form-control"
-                  placeholder="#닭, #당근, #양파, #감자 ...">
-              </div>
-            </div>
-            <div class="col-sm-12 col-lg-12">
-              <div class="time col-lg-2 col-sm-2">조리시간</div>
-              <div class="col-lg-10 col-sm-10">
-                <div class="radio">
-                  <label> <input type="radio" name="time_" value="5" checked="checked"> 5분 이내 </label>
-                  <label> <input type="radio" name="time_" value="10"> ~ 10분 </label>
-                  <label> <input type="radio" name="time_" value="30"> ~ 30분 </label>
-                  <label> <input type="radio" name="time_" value="60"> ~ 1시간 이상 </label>
-                </div>
-              </div>
-            </div>
+					<div class="col-sm-10 col-lg-10">
+						<!-- 태크와 저장취소 -->
 						<div class="col-sm-12 col-lg-12">
-              <div class="level col-lg-2 col-sm-2">난이도</div>
-              <div class="col-lg-10 col-sm-10">
-                <img src="./img/1star.png" class="stars">
-                <input id="lev" type='hidden' name='lev' value='1'>
-                <div class="star1" onclick="stars(1)"></div>
-                <div class="star2" onclick="stars(2)"></div>
-                <div class="star3" onclick="stars(3)"></div>
-                <div class="star4" onclick="stars(4)"></div>
-                <div class="star5" onclick="stars(5)"></div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-lg-12">
-              <!-- 저장/취소 -->
-              <div class="col-lg-2 col-sm-2">
-                <button class="insert_btn btn-default" id="inserted">등록하기</button>
-              </div>
-              <div class="col-lg-10 col-sm-10">
-                <button class="cancel_btn btn-default" onclick="index.html">취소</button>
-              </div>
+							<!-- 태그 -->
+							<div class="mar col-lg-2 col-sm-2">재료</div>
+							<div class="col-lg-10 col-sm-10">
+								<input type="text" id="tag" class="form-control"
+									placeholder="#닭, #당근, #양파, #감자 ...">
+							</div>
+						</div>
+						<div class="col-sm-12 col-lg-12">
+							<div class="time col-lg-2 col-sm-2">조리시간</div>
+							<div class="col-lg-10 col-sm-10">
+								<div class="radio">
+									<label> <input type="radio" name="time_" value="5"
+										checked="checked"> 5분 이내
+									</label> <label> <input type="radio" name="time_" value="10">
+										~ 10분
+									</label> <label> <input type="radio" name="time_" value="30">
+										~ 30분
+									</label> <label> <input type="radio" name="time_" value="60">
+										~ 1시간 이상
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-lg-12">
+							<div class="level col-lg-2 col-sm-2">난이도</div>
+							<div class="col-lg-10 col-sm-10">
+								<img src="./img/1star.png" class="stars"> <input id="lev"
+									type='hidden' name='lev' value='1'>
+								<div class="star1" onclick="stars(1)"></div>
+								<div class="star2" onclick="stars(2)"></div>
+								<div class="star3" onclick="stars(3)"></div>
+								<div class="star4" onclick="stars(4)"></div>
+								<div class="star5" onclick="stars(5)"></div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-lg-12">
+							<!-- 저장/취소 -->
+							<div class="col-lg-2 col-sm-2">
+								<button class="insert_btn btn-default" id="inserted">등록하기</button>
+							</div>
+							<div class="col-lg-10 col-sm-10">
+								<button class="cancel_btn btn-default" onclick="index.html">취소</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 	<footer>
 		<div class="text-center col-md-6 col-md-offset-3">
@@ -448,8 +454,12 @@
 	    $(".stars").attr("src","./img/" + n + "star.png")
 	    $("#lev").val(n);
 	  }
-  
   $("#inserted").click(function(){
+	  if($("#mytitle").val() == ""){
+		  swal("제목 없음", "제목을 입력해주세요", "warning")
+	  } else if($("#tag").val() == ""){
+		  swal("태그 없음", "태그를 입력해주세요", "warning")
+	  } else {
 	  currentDiv(1);
 	  var tagi1 = $("#tag").val();
       var tagi2 = tagi1.replace(/,/gi,''); //특정문자 제거
@@ -537,6 +547,7 @@
             }, "json"
           );
     }
+  }
   });
   
 /*   $("form#fm").submit(function(event) {
