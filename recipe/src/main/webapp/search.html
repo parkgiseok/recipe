@@ -265,10 +265,22 @@
     <div class="option">
       <div class="time"><button>{{time}}분</button></div>
       <div class="like"><button id="like_{{bno}}" type="submit" data-state="before" onclick="c_like(this);" data-bno='{{bno}}' data-likes="{{likes}}">{{likes}}명</button></div>
-      <div class="share"><button>공유하기</button></div>
+      <div class="share">
+        <button type="button" class="share_btn btn-default" title="아래 링크를 복사하세요." id="abc"
+          data-container="body" data-toggle="popover" data-placement="bottom" 
+          data-content="http://localhost:8080/recipe/urlPage.html?bno={{bno}}">공유하기</button>
+      </div>
     </div>
   </li>
   {{/each}}
+  </script>
+
+  <script>
+    $(document).on("click", "#abc", function() {
+      $('[data-toggle="popover"]').popover({
+        container : "body"
+      });
+    });
   </script>
 
 	<script>
