@@ -416,7 +416,10 @@ $(".log_btn").click(function() {
         swal({confirmButtonColor: "#DD6B55",
           title: '로그인 실패',
           text: "아이디 또는 비밀번호를 다시 확인해주세요.",
-          type: 'warning'})
+          type: 'warning'
+          })
+          $("#mem_id").val(""),
+          $("#mem_pwd").val("")
       }
     }
   });
