@@ -61,7 +61,6 @@ public class MemberAjaxController {
     Member member = (Member)session.getAttribute("loginUser");
     Member member2 = memberService.retrieveByNo(member.getNo());
     
-    System.out.println(member2);
     return new Gson().toJson(member2);
   }
   
@@ -69,6 +68,7 @@ public class MemberAjaxController {
  @RequestMapping(value="upload",
      method=RequestMethod.POST)
  public String upload(MultipartHttpServletRequest request, int no, String nick, String gender, String category, String description) throws ServletException, IOException {
+   HashMap<String,Object> result = new HashMap<>();
    Member member = new Member();
    Member member1 = memberService.retrieveByNo(no);
    System.out.println("request" + request);
@@ -103,24 +103,29 @@ public class MemberAjaxController {
    // 닉네임 설정
    if (nick.equals("")) {
      member.setNick(member1.getNick());
+   } else if (nick.length() > 5){
+     return new Gson().toJson(result);
    } else {
-     member.setNick(nick);     
+     member.setNick(nick);
    }
    // 성별 설정
    member.setGender(gender);
    // 카테고리 설정
    if (category.equals("")) {     
      member.setCategory(member1.getCategory());
+   } else if (category.length() > 8) {
+     return new Gson().toJson(result);
    } else {
      member.setCategory(category);
    }
    // 자기소개 설정
    if (description.equals("")) {
      member.setDescription(member1.getDescription());
+   } else if (description.length() > 52) {
+     return new Gson().toJson(result);
    } else {
      member.setDescription(description);
    }
-
 
    try {
      System.out.println("성공");
@@ -129,7 +134,7 @@ public class MemberAjaxController {
      e.printStackTrace();
      System.out.println("실패");
    }
-   return "redirect:../../index.html";
+   return "redirect: ../../index.html";
  }
   
   // 비밀번호 변경
@@ -154,9 +159,11 @@ public class MemberAjaxController {
       if (member1.getPassword().equals(password) && !member1.getPassword().equals(password1)) {
         if (password1.equals(password2)) {
           memberService.change(member);
+          result.put("status", "success");
+        } else {
+          result.put("status", "fail");
         }
       }
-      result.put("status", "success");
     } catch (Exception e) {
       result.put("status", "failure");
     }
