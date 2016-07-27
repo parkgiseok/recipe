@@ -180,18 +180,19 @@ hr {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border-bottom: 1px solid lightblue;
 }
 
 .recent_cont {
 	display: inline-block;
-  width: 470px;
+  width: 480px;
+  max-height: 75px;
   white-space: nowrap;
-  overflow: hidden;
+  overflow: auto;
   text-overflow: ellipsis;
   
   white-space: normal;
   line-height: 1.2;
-  max-height: 50px;
   text-align: left;
   word-wrap: break-word;
   display: -webkit-box;
@@ -205,7 +206,7 @@ hr {
 }
 
 .date {
-  margin-top: 70px;
+  margin-top: 5px;
   position: relative;
   color: gray;
   font-style: italic;

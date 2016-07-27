@@ -40,36 +40,30 @@
 }
 
 .slide {
-	margin-left: -8px;
-	
-}
-
-.list_title {
-  margin-top: 25px;
+	margin-left: -40px;
 }
 
 .date {
-	margin-top: 25px;
+	margin-top: 5px;
   position: relative;
   color: gray;
   font-style: italic;
 }
 
 .list_cont {
-	margin-top: 12px;
   display: inline-block;
-  width: 470px;
+  width: 480px;
+  max-height: 75px;
   white-space: nowrap;
-  overflow: hidden;
+  overflow: auto;
   text-overflow: ellipsis;
   
   white-space: normal;
-  line-height: 1.2;
-  max-height: 50px;
+  line-height: 1.3;
   text-align: left;
   word-wrap: break-word;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
