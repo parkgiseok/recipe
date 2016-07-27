@@ -11,7 +11,7 @@
   z-index: 1;
   border-radius: 15px;
   font-size: large;
-  font-weight: 600;
+  font-weight: 500;
 }
 /* Aylen */
 .mp_b1.mp_b1--aylen {
@@ -50,7 +50,6 @@
   -webkit-transition-delay: 0.175s;
   transition-delay: 0.175s;
 }
-
 
 /* Wapasha */
 .s_bt {
@@ -93,9 +92,6 @@
   transform: scale3d(1, 1, 1);
   opacity: 1;
 }
-
-
-
 
 #titleimg {
   position: relative;

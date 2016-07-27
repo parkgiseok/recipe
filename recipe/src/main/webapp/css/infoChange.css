@@ -1,6 +1,7 @@
 *{
   font-family: '옛날목욕탕';
   color: black;
+  font-weight:100;
 }
 hr {
 	border: 1px solid lightgray;
@@ -17,6 +18,10 @@ hr {
 .data-div {
   position: relative;
   padding: 10px;
+}
+
+#info_view {
+	font-weight:200;
 }
 
 .file-upload-image {

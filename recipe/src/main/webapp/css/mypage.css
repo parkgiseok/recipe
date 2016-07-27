@@ -55,7 +55,6 @@
   transform: translate3d(0, 100%, 0);
 }
 
-
 #titleimg {
   position: relative;
   top: -10px;
@@ -63,7 +62,9 @@
 
 *{
   font-family: '옛날목욕탕';
+  font-weight: 200;
 }
+
 hr {
 	border: 1px solid lightgray;
 }
