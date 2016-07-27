@@ -32,12 +32,12 @@ hr {
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
       <a class="navbar-brand" href="../index.html"><img id="titleimg" src="../img/title.PNG"/></a></div>
     <div class="collapse navbar-collapse" id="defaultNavbar1">
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" value="" class="form-control" id="searchvalue"
-            placeholder="예) 김치 볶음밥">
-        </div>
-        <a onclick='javascript:fncSubmit();' class="btn btn-default">검색</a>
+      <form class="navbar-form navbar-left" role="search" onsubmit="return false">
+         <div class="form-group">
+            <input type="text" value="" class="form-control" id="searchvalue"
+               placeholder="예) 김치 볶음밥" onkeypress="if( event.keyCode==13 ){fncSubmit();}">
+         </div>
+         <a onclick='javascript:fncSubmit();' class="btn btn-default">검색</a>
       </form>
       <ul class="nav navbar-nav navbar-right">
           <li><a id="logout" href="../auth/logout.do">로그아웃</a></li>
