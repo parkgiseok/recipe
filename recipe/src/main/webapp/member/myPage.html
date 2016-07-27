@@ -72,7 +72,7 @@
       <div class="cc col-xs-9 col-xs-9">
         <div class="row">
           <div class="col-xs-6 col-xs-6" style="margin-top: 65px;" id="my">
-            
+            <img src="../img/welcome.gif" id="wel">
           </div>  
           
           <div class="col-xs-6 col-xs-6">
@@ -127,8 +127,7 @@
 </script>
 
 <script id="myy" type="text/x-handlebars-template">
-  <img src="../img/welcome2.png" id="wel"><span id="w_nick">{{nick}}</span> 님!!
-  <img src="../img/flower.png" id="flower">
+  <span id="w_nick">{{nick}}</span> 님!!
   <hr>
   <span class="wel2">가입일　:　</span> <span class="wel3">{{startDate}}</span>
   <hr>
@@ -181,6 +180,13 @@
 	      $("#b1").append(template(result));
 	    });
 	})    
+</script>
+
+<script>
+  $(document).ready(function() {
+	  $(function v11(){$("#wel").animate({"left": "120px"}, 5000, null, v11);});
+	  $(function v22(){$("#wel").animate({"left": "-80px"}, 5000, null, v22);});
+	})
 </script>
 <script src="../js/my_search.js"></script>
 </body>

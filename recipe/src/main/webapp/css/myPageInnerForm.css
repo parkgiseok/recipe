@@ -101,6 +101,14 @@
   position: relative;
   top: -10px;
 }
+
+.title_img {
+  width: 200px;
+  height: 80px;
+  cursor: pointer;
+  margin-bottom: -23px;
+}
+
 *{
   font-family: '옛날목욕탕';
   border: 0px solid red;
