@@ -60,6 +60,14 @@
   position: relative;
   top: -10px;
 }
+
+.title_img {
+  width: 200px;
+  height: 80px;
+  cursor: pointer;
+  margin-bottom: -23px;
+}
+
 *{
   font-family: '옛날목욕탕';
 }
@@ -79,24 +87,23 @@ hr {
 	font-size: x-large;
 	text-shadow: 5px 5px pink;
 	margin-bottom: 10px;
-}
+} 
+
 #wel {
-	float: right;
-	position: absolute;
-	width: 85px;
-	margin-left: 120px;
-	margin-top: -65px;
-	-webkit-transform: rotate(-20deg); 
+  width: 100px;
+  margin-left: -1px;
+  margin-top: -40px;
+  -webkit-transform: rotate(-23deg);
 }
 
 #flower {
 	width: 90px;
 	float: right;
-	margin-top: 15px;
+	margin-top: 4px;
 }
 
 #w_nick {
-	margin-left: 90px;
+	margin-left: 9px;
 	font-weight: 500;
   font-size: x-large;
   color: #ff8040;
@@ -157,12 +164,12 @@ hr {
 }
 
 .op {
-	float: right;
-	position: absolute;
-	margin-left: 220px;
-	margin-top: -17px;
-	width: 160px;
-	height: 200px;
+  float: right;
+  position: absolute;
+  margin-left: 119px;
+  margin-top: -20px;
+  width: 310px;
+  height: 235px;
 }
 
 #m_line {
