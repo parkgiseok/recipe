@@ -94,7 +94,7 @@
   </select>
   
   <select id="searchRecipeListByNick" parameterType="map" resultType="SearchedRecipe">
-    select m.mno, m.nick, m.photo, m.desct, m.category, r.bno, r.title, r.w_dt, r.m_photo, r.time, r.level, rp.cont, group_concat(distinct " #",t.tname) as tname
+    select m.mno, m.nick, m.photo, m.desct, m.category, r.bno, r.title, r.w_dt, r.m_photo, r.c_situ, r.time, r.level, rp.cont, group_concat(distinct " #",t.tname) as tname
     from member m right outer join recipe r on m.mno = r.mno 
     left outer join r_photo rp on r.bno = rp.bno
     right outer join food f on r.bno = f.bno
@@ -105,7 +105,7 @@
   </select>
   
   <select id="searchRecipeListByTitle" parameterType="map" resultType="SearchedRecipe">
-    select m.mno, m.nick, m.photo, m.desct, m.category, r.bno, r.title, r.w_dt, r.m_photo, r.time, r.level, rp.cont, group_concat(distinct " #",t.tname) as tname
+    select m.mno, m.nick, m.photo, m.desct, m.category, r.bno, r.title, r.w_dt, r.m_photo, r.c_situ, r.time, r.level, rp.cont, group_concat(distinct " #",t.tname) as tname
     from member m right outer join recipe r on m.mno = r.mno
     left outer join r_photo rp on r.bno = rp.bno
     right outer join food f on r.bno = f.bno
@@ -116,7 +116,7 @@
   </select>
   
   <select id="searchRecipeListByTag" parameterType="map" resultType="SearchedRecipe">
-    select m.mno, m.nick, m.photo, m.desct, m.category, r.bno, r.title, r.w_dt, r.m_photo, r.time, r.level, rp.cont, group_concat(distinct " #",t.tname) as tname
+    select m.mno, m.nick, m.photo, m.desct, m.category, r.bno, r.title, r.w_dt, r.m_photo, r.c_situ, r.time, r.level, rp.cont, group_concat(distinct " #",t.tname) as tname
     from member m right outer join recipe r on m.mno = r.mno 
     left outer join r_photo rp on r.bno = rp.bno
     right outer join food f on r.bno = f.bno

@@ -17,6 +17,7 @@ public class SearchedRecipe {
   private String level;
   private String cont;
   private String tname;
+  private String c_situ;
   public int getMno() {
     return mno;
   }
@@ -101,7 +102,13 @@ public class SearchedRecipe {
   public void setTname(String tname) {
     this.tname = tname;
   }
-
+  public String getC_situ() {
+    return c_situ;
+  }
+  public void setC_situ(String c_situ) {
+    this.c_situ = c_situ;
+  }
+  
   public SearchedRecipe() {
   }
   
