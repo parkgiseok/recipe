@@ -35,26 +35,31 @@ public class ContentAjaxController {
   @RequestMapping(value = "add", produces = "application/json;charset=UTF-8")
   @ResponseBody
   public String add(String p_url, String cont) throws ServletException, IOException {
+    System.out.println(p_url);
     Content content = new Content();
+    if (p_url.startsWith("data:image")) {
 
-    String extension = "." + p_url.split(";")[0].split("/")[1];
+      String extension = "." + p_url.split(";")[0].split("/")[1];
 
-    String photoData = p_url.split(",")[1];
+      String photoData = p_url.split(",")[1];
 
-    byte[] data = Base64.decodeBase64(photoData);
+      byte[] data = Base64.decodeBase64(photoData);
 
-    String filename = "";
-    filename = System.currentTimeMillis() + extension;
+      String filename = "";
+      filename = System.currentTimeMillis() + extension;
 
-    String realPath = servletContext.getRealPath("files/");
-    try (OutputStream stream = new FileOutputStream(realPath + filename)) {
-      stream.write(data);
-      Thumbnails.of(realPath + filename).width(700).height(500).toFile(new File(realPath+"/thumb/"+filename));
-      stream.close();
-    } catch (Exception e) {
-      e.printStackTrace();
+      String realPath = servletContext.getRealPath("files/");
+      try (OutputStream stream = new FileOutputStream(realPath + filename)) {
+        stream.write(data);
+        Thumbnails.of(realPath + filename).width(700).height(500).toFile(new File(realPath + "/thumb/" + filename));
+        stream.close();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      content.setP_url("../files/thumb/" + filename);
+    } else {
+      content.setP_url("../files/thumb/" + p_url);
     }
-    content.setP_url("../files/thumb/" + filename);
     content.setCont(cont);
     HashMap<String, Object> result = new HashMap<>();
     try {
@@ -69,30 +74,35 @@ public class ContentAjaxController {
 
     return new Gson().toJson(result);
   }
+
   @RequestMapping(value = "updateadd", produces = "application/json;charset=UTF-8")
   @ResponseBody
-  public String updateadd(int bno,String p_url, String cont, int q) throws ServletException, IOException {
+  public String updateadd(int bno, String p_url, String cont, int q) throws ServletException, IOException {
     Content content = new Content();
+    System.out.println(p_url);
+    if (p_url.startsWith("data:image")) {
+      String extension = "." + p_url.split(";")[0].split("/")[1];
 
-    String extension = "." + p_url.split(";")[0].split("/")[1];
+      String photoData = p_url.split(",")[1];
 
-    String photoData = p_url.split(",")[1];
+      byte[] data = Base64.decodeBase64(photoData);
 
-    byte[] data = Base64.decodeBase64(photoData);
+      String filename = "";
+      filename = System.currentTimeMillis() + extension;
 
-    String filename = "";
-    filename = System.currentTimeMillis() + extension;
-
-    String realPath = servletContext.getRealPath("files/");
-    try (OutputStream stream = new FileOutputStream(realPath + filename)) {
-      stream.write(data);
-      Thumbnails.of(realPath + filename).width(700).height(500).toFile(new File(realPath+"/thumb/"+filename));
-      stream.close();
-    } catch (Exception e) {
-      e.printStackTrace();
+      String realPath = servletContext.getRealPath("files/");
+      try (OutputStream stream = new FileOutputStream(realPath + filename)) {
+        stream.write(data);
+        Thumbnails.of(realPath + filename).width(700).height(500).toFile(new File(realPath + "/thumb/" + filename));
+        stream.close();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      content.setP_url("../files/thumb/" + filename);
+    } else {
+      content.setP_url("../files/thumb/" + "../" + p_url);
     }
     content.setBno(bno);
-    content.setP_url("../files/thumb/" + filename);
     content.setCont(cont);
     HashMap<String, Object> result = new HashMap<>();
     try {
@@ -186,13 +196,15 @@ public class ContentAjaxController {
       String realPath = servletContext.getRealPath("files/");
       try (OutputStream stream = new FileOutputStream(realPath + filename)) {
         stream.write(data);
-        Thumbnails.of(realPath + filename).width(700).height(500).toFile(new File(realPath+"/thumb/"+filename));
+        Thumbnails.of(realPath + filename).width(700).height(500).toFile(new File(realPath + "/thumb/" + filename));
         stream.close();
       } catch (Exception e) {
         e.printStackTrace();
       }
       content.setP_url("../files/thumb/" + filename);
 
+    } else if(p_url.equals("img/noimages.png")) {
+      content.setP_url("../files/thumb/" + p_url);
     } else {
       content.setP_url(p_url);
     }
