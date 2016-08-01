@@ -58,8 +58,8 @@
         return false;
       } else {
     	  swal({confirmButtonColor: "#DD6B55",
+    		  showConfirmButton: false,
               title: '성공',
-              text: "성공",
               type: 'success'})
            $(".confirm").click(function(){
         	   return;
